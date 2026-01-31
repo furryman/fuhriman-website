@@ -15,6 +15,7 @@ export default function Hero() {
         <div className={styles.cta}>
           <a href="#contact" className="btn">Get in Touch</a>
           <a href="#experience" className={styles.secondary}>View My Work</a>
+          <a href="/how-its-built" className={styles.secondary}>How It's Built</a>
         </div>
       </div>
     </section>

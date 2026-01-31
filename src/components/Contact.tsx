@@ -24,7 +24,10 @@ export default function Contact() {
           </a>
         </div>
         <footer className={styles.footer}>
-          <p>Built with Next.js, deployed on Kubernetes with ArgoCD</p>
+          <p>
+            Built with Next.js, deployed on Kubernetes with ArgoCD.{' '}
+            <a href="/how-its-built">See how it's built →</a>
+          </p>
         </footer>
       </div>
     </section>
