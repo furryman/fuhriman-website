@@ -1,0 +1,80 @@
+.experience {
+  background: var(--background-light);
+}
+
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.item {
+  background: var(--background);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 2rem;
+  transition: border-color 0.2s;
+}
+
+.item:hover {
+  border-color: var(--primary);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.title {
+  font-size: 1.25rem;
+  color: var(--text);
+  margin-bottom: 0.25rem;
+}
+
+.company {
+  color: var(--primary);
+  font-size: 1rem;
+}
+
+.period {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+.highlights {
+  list-style: none;
+  padding: 0;
+}
+
+.highlights li {
+  position: relative;
+  padding-left: 1.5rem;
+  margin-bottom: 0.75rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.highlights li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.5rem;
+  width: 6px;
+  height: 6px;
+  background: var(--accent);
+  border-radius: 50%;
+}
+
+.highlights li:last-child {
+  margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}

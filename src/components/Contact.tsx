@@ -1,0 +1,32 @@
+import styles from './Contact.module.css'
+
+export default function Contact() {
+  return (
+    <section id="contact" className={styles.contact}>
+      <div className="container">
+        <h2>Get in Touch</h2>
+        <p className={styles.intro}>
+          I'm always open to discussing new opportunities, interesting projects,
+          or just chatting about DevOps and cloud technologies.
+        </p>
+        <div className={styles.links}>
+          <a href="mailto:contact@fuhriman.org" className={styles.link}>
+            <span className={styles.icon}>@</span>
+            <span>contact@fuhriman.org</span>
+          </a>
+          <a href="https://github.com/furryman" target="_blank" rel="noopener noreferrer" className={styles.link}>
+            <span className={styles.icon}>GH</span>
+            <span>github.com/furryman</span>
+          </a>
+          <a href="https://linkedin.com/in/fuhriman" target="_blank" rel="noopener noreferrer" className={styles.link}>
+            <span className={styles.icon}>in</span>
+            <span>linkedin.com/in/fuhriman</span>
+          </a>
+        </div>
+        <footer className={styles.footer}>
+          <p>Built with Next.js, deployed on Kubernetes with ArgoCD</p>
+        </footer>
+      </div>
+    </section>
+  )
+}

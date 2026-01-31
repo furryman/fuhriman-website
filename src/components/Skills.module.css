@@ -1,0 +1,41 @@
+.skills {
+  background: var(--background);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.card {
+  background: var(--background-light);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: border-color 0.2s;
+}
+
+.card:hover {
+  border-color: var(--primary);
+}
+
+.cardTitle {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  color: var(--text);
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tag {
+  background: rgba(0, 112, 243, 0.1);
+  color: var(--primary);
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+}

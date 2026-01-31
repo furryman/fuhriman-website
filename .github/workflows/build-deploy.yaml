@@ -1,0 +1,70 @@
+name: Build and Deploy
+
+on:
+  push:
+    branches: [main]
+
+env:
+  REGISTRY: docker.io
+  IMAGE_NAME: furryman/fuhriman-website
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Generate Docker tag
+        id: tag
+        run: |
+          TAG="ga-$(date +'%Y.%m.%d-%H%M')"
+          echo "tag=$TAG" >> $GITHUB_OUTPUT
+          echo "Generated tag: $TAG"
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: true
+          platforms: linux/arm64
+          tags: |
+            ${{ env.IMAGE_NAME }}:${{ steps.tag.outputs.tag }}
+            ${{ env.IMAGE_NAME }}:latest
+
+      - name: Checkout eks-helm-charts repository
+        uses: actions/checkout@v4
+        with:
+          repository: furryman/eks-helm-charts
+          token: ${{ secrets.GH_PAT }}
+          path: eks-helm-charts
+
+      - name: Update image tag in Helm values
+        run: |
+          yq -i '.image.tag = "${{ steps.tag.outputs.tag }}"' eks-helm-charts/fuhriman-chart/values.yaml
+          echo "Updated values.yaml with tag: ${{ steps.tag.outputs.tag }}"
+          cat eks-helm-charts/fuhriman-chart/values.yaml
+
+      - name: Commit and push changes
+        run: |
+          cd eks-helm-charts
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add fuhriman-chart/values.yaml
+          git commit -m "Update fuhriman-website image to ${{ steps.tag.outputs.tag }}"
+          git push
