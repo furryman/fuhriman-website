@@ -3,7 +3,7 @@ import styles from './Skills.module.css'
 const skillCategories = [
   {
     title: 'Cloud Platforms',
-    skills: ['AWS', 'GCP', 'Azure']
+    skills: ['AWS']
   },
   {
     title: 'Container & Orchestration',
@@ -15,11 +15,11 @@ const skillCategories = [
   },
   {
     title: 'CI/CD',
-    skills: ['GitHub Actions', 'Jenkins', 'GitLab CI', 'CircleCI']
+    skills: ['GitHub Actions', 'Jenkins']
   },
   {
     title: 'Monitoring & Observability',
-    skills: ['Prometheus', 'Grafana', 'Datadog', 'ELK Stack']
+    skills: ['Prometheus', 'Grafana', 'Datadog']
   },
   {
     title: 'Languages & Scripting',

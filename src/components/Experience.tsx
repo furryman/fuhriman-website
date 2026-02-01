@@ -2,9 +2,9 @@ import styles from './Experience.module.css'
 
 const experiences = [
   {
-    title: 'Senior DevOps Engineer',
-    company: 'Tech Company',
-    period: '2022 - Present',
+    title: 'DevOps Engineer',
+    company: 'Mastercontrol',
+    period: '2021 - 2025',
     highlights: [
       'Architected and deployed multi-region Kubernetes clusters on AWS EKS serving 10M+ requests/day',
       'Implemented GitOps workflows with ArgoCD, reducing deployment time by 70%',
@@ -14,8 +14,8 @@ const experiences = [
   },
   {
     title: 'DevOps Engineer',
-    company: 'Software Startup',
-    period: '2020 - 2022',
+    company: 'ACD Direct',
+    period: '2020 - 2021',
     highlights: [
       'Designed and maintained CI/CD pipelines using GitHub Actions',
       'Managed infrastructure as code with Terraform across multiple environments',
@@ -24,9 +24,9 @@ const experiences = [
     ]
   },
   {
-    title: 'Systems Administrator',
-    company: 'Enterprise Corp',
-    period: '2019 - 2020',
+    title: 'IT Support Specialist',
+    company: 'ACD Direct',
+    period: '2018 - 2020',
     highlights: [
       'Maintained Linux servers and automated routine tasks with Ansible',
       'Implemented backup and disaster recovery solutions',

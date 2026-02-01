@@ -10,17 +10,17 @@ export default function Contact() {
           or just chatting about DevOps and cloud technologies.
         </p>
         <div className={styles.links}>
-          <a href="mailto:contact@fuhriman.org" className={styles.link}>
+          <a href="mailto:adamdfuhriman@gmail.com" className={styles.link}>
             <span className={styles.icon}>@</span>
-            <span>contact@fuhriman.org</span>
+            <span>adamdfuhriman@gmail.com</span>
           </a>
           <a href="https://github.com/furryman" target="_blank" rel="noopener noreferrer" className={styles.link}>
             <span className={styles.icon}>GH</span>
             <span>github.com/furryman</span>
           </a>
-          <a href="https://linkedin.com/in/fuhriman" target="_blank" rel="noopener noreferrer" className={styles.link}>
+          <a href="https://linkedin.com/in/adam-fuhriman" target="_blank" rel="noopener noreferrer" className={styles.link}>
             <span className={styles.icon}>in</span>
-            <span>linkedin.com/in/fuhriman</span>
+            <span>linkedin.com/in/adam-fuhriman</span>
           </a>
         </div>
         <footer className={styles.footer}>
