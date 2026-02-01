@@ -7,11 +7,11 @@ const skillCategories = [
   },
   {
     title: 'Container & Orchestration',
-    skills: ['Kubernetes', 'Docker', 'Helm', 'ArgoCD']
+    skills: ['Kubernetes', 'Docker', 'Helm', 'ArgoCD', 'FluxCD']
   },
   {
     title: 'Infrastructure as Code',
-    skills: ['Terraform', 'Ansible', 'CloudFormation']
+    skills: ['Terraform', 'Terragrunt', 'CloudFormation']
   },
   {
     title: 'CI/CD',
@@ -19,7 +19,7 @@ const skillCategories = [
   },
   {
     title: 'Monitoring & Observability',
-    skills: ['Prometheus', 'Grafana', 'Datadog']
+    skills: ['Prometheus', 'Grafana', 'Datadog', 'Backstage']
   },
   {
     title: 'Languages & Scripting',
