@@ -5,6 +5,27 @@
   background: linear-gradient(135deg, var(--background) 0%, var(--background-light) 100%);
 }
 
+.heroContent {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4rem;
+}
+
+.textContent {
+  flex: 1;
+}
+
+.imageWrapper {
+  flex-shrink: 0;
+}
+
+.headshot {
+  border-radius: 50%;
+  border: 4px solid var(--primary);
+  object-fit: cover;
+}
+
 .title {
   font-size: 3.5rem;
   margin-bottom: 0.5rem;
@@ -48,12 +69,28 @@
 }
 
 @media (max-width: 768px) {
+  .heroContent {
+    flex-direction: column-reverse;
+    text-align: center;
+    gap: 2rem;
+  }
+
   .title {
     font-size: 2.5rem;
   }
 
+  .description {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
   .cta {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
+  }
+
+  .headshot {
+    width: 200px;
+    height: 200px;
   }
 }

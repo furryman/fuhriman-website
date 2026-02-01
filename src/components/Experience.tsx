@@ -6,10 +6,12 @@ const experiences = [
     company: 'Mastercontrol',
     period: '2021 - 2025',
     highlights: [
-      'Architected and deployed multi-region Kubernetes clusters on AWS EKS serving 10M+ requests/day',
+      'Architected and deployed multi-region Kubernetes clusters on AWS EKS for over 150 microservices',
+      'Implemented Atlantis, reducing Terraform wait times from minutes to seconds, enhancing productivity and accelerating development cycles',
       'Implemented GitOps workflows with ArgoCD, reducing deployment time by 70%',
       'Built comprehensive monitoring stack with Prometheus and Grafana',
-      'Led migration from monolithic to microservices architecture'
+      'Built PoC for Internal Developer Portal (IDP) using Backstage',
+      'Led numerous optimization/refactoring projects for Terraform modules, cutting repeated code by over 50% and speeding up deployments'
     ]
   },
   {
@@ -17,10 +19,9 @@ const experiences = [
     company: 'ACD Direct',
     period: '2020 - 2021',
     highlights: [
-      'Designed and maintained CI/CD pipelines using GitHub Actions',
-      'Managed infrastructure as code with Terraform across multiple environments',
-      'Implemented container orchestration strategy with Docker and Kubernetes',
-      'Reduced infrastructure costs by 40% through optimization and automation'
+      'Led DevOps tranformation during a period of rapid growth by automating many previously manual processes',
+      'Designed and built CI/CD pipelines with Jenkins, cutting deployment times by 70%',
+      'Implmeneted SSO with Azure and reduced onboarding times from hours to minutes and saved $1500/mo by identifying wasteful user lisences'
     ]
   },
   {
@@ -28,10 +29,9 @@ const experiences = [
     company: 'ACD Direct',
     period: '2018 - 2020',
     highlights: [
-      'Maintained Linux servers and automated routine tasks with Ansible',
-      'Implemented backup and disaster recovery solutions',
+      'Maintained Windows servers and performed software/security updates on VMWare VMs',
+      'Cut monthly software spending costs by $2000/mo by migrating organization Jira and consolidating work management tools',
       'Collaborated with development teams to improve deployment processes',
-      'Transitioned legacy applications to containerized deployments'
     ]
   }
 ]
