@@ -17,11 +17,6 @@ export default function About() {
             and observability tools. I believe in infrastructure as code, GitOps practices,
             and building systems that are scalable, secure, and maintainable.
           </p>
-          <p>
-            When I'm not architecting cloud solutions, you can find me contributing to
-            open-source projects, writing technical blog posts, or exploring the latest
-            developments in the cloud-native ecosystem.
-          </p>
         </div>
       </div>
     </section>
