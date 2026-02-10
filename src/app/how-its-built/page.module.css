@@ -61,6 +61,22 @@
   line-height: 1.7;
 }
 
+.architectureNote {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: var(--bg-secondary);
+  border-left: 4px solid var(--accent);
+  border-radius: 4px;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.architectureNote strong {
+  color: var(--accent);
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
 .diagram {
   background: var(--background-light);
   border: 1px solid var(--border);
