@@ -35,6 +35,6 @@ Push to `main` triggers GitHub Actions which:
 1. Builds ARM64 Docker image
 2. Pushes to Docker Hub with tag `ga-YYYY.MM.DD-HHMM`
 3. Updates `eks-helm-charts` repo with new image tag
-4. ArgoCD syncs to EKS cluster
+4. ArgoCD syncs to k3s cluster
 
 Related repos: `furryman/terraform`, `furryman/eks-helm-charts`, `furryman/argocd-app-of-apps`

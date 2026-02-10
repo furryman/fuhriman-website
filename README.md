@@ -7,7 +7,7 @@ A personal portfolio website built with Next.js, showcasing DevOps engineering s
 - **Framework**: Next.js 14
 - **Language**: TypeScript
 - **Styling**: CSS Modules
-- **Deployment**: Docker + Kubernetes (EKS) + ArgoCD
+- **Deployment**: Docker + Kubernetes (k3s) + ArgoCD
 
 ## Local Development
 

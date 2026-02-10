@@ -75,7 +75,7 @@ export default function HowItsBuilt() {
 │  │  └─────────────┘  └─────────────┘  └───────────────────────────┘    │    │
 │  │                                                                     │    │
 │  │  ┌─────────────────────────────────────────────────────────────┐    │    │
-│  │  │ CoreDNS: Internal DNS for cert validation (hairpin NAT fix) │    │    │
+│  │  │ iptables: Hairpin NAT fix (pod CIDR → kube-proxy chains)    │    │    │
 │  │  └─────────────────────────────────────────────────────────────┘    │    │
 │  └─────────────────────────────────────────────────────────────────────┘    │
 └─────────────────────────────────────────────────────────────────────────────┘
@@ -131,8 +131,8 @@ export default function HowItsBuilt() {
             <p>Provisions a single t3.small EC2 instance (2GB RAM) and installs k3s (lightweight Kubernetes) via cloud-init. ArgoCD is deployed via Helm during instance bootstrap, eliminating the need for managed EKS.</p>
           </div>
           <div className={styles.highlight}>
-            <h4>CoreDNS Configuration</h4>
-            <p>Automatically configures split-horizon DNS to resolve fuhriman.org/www internally to the ingress-nginx ClusterIP. This solves the hairpin NAT problem for Let's Encrypt HTTP-01 certificate validation.</p>
+            <h4>Hairpin NAT Fix</h4>
+            <p>Installs iptables rules that jump pod CIDR traffic destined for the public IP directly into kube-proxy's KUBE-EXT chains. This solves the AWS hairpin NAT problem for cert-manager HTTP-01 validation at the network layer.</p>
           </div>
         </div>
       </section>
@@ -278,12 +278,12 @@ jobs:
         <div className={styles.repos}>
           <a href="https://github.com/furryman/terraform" target="_blank" rel="noopener noreferrer" className={styles.repoCard}>
             <h4>furryman/terraform</h4>
-            <p>Infrastructure as Code for AWS VPC, EC2 t3.small, k3s installation, and automated CoreDNS configuration</p>
+            <p>Infrastructure as Code for AWS VPC, EC2 t3.small, k3s installation, and iptables hairpin NAT fix</p>
             <span className={styles.repoTag}>Terraform</span>
           </a>
           <a href="https://github.com/furryman/eks-helm-charts" target="_blank" rel="noopener noreferrer" className={styles.repoCard}>
             <h4>furryman/eks-helm-charts</h4>
-            <p>Helm charts for cert-manager (with hairpin NAT fixes), ingress-nginx, and the website deployment</p>
+            <p>Helm charts for cert-manager, ingress-nginx, and the website deployment</p>
             <span className={styles.repoTag}>Helm</span>
           </a>
           <a href="https://github.com/furryman/argocd-app-of-apps" target="_blank" rel="noopener noreferrer" className={styles.repoCard}>
@@ -307,24 +307,30 @@ jobs:
         <div className={styles.highlights}>
           <div className={styles.highlight}>
             <h4>The Hairpin NAT Problem</h4>
-            <p>Cert-manager's self-check tries to validate ACME HTTP-01 challenges by connecting to the public IP from inside the cluster. AWS doesn't support hairpin NAT, so these connections fail with 403 errors even though external validation works fine.</p>
+            <p>When cert-manager validates HTTP-01 challenges, it connects to the public IP from inside the cluster. AWS VPC doesn't support hairpin NAT — the VPC router won't loop packets back to the same host — so these connections fail even though external validation works fine.</p>
           </div>
           <div className={styles.highlight}>
-            <h4>Split-Horizon DNS Solution</h4>
-            <p>CoreDNS is automatically configured during deployment to resolve fuhriman.org and www.fuhriman.org to the internal ingress-nginx ClusterIP (10.43.128.101) when queried from within the cluster. External DNS still resolves to the public IP normally.</p>
+            <h4>iptables Network-Layer Fix</h4>
+            <p>During cloud-init, the script discovers kube-proxy's KUBE-EXT chain names for the ingress-nginx LoadBalancer service, then adds iptables rules that jump pod CIDR (10.42.0.0/16) traffic destined for the public IP directly into those chains. This piggybacks on kube-proxy's existing DNAT-to-pod routing, keeping the fix at the network layer with no application-level workarounds.</p>
           </div>
           <div className={styles.highlight}>
-            <h4>Cert-Manager Configuration</h4>
-            <p>Self-checks are disabled (CERT_MANAGER_HTTP01_SELF_CHECK_ENABLED=false) to prevent internal validation failures. Let's Encrypt validates externally while cert-manager creates separate challenge ingresses that don't conflict with ArgoCD's GitOps sync.</p>
+            <h4>Why Not Simple DNAT?</h4>
+            <p>iptables DNAT is a terminating target — once it fires, the packet exits the chain. A native DNAT to the private IP would bypass kube-proxy's service routing rules entirely. By jumping into kube-proxy's own chains instead, the packet follows the same path as external traffic.</p>
           </div>
         </div>
         <div className={styles.codeBlock}>
-          <div className={styles.codeHeader}>CoreDNS NodeHosts Configuration</div>
-          <pre>{`10.43.128.101 fuhriman.org
-10.43.128.101 www.fuhriman.org
+          <div className={styles.codeHeader}>iptables Hairpin NAT Rules (from user_data.sh)</div>
+          <pre>{`# Discover kube-proxy's chain names for the LoadBalancer service
+HTTP_CHAIN=$(iptables -t nat -L KUBE-SERVICES -n \\
+  | grep "ingress-nginx-controller:http loadbalancer" | awk '{print $1}')
+HTTPS_CHAIN=$(iptables -t nat -L KUBE-SERVICES -n \\
+  | grep "ingress-nginx-controller:https loadbalancer" | awk '{print $1}')
 
-# Internal queries resolve to ingress-nginx ClusterIP
-# External queries resolve to public IP`}</pre>
+# Jump pod traffic to the public IP into kube-proxy's chains
+iptables -t nat -A PREROUTING -s 10.42.0.0/16 -d $PUBLIC_IP \\
+  -p tcp --dport 80 -j $HTTP_CHAIN
+iptables -t nat -A PREROUTING -s 10.42.0.0/16 -d $PUBLIC_IP \\
+  -p tcp --dport 443 -j $HTTPS_CHAIN`}</pre>
         </div>
       </section>
 
@@ -353,7 +359,7 @@ jobs:
           </div>
           <div className={styles.principle}>
             <h4>Automation First</h4>
-            <p>Certificate renewal, DNS configuration, and application deployment are fully automated. Zero manual intervention required after initial setup.</p>
+            <p>Certificate renewal, hairpin NAT configuration, and application deployment are fully automated. Zero manual intervention required after initial setup.</p>
           </div>
         </div>
       </section>
