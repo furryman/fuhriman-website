@@ -7,7 +7,7 @@ RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
 COPY package.json package-lock.json* ./
-RUN --mount=type=cache,target=/root/.npm npm ci
+RUN npm ci
 
 # Rebuild the source code only when needed
 FROM base AS builder
