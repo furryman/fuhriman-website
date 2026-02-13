@@ -51,10 +51,10 @@ export default function HowItsBuilt() {
                     ┌─────────────────┴─────────────────┐
                     │                                   │
                     ▼                                   ▼
-         ┌─────────────────┐                ┌─────────────────────┐
-         │   Docker Hub    │                │   eks-helm-charts   │
-         │  (Image Store)  │                │  (values.yaml)      │
-         └─────────────────┘                └─────────────────────┘
+          ┌─────────────────┐                ┌─────────────────────┐
+          │   Docker Hub    │                │   eks-helm-charts   │
+          │  (Image Store)  │                │  (values.yaml)      │
+          └─────────────────┘                └─────────────────────┘
                     │                                   │
                     │                                   │ watches
                     │                                   ▼
@@ -132,7 +132,7 @@ export default function HowItsBuilt() {
           </div>
           <div className={styles.highlight}>
             <h4>Hairpin NAT Fix</h4>
-            <p>Installs iptables rules that jump pod CIDR traffic destined for the public IP directly into kube-proxy's KUBE-EXT chains. This solves the AWS hairpin NAT problem for cert-manager HTTP-01 validation at the network layer.</p>
+            <p>Installs iptables rules that jump pod CIDR traffic destined for the public IP directly into kube-proxy&apos;s KUBE-EXT chains. This solves the AWS hairpin NAT problem for cert-manager HTTP-01 validation at the network layer.</p>
           </div>
         </div>
       </section>
@@ -188,7 +188,7 @@ export default function HowItsBuilt() {
           <div className={styles.pipelineStep}>
             <div className={styles.pipelineIcon}>3</div>
             <h4>Update</h4>
-            <p>The Helm chart's values.yaml is updated with the new image tag and committed to eks-helm-charts repository.</p>
+            <p>The Helm chart&apos;s values.yaml is updated with the new image tag and committed to eks-helm-charts repository.</p>
           </div>
           <div className={styles.pipelineArrow}>→</div>
           <div className={styles.pipelineStep}>
@@ -261,7 +261,7 @@ jobs:
             <h4>Ingress</h4>
             <ul>
               <li>NGINX ingress class with LoadBalancer (k3s ServiceLB)</li>
-              <li>TLS termination with Let's Encrypt</li>
+              <li>TLS termination with Let&apos;s Encrypt</li>
               <li>Hosts: fuhriman.org, www.fuhriman.org</li>
               <li>Automatic certificate renewal via cert-manager</li>
               <li>SSL redirect disabled for ACME HTTP-01 challenges</li>
@@ -302,20 +302,20 @@ jobs:
       <section className={styles.section}>
         <h2>Certificate Management & Hairpin NAT Solution</h2>
         <p className={styles.sectionIntro}>
-          One of the interesting technical challenges was getting Let's Encrypt certificates to work on a single-node cluster behind a public IP.
+          One of the interesting technical challenges was getting Let&apos;s Encrypt certificates to work on a single-node cluster behind a public IP.
         </p>
         <div className={styles.highlights}>
           <div className={styles.highlight}>
             <h4>The Hairpin NAT Problem</h4>
-            <p>When cert-manager validates HTTP-01 challenges, it connects to the public IP from inside the cluster. AWS VPC doesn't support hairpin NAT — the VPC router won't loop packets back to the same host — so these connections fail even though external validation works fine.</p>
+            <p>When cert-manager validates HTTP-01 challenges, it connects to the public IP from inside the cluster. AWS VPC doesn&apos;t support hairpin NAT — the VPC router won&apos;t loop packets back to the same host — so these connections fail even though external validation works fine.</p>
           </div>
           <div className={styles.highlight}>
             <h4>iptables Network-Layer Fix</h4>
-            <p>During cloud-init, the script discovers kube-proxy's KUBE-EXT chain names for the ingress-nginx LoadBalancer service, then adds iptables rules that jump pod CIDR (10.42.0.0/16) traffic destined for the public IP directly into those chains. This piggybacks on kube-proxy's existing DNAT-to-pod routing, keeping the fix at the network layer with no application-level workarounds.</p>
+            <p>During cloud-init, the script discovers kube-proxy&apos;s KUBE-EXT chain names for the ingress-nginx LoadBalancer service, then adds iptables rules that jump pod CIDR (10.42.0.0/16) traffic destined for the public IP directly into those chains. This piggybacks on kube-proxy&apos;s existing DNAT-to-pod routing, keeping the fix at the network layer with no application-level workarounds.</p>
           </div>
           <div className={styles.highlight}>
             <h4>Why Not Simple DNAT?</h4>
-            <p>iptables DNAT is a terminating target — once it fires, the packet exits the chain. A native DNAT to the private IP would bypass kube-proxy's service routing rules entirely. By jumping into kube-proxy's own chains instead, the packet follows the same path as external traffic.</p>
+            <p>iptables DNAT is a terminating target — once it fires, the packet exits the chain. A native DNAT to the private IP would bypass kube-proxy&apos;s service routing rules entirely. By jumping into kube-proxy&apos;s own chains instead, the packet follows the same path as external traffic.</p>
           </div>
         </div>
         <div className={styles.codeBlock}>

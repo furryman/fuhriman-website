@@ -7,7 +7,7 @@ export default function About() {
         <h2>About Me</h2>
         <div className={styles.content}>
           <p>
-            I'm a passionate DevOps Engineer with 5 years of experience designing and
+            I&apos;m a passionate DevOps Engineer with 5 years of experience designing and
             implementing cloud infrastructure, CI/CD pipelines, and container orchestration
             solutions. I thrive on automating complex processes and enabling development
             teams to ship faster and more reliably.

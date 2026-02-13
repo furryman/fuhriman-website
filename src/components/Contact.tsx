@@ -6,7 +6,7 @@ export default function Contact() {
       <div className="container">
         <h2>Get in Touch</h2>
         <p className={styles.intro}>
-          I'm always open to discussing new opportunities, interesting projects,
+          I&apos;m always open to discussing new opportunities, interesting projects,
           or just chatting about DevOps and cloud technologies.
         </p>
         <div className={styles.links}>
@@ -26,7 +26,7 @@ export default function Contact() {
         <footer className={styles.footer}>
           <p>
             Built with Next.js, deployed on Kubernetes with ArgoCD.{' '}
-            <a href="/how-its-built">See how it's built →</a>
+            <a href="/how-its-built">See how it&apos;s built →</a>
           </p>
         </footer>
       </div>

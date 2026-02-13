@@ -7,7 +7,7 @@ export default function Hero() {
       <div className={`container ${styles.heroContent}`}>
         <div className={styles.textContent}>
           <h1 className={styles.title}>
-            Hi, I'm <span className={styles.highlight}>Adam Fuhriman</span>
+            Hi, I&apos;m <span className={styles.highlight}>Adam Fuhriman</span>
           </h1>
           <p className={styles.subtitle}>DevOps Engineer</p>
           <p className={styles.description}>
@@ -17,7 +17,7 @@ export default function Hero() {
           <div className={styles.cta}>
             <a href="#contact" className="btn">Get in Touch</a>
             <a href="#experience" className={styles.secondary}>View My Work</a>
-            <a href="/how-its-built" className={styles.secondary}>How It's Built</a>
+            <a href="/how-its-built" className={styles.secondary}>How It&apos;s Built</a>
             <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className={styles.secondary}>View Resume</a>
           </div>
         </div>
