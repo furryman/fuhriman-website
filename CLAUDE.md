@@ -53,7 +53,7 @@ CSS custom properties:
 
 Push to `main` triggers GitHub Actions which:
 
-1. Builds multi-arch Docker image (amd64 + arm64) via QEMU + Buildx \
+1. Builds Docker image (amd64) via Buildx
 2. Pushes to Docker Hub with tags `ga-YYYY.MM.DD-HHMM` and `latest`
 3. Updates `eks-helm-charts/fuhriman-chart/values.yaml` with new image tag (using `yq`)
 4. ArgoCD syncs to k3s cluster
