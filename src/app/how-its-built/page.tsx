@@ -1,5 +1,6 @@
 import styles from './page.module.css'
 import Link from 'next/link'
+import ArchitectureDiagram from '@/components/ArchitectureDiagram'
 
 export const metadata = {
   title: 'How I Built This | Fuhriman',
@@ -8,7 +9,7 @@ export const metadata = {
 
 const techStack = [
   { name: 'Next.js', category: 'Frontend', description: 'React framework for the website' },
-  { name: 'Docker', category: 'Container', description: 'Multi-arch builds (AMD64/ARM64)' },
+  { name: 'Docker', category: 'Container', description: 'Optimized production builds (AMD64)' },
   { name: 'k3s', category: 'Orchestration', description: 'Lightweight Kubernetes on EC2' },
   { name: 'ArgoCD', category: 'GitOps', description: 'Continuous deployment from Git' },
   { name: 'Terraform', category: 'IaC', description: 'Infrastructure as Code for AWS' },
@@ -33,57 +34,7 @@ export default function HowItsBuilt() {
 
       <section className={styles.section}>
         <h2>Architecture Overview</h2>
-        <div className={styles.diagram}>
-          <pre>{`
-┌─────────────────────────────────────────────────────────────────────────────┐
-│                              Developer Workflow                             │
-└─────────────────────────────────────────────────────────────────────────────┘
-                                      │
-                                      │ git push
-                                      ▼
-┌─────────────────────────────────────────────────────────────────────────────┐
-│                             GitHub Actions CI/CD                            │
-│  ┌─────────────┐    ┌─────────────┐    ┌─────────────┐    ┌─────────────┐   │
-│  │   Checkout  │───▶│ Build Image │───▶│Push to DHub|───▶│Update Helm │   │
-│  └─────────────┘    └─────────────┘    └─────────────┘    └─────────────┘   │
-└─────────────────────────────────────────────────────────────────────────────┘
-                                      │
-                    ┌─────────────────┴─────────────────┐
-                    │                                   │
-                    ▼                                   ▼
-          ┌─────────────────┐                ┌─────────────────────┐
-          │   Docker Hub    │                │   eks-helm-charts   │
-          │  (Image Store)  │                │  (values.yaml)      │
-          └─────────────────┘                └─────────────────────┘
-                    │                                   │
-                    │                                   │ watches
-                    │                                   ▼
-                    │                       ┌─────────────────────┐
-                    │                       │       ArgoCD        │
-                    │                       │   (GitOps Engine)   │
-                    │                       └─────────────────────┘
-                    │                                   │
-                    │                                   │ deploys
-                    ▼                                   ▼
-┌─────────────────────────────────────────────────────────────────────────────┐
-│                          AWS EC2 t3.small (k3s)                             │
-│  ┌─────────────────────────────────────────────────────────────────────┐    │
-│  │                    Kubernetes (k3s) Workloads                       │    │
-│  │  ┌─────────────┐  ┌─────────────┐  ┌───────────────────────────┐    │    │
-│  │  │cert-manager │  │ingress-nginx│  │   fuhriman-website        │    │    │
-│  │  │(Let's Enc.) │  │(ServiceLB)  │  │   (This Website!)         │    │    │
-│  │  └─────────────┘  └─────────────┘  └───────────────────────────┘    │    │
-│  │                                                                     │    │
-│  │  ┌─────────────────────────────────────────────────────────────┐    │    │
-│  │  │ iptables: Hairpin NAT fix (pod CIDR → kube-proxy chains)    │    │    │
-│  │  └─────────────────────────────────────────────────────────────┘    │    │
-│  └─────────────────────────────────────────────────────────────────────┘    │
-└─────────────────────────────────────────────────────────────────────────────┘
-                                      │
-                                      ▼
-                            https://fuhriman.org
-`}</pre>
-        </div>
+        <ArchitectureDiagram />
         <p className={styles.architectureNote}>
           <strong>Cost-Optimized Design:</strong> A single t3.small EC2 instance (2GB RAM, $17/mo)
           runs k3s (lightweight Kubernetes) instead of managed EKS. No NAT Gateway or multiple
@@ -128,7 +79,7 @@ export default function HowItsBuilt() {
           </div>
           <div className={styles.highlight}>
             <h4>k3s Module</h4>
-            <p>Provisions a single t3.small EC2 instance (2GB RAM) and installs k3s (lightweight Kubernetes) via cloud-init. ArgoCD is deployed via Helm during instance bootstrap, eliminating the need for managed EKS.</p>
+            <p>Provisions a single t3.small EC2 instance (Amazon Linux 2023, 2GB RAM) and installs k3s via cloud-init. ArgoCD and the app-of-apps pattern are deployed via Helm charts during bootstrap, with all output logged to /var/log/k3s-init.log.</p>
           </div>
           <div className={styles.highlight}>
             <h4>Hairpin NAT Fix</h4>
@@ -175,26 +126,26 @@ export default function HowItsBuilt() {
         <div className={styles.pipeline}>
           <div className={styles.pipelineStep}>
             <div className={styles.pipelineIcon}>1</div>
-            <h4>Build</h4>
-            <p>Multi-stage Docker build creates optimized production images for both AMD64 and ARM64 platforms using Docker Buildx.</p>
+            <h4>Lint &amp; Audit</h4>
+            <p>ESLint checks code quality and <code>npm audit --audit-level=critical</code> scans dependencies for known vulnerabilities before anything builds.</p>
           </div>
           <div className={styles.pipelineArrow}>→</div>
           <div className={styles.pipelineStep}>
             <div className={styles.pipelineIcon}>2</div>
-            <h4>Push</h4>
-            <p>Multi-arch manifest is pushed to Docker Hub with a timestamp tag (ga-YYYY.MM.DD-HHMM) for versioning and rollback capability.</p>
+            <h4>Build &amp; Push</h4>
+            <p>Multi-stage Docker build via Buildx creates an optimized AMD64 image, pushed to Docker Hub with a timestamp tag (ga-YYYY.MM.DD-HHMM) and latest.</p>
           </div>
           <div className={styles.pipelineArrow}>→</div>
           <div className={styles.pipelineStep}>
             <div className={styles.pipelineIcon}>3</div>
-            <h4>Update</h4>
-            <p>The Helm chart&apos;s values.yaml is updated with the new image tag and committed to eks-helm-charts repository.</p>
+            <h4>Scan</h4>
+            <p>Trivy scans the pushed image for CRITICAL and HIGH CVEs. The pipeline fails if unfixed vulnerabilities are found, preventing insecure images from deploying.</p>
           </div>
           <div className={styles.pipelineArrow}>→</div>
           <div className={styles.pipelineStep}>
             <div className={styles.pipelineIcon}>4</div>
-            <h4>Deploy</h4>
-            <p>ArgoCD detects the Git change and automatically syncs the new image to k3s with rolling update strategy.</p>
+            <h4>Update</h4>
+            <p>The Helm chart&apos;s values.yaml is updated with the new image tag and committed to eks-helm-charts, triggering ArgoCD to sync.</p>
           </div>
         </div>
         <div className={styles.codeBlock}>
@@ -204,31 +155,45 @@ on:
   push:
     branches: [main]
 
+permissions:
+  contents: read           # Least-privilege security
+
 jobs:
-  build-and-deploy:
+  lint:                     # Gate: code quality + dependency audit
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11bd7190...  # Pinned SHA
+      - uses: actions/setup-node@49933ea...
+      - run: npm ci
+      - run: npm audit --audit-level=critical
+      - run: npm run lint
 
-      - name: Generate tag
-        run: echo "tag=ga-$(date +'%Y.%m.%d-%H%M')" >> $GITHUB_OUTPUT
+  build-and-deploy:
+    needs: lint             # Only runs if lint passes
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11bd7190...
+      - run: echo "tag=ga-$(date +'%Y.%m.%d-%H%M')" >> $GITHUB_OUTPUT
 
-      - uses: docker/login-action@v3
-      - uses: docker/setup-qemu-action@v3
-      - uses: docker/setup-buildx-action@v3
+      - uses: docker/login-action@74a5d142...
+      - uses: docker/setup-buildx-action@b5ca5143...
 
-      - uses: docker/build-push-action@v6
+      - uses: docker/build-push-action@26343531...
         with:
-          platforms: linux/amd64,linux/arm64
           push: true
-          tags: furryman/fuhriman-website:${'${{ steps.tag.outputs.tag }}'}
+          tags: furryman/fuhriman-website:${'${{ steps.tag.outputs.tag }}'},latest
 
-      # Update Helm chart and push to trigger ArgoCD
-      - uses: actions/checkout@v4
+      # Trivy CVE scan — fails on CRITICAL/HIGH
+      - uses: aquasecurity/trivy-action@6c175e9c...
+        with:
+          severity: CRITICAL,HIGH
+          exit-code: 1
+
+      # Update Helm chart to trigger ArgoCD
+      - uses: actions/checkout@11bd7190...
         with:
           repository: furryman/eks-helm-charts
           token: ${'${{ secrets.GH_PAT }}'}
-
       - run: yq -i '.image.tag = "..."' fuhriman-chart/values.yaml
       - run: git commit -am "Update image" && git push`}</pre>
         </div>
@@ -311,7 +276,7 @@ jobs:
           </div>
           <div className={styles.highlight}>
             <h4>iptables Network-Layer Fix</h4>
-            <p>During cloud-init, the script discovers kube-proxy&apos;s KUBE-EXT chain names for the ingress-nginx LoadBalancer service, then adds iptables rules that jump pod CIDR (10.42.0.0/16) traffic destined for the public IP directly into those chains. This piggybacks on kube-proxy&apos;s existing DNAT-to-pod routing, keeping the fix at the network layer with no application-level workarounds.</p>
+            <p>During cloud-init on Amazon Linux 2023, the script waits for ArgoCD to deploy ingress-nginx, then waits for kube-proxy to create its LoadBalancer iptables rules (fixing a race condition where chain discovery would fail). It then discovers the KUBE-EXT chain names and adds rules that jump pod CIDR (10.42.0.0/16) traffic destined for the public IP directly into those chains — piggy-backing on kube-proxy&apos;s existing DNAT-to-pod routing with no application-level workarounds.</p>
           </div>
           <div className={styles.highlight}>
             <h4>Why Not Simple DNAT?</h4>
@@ -320,7 +285,19 @@ jobs:
         </div>
         <div className={styles.codeBlock}>
           <div className={styles.codeHeader}>iptables Hairpin NAT Rules (from user_data.sh)</div>
-          <pre>{`# Discover kube-proxy's chain names for the LoadBalancer service
+          <pre>{`# Wait for ArgoCD to deploy ingress-nginx
+until kubectl get svc -n ingress-nginx ingress-nginx-controller &>/dev/null; do
+  sleep 5
+done
+
+# Race condition fix: wait for kube-proxy to create LoadBalancer rules
+# (lags behind service creation)
+until iptables -t nat -L KUBE-SERVICES -n 2>/dev/null \\
+  | grep -q "ingress-nginx-controller:http loadbalancer"; do
+  sleep 2
+done
+
+# Discover kube-proxy's KUBE-EXT chain names
 HTTP_CHAIN=$(iptables -t nat -L KUBE-SERVICES -n \\
   | grep "ingress-nginx-controller:http loadbalancer" | awk '{print $1}')
 HTTPS_CHAIN=$(iptables -t nat -L KUBE-SERVICES -n \\
