@@ -7,11 +7,12 @@ export default function Hero() {
       <div className={`container ${styles.heroContent}`}>
         <div className={styles.textColumn}>
           <p className={styles.greeting}>Hi, my name is</p>
-          <h1 className={`${styles.name} gradient-text`}>Adam Fuhriman.</h1>
-          <h2 className={styles.tagline}>I build reliable infrastructure.</h2>
+          <h1 className={`${styles.name} gradient-text`}>Adam Fuhriman</h1>
+          <h2 className={styles.tagline}>From code to cloud, automated.</h2>
           <p className={styles.description}>
-            5 years of experience building scalable infrastructure, automating deployments,
-            and bridging the gap between development and operations.
+            With 5 years in the DevOps space, I believe the best infrastructure is the kind
+            you never have to think about. I build the automation, platforms, and observability
+            that make that possible.
           </p>
           <div className={styles.cta}>
             <a href="#contact" className="btn">Get in Touch</a>
