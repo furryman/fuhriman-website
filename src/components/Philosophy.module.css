@@ -5,29 +5,49 @@
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1.5rem;
+  gap: 2rem;
 }
 
 .card {
-  background: var(--background-light);
+  background: rgba(22, 21, 37, 0.5);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   border: 1px solid var(--border);
-  border-radius: 12px;
+  border-radius: 8px;
   padding: 2rem;
-  transition: border-color 0.2s;
+  transition: all 0.35s cubic-bezier(0.645, 0.045, 0.355, 1);
+  position: relative;
+  box-shadow: var(--shadow-card);
 }
 
 .card:hover {
-  border-color: var(--primary);
+  border-color: var(--border-hover);
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-hover);
+  background: rgba(26, 24, 48, 0.65);
+}
+
+.cardNumber {
+  font-family: var(--font-heading), serif;
+  font-size: 4rem;
+  font-weight: 700;
+  color: var(--accent);
+  opacity: 0.15;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+  display: block;
 }
 
 .cardTitle {
-  font-size: 1.2rem;
+  font-family: var(--font-heading), serif;
+  font-size: 1.3rem;
+  font-weight: 600;
   margin-bottom: 0.75rem;
-  color: var(--text);
+  color: var(--text-bright);
 }
 
 .cardDescription {
-  font-size: 1rem;
+  font-size: 0.95rem;
   line-height: 1.7;
   color: var(--text-secondary);
 }

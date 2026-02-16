@@ -2,95 +2,144 @@
   min-height: 100vh;
   display: flex;
   align-items: center;
-  background: linear-gradient(135deg, var(--background) 0%, var(--background-light) 100%);
+  padding-top: 5rem;
+  overflow: hidden;
 }
 
 .heroContent {
   display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  gap: 4rem;
+  gap: 3rem;
 }
 
-.textContent {
+.textColumn {
+  display: flex;
+  flex-direction: column;
   flex: 1;
+  min-width: 0;
 }
 
-.imageWrapper {
-  flex-shrink: 0;
-}
-
-.headshot {
-  border-radius: 50%;
-  border: 4px solid var(--primary);
-  object-fit: cover;
-}
-
-.title {
-  font-size: 3.5rem;
-  margin-bottom: 0.5rem;
-}
-
-.highlight {
+.greeting {
+  font-family: var(--font-body), monospace;
+  font-size: 1rem;
   color: var(--accent);
+  margin-bottom: 1.25rem;
+  letter-spacing: 0.05em;
+  animation: fadeUp 0.5s ease 0.1s both;
 }
 
-.subtitle {
-  font-size: 1.5rem;
+.name {
+  font-family: var(--font-heading), serif;
+  font-size: clamp(2.25rem, 5vw, 3.75rem);
+  font-weight: 400;
+  color: var(--text-bright);
+  line-height: 1.1;
+  margin-bottom: 0.5rem;
+  animation: fadeUp 0.5s ease 0.2s both;
+}
+
+.tagline {
+  font-family: var(--font-heading), serif;
+  font-size: clamp(1.75rem, 4.5vw, 3.25rem);
+  font-weight: 400;
   color: var(--text-secondary);
+  line-height: 1.1;
   margin-bottom: 1.5rem;
+  animation: fadeUp 0.5s ease 0.3s both;
 }
 
 .description {
   font-size: 1.1rem;
-  max-width: 600px;
+  max-width: 540px;
   line-height: 1.7;
   color: var(--text-secondary);
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
+  animation: fadeUp 0.5s ease 0.4s both;
 }
 
 .cta {
   display: flex;
-  gap: 1rem;
+  gap: 1.25rem;
   align-items: center;
+  flex-wrap: wrap;
+  animation: fadeUp 0.5s ease 0.5s both;
 }
 
 .secondary {
   color: var(--text);
-  padding: 0.75rem 1.5rem;
+  font-size: 0.9rem;
+  padding: 0.75rem 1.25rem;
   border: 1px solid var(--border);
-  border-radius: 8px;
-  transition: border-color 0.2s;
+  border-radius: 6px;
+  transition: all 0.25s ease;
 }
 
 .secondary:hover {
-  border-color: var(--primary);
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-muted);
   text-decoration: none;
+}
+
+.imageWrapper {
+  flex-shrink: 0;
+  width: 300px;
+  height: 300px;
+  opacity: 0;
+  animation: fadeIn 1s ease 0.8s forwards;
+}
+
+.headshot {
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 0.9; }
+}
+
+/* Tablet: shrink the headshot so text keeps breathing room */
+@media (max-width: 1024px) {
+  .heroContent {
+    gap: 2rem;
+  }
+
+  .imageWrapper {
+    width: 240px;
+    height: 240px;
+  }
+
+  .headshot {
+    width: 240px;
+    height: 240px;
+  }
 }
 
 @media (max-width: 768px) {
   .heroContent {
-    flex-direction: column-reverse;
-    text-align: center;
-    gap: 2rem;
+    padding-top: 2rem;
   }
 
-  .title {
-    font-size: 2.5rem;
-  }
-
-  .description {
-    margin-left: auto;
-    margin-right: auto;
+  .imageWrapper {
+    display: none;
   }
 
   .cta {
     flex-direction: column;
-    align-items: center;
-  }
-
-  .headshot {
-    width: 200px;
-    height: 200px;
+    align-items: flex-start;
   }
 }

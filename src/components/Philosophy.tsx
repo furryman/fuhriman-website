@@ -1,3 +1,4 @@
+import ScrollReveal from '@/components/ScrollReveal'
 import styles from './Philosophy.module.css'
 
 const philosophies = [
@@ -22,15 +23,20 @@ export default function Philosophy() {
   return (
     <section id="philosophy" className={styles.philosophy}>
       <div className="container">
-        <h2>Philosophy</h2>
-        <div className={styles.grid}>
-          {philosophies.map((item) => (
-            <div key={item.title} className={styles.card}>
-              <h3 className={styles.cardTitle}>{item.title}</h3>
-              <p className={styles.cardDescription}>{item.description}</p>
-            </div>
-          ))}
-        </div>
+        <ScrollReveal>
+          <h2>Philosophy</h2>
+        </ScrollReveal>
+        <ScrollReveal stagger>
+          <div className={styles.grid}>
+            {philosophies.map((item, index) => (
+              <div key={item.title} className={styles.card}>
+                <span className={styles.cardNumber}>0{index + 1}</span>
+                <h3 className={styles.cardTitle}>{item.title}</h3>
+                <p className={styles.cardDescription}>{item.description}</p>
+              </div>
+            ))}
+          </div>
+        </ScrollReveal>
       </div>
     </section>
   )

@@ -2,7 +2,7 @@ import styles from './page.module.css'
 import Link from 'next/link'
 
 export const metadata = {
-  title: 'How It\'s Built | Fuhriman',
+  title: 'How I Built This | Fuhriman',
   description: 'Technical deep-dive into how this portfolio website is deployed using k3s, ArgoCD, Terraform, and GitHub Actions on a single EC2 instance.',
 }
 
@@ -25,7 +25,7 @@ export default function HowItsBuilt() {
       </nav>
 
       <header className={styles.header}>
-        <h1>How This Website Is Built</h1>
+        <h1 className="gradient-text">How I Built This</h1>
         <p className={styles.subtitle}>
           A technical deep-dive into the infrastructure and CI/CD pipeline powering this portfolio
         </p>

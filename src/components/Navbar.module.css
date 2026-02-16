@@ -1,0 +1,130 @@
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  padding: 1rem 1.5rem;
+  transition: padding 0.35s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  padding: 0.65rem 1.75rem;
+  border-radius: 9999px;
+  background: rgba(22, 21, 37, 0.55);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--border);
+  box-shadow: 0 4px 24px -4px rgba(12, 12, 20, 0.5);
+  transition: all 0.35s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.nav.scrolled .inner {
+  background: rgba(16, 15, 28, 0.8);
+  border-color: var(--border-hover);
+  box-shadow: 0 4px 30px -6px rgba(124, 106, 240, 0.12);
+}
+
+.logo {
+  font-family: var(--font-heading), serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--accent);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.logo:hover {
+  color: var(--accent-light);
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  list-style: none;
+}
+
+.link {
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  transition: color 0.25s ease;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.link:hover,
+.link.active {
+  color: var(--text-bright);
+}
+
+.linkNumber {
+  color: var(--accent);
+  font-size: 0.7rem;
+  margin-right: 0.25rem;
+  font-family: var(--font-body), monospace;
+}
+
+.resumeBtn {
+  padding: 0.4rem 0.9rem;
+  border: 1px solid var(--accent);
+  border-radius: 9999px;
+  color: var(--accent);
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  transition: all 0.25s ease;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.resumeBtn:hover {
+  background: var(--accent-muted);
+  color: var(--accent-light);
+}
+
+@media (max-width: 900px) {
+  .links {
+    gap: 1rem;
+  }
+
+  .linkNumber {
+    display: none;
+  }
+
+  .link {
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .inner {
+    padding: 0.5rem 1.25rem;
+    gap: 1.25rem;
+  }
+
+  .links {
+    gap: 0.75rem;
+  }
+
+  .link {
+    font-size: 0.7rem;
+  }
+
+  .resumeBtn {
+    font-size: 0.7rem;
+    padding: 0.35rem 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .links {
+    display: none;
+  }
+}

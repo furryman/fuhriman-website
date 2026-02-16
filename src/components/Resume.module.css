@@ -1,0 +1,48 @@
+.resume {
+  padding: 4rem 0;
+}
+
+.card {
+  text-align: center;
+  padding: 3rem 2rem;
+  background: rgba(22, 21, 37, 0.5);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: var(--shadow-card);
+}
+
+.heading {
+  font-family: var(--font-heading), serif;
+  font-size: 1.5rem;
+  color: var(--text-bright);
+  margin-bottom: 0.75rem;
+}
+
+.description {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  max-width: 440px;
+  margin: 0 auto 1.75rem;
+  line-height: 1.6;
+}
+
+.button {
+  display: inline-block;
+  padding: 0.75rem 2rem;
+  border: 1px solid var(--accent);
+  border-radius: 9999px;
+  color: var(--accent);
+  font-family: var(--font-body), monospace;
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.button:hover {
+  background: var(--accent-muted);
+  color: var(--accent-light);
+}
