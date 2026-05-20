@@ -44,7 +44,12 @@ export default function ArchitectureDiagram() {
         <div className={styles.splitCenter}>
           <div className={styles.vLine} />
         </div>
-        <svg className={styles.splitSvg} viewBox="0 0 600 40" preserveAspectRatio="none">
+        <svg
+          aria-hidden="true"
+          className={styles.splitSvg}
+          viewBox="0 0 600 40"
+          preserveAspectRatio="none"
+        >
           <path
             d="M 300 0 L 300 15 L 150 15 L 150 40"
             stroke="rgba(124,106,240,0.35)"
@@ -77,7 +82,12 @@ export default function ArchitectureDiagram() {
       {/* Middle section: Docker Hub line + ArgoCD + merge into k3s */}
       <div className={styles.middleSection}>
         {/* SVG lines spanning the full middle section */}
-        <svg className={styles.middleSvg} viewBox="0 0 600 200" preserveAspectRatio="xMidYMid meet">
+        <svg
+          aria-hidden="true"
+          className={styles.middleSvg}
+          viewBox="0 0 600 200"
+          preserveAspectRatio="xMidYMid meet"
+        >
           {/* Docker Hub dashed line — runs down the left side into k3s */}
           <path
             d="M 150 0 L 150 200"

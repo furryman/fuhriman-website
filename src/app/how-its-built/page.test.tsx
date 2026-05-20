@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react'
-import { describe, it, expect } from 'vitest'
+import { describe, expect, it } from 'vitest'
 import HowItsBuilt from './page'
 
 describe('How I Built This page', () => {
@@ -20,7 +20,9 @@ describe('How I Built This page', () => {
     render(<HowItsBuilt />)
     const backLinks = screen.getAllByRole('link', { name: /Back to Portfolio/i })
     expect(backLinks.length).toBeGreaterThanOrEqual(1)
-    backLinks.forEach((link) => expect(link).toHaveAttribute('href', '/'))
+    for (const link of backLinks) {
+      expect(link).toHaveAttribute('href', '/')
+    }
   })
 
   it('renders the four related repo cards', () => {

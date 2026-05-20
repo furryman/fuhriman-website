@@ -46,8 +46,8 @@ export default function Experience() {
           <h2>Experience</h2>
         </ScrollReveal>
         <div className={styles.timeline}>
-          {experiences.map((exp, index) => (
-            <ScrollReveal key={index}>
+          {experiences.map((exp) => (
+            <ScrollReveal key={`${exp.company}-${exp.period}`}>
               <div className={styles.item}>
                 <div className={styles.header}>
                   <div>
@@ -57,8 +57,8 @@ export default function Experience() {
                   <span className={styles.period}>{exp.period}</span>
                 </div>
                 <ul className={styles.highlights}>
-                  {exp.highlights.map((highlight, i) => (
-                    <li key={i}>{highlight}</li>
+                  {exp.highlights.map((highlight) => (
+                    <li key={highlight}>{highlight}</li>
                   ))}
                 </ul>
               </div>

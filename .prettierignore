@@ -1,7 +1,0 @@
-.next
-node_modules
-pnpm-lock.yaml
-out
-*.md
-tsconfig.json
-next.config.js

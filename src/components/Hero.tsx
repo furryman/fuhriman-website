@@ -37,6 +37,7 @@ export default function Hero() {
           />
           <div className={styles.locationBadge}>
             <svg
+              aria-hidden="true"
               width="14"
               height="14"
               viewBox="0 0 24 24"

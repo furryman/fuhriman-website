@@ -11,10 +11,10 @@ pnpm install              # First-time setup (use --frozen-lockfile in CI)
 pnpm dev                  # Start development server at localhost:3000
 pnpm build                # Production build (standalone output)
 pnpm start                # Start production server
-pnpm lint                 # ESLint 9 flat config (eslint .)
-pnpm stylelint            # Stylelint over CSS modules
-pnpm format               # Prettier — write
-pnpm format:check         # Prettier — check only (CI gate)
+pnpm lint                 # Biome lint
+pnpm format               # Biome format --write
+pnpm format:check         # Biome format check
+pnpm check                # Biome check (lint + format together, CI gate)
 pnpm test                 # Vitest run (unit tests)
 pnpm coverage             # Vitest with coverage; gate at 95/95/95/95
 pnpm e2e                  # Playwright smoke tests
@@ -82,7 +82,7 @@ The unit-test stack is **Vitest 3.x** + **React Testing Library** + **happy-dom*
 
 - `pnpm test` — single run
 - `pnpm coverage` — runs with the v8 coverage provider and enforces the 95/95/95/95 gate (lines/statements/branches/functions)
-- Coverage exclusions are documented in `vitest.config.ts` and currently cover: `next.config.js`, `eslint.config.mjs`, `next-env.d.ts`, `src/app/layout.tsx`, `.next/**`, and `**/*.d.ts`. Add new exclusions sparingly and with a one-line justification.
+- Coverage exclusions are documented in `vitest.config.ts` and currently cover: `next.config.js`, `next-env.d.ts`, `src/app/layout.tsx`, `.next/**`, and `**/*.d.ts`. Add new exclusions sparingly and with a one-line justification.
 
 **Playwright** smoke tests live under `e2e/` and cover the golden path for `/` and `/how-its-built` — they run against the built standalone server in CI. Run `pnpm e2e:install` once locally to fetch browser binaries.
 
@@ -90,10 +90,9 @@ The unit-test stack is **Vitest 3.x** + **React Testing Library** + **happy-dom*
 
 ## Linting and Formatting
 
-- **ESLint 9** with flat config in `eslint.config.mjs`. Run via `pnpm lint` (`eslint .`). The legacy `.eslintrc.json` is preserved for tooling that still reads it; `eslint.config.mjs` is authoritative.
-- **Stylelint** with `stylelint-config-standard` + `stylelint-config-css-modules` over `**/*.css` (CSS Modules). Run via `pnpm stylelint`.
-- **Prettier** is configured in `.prettierrc.json` — `printWidth: 100`, `singleQuote: true`, `semi: false`, plus the trailing-comma defaults. Markdown is in `.prettierignore` (CLAUDE.md and other docs are not auto-formatted). Run `pnpm format` to write, `pnpm format:check` in CI.
-- A **pre-commit hook** (husky + lint-staged) runs ESLint, Stylelint, and Prettier on staged files only. The hook must pass before the commit is created — do not bypass with `--no-verify`.
+- **Biome 2** is the single source of truth for both linting and formatting (replaces ESLint + Prettier + Stylelint). Config lives in `biome.json`. Rules: recommended set with `useUniqueElementIds` off (single-page nav uses literal IDs), and per-file overrides relax `noNonNullAssertion` in test files and `noTemplateCurlyInString` in `src/app/how-its-built/page.tsx` (the page contains literal `${var}` code samples).
+- Run `pnpm lint` for lint-only, `pnpm format` to format, `pnpm format:check` to verify formatting, or `pnpm check` for combined lint+format (this is what CI runs).
+- A **pre-commit hook** (husky + lint-staged) runs `biome check --write` on staged files only. The hook must pass before the commit is created — do not bypass with `--no-verify`.
 
 ## Commit Conventions
 
@@ -126,4 +125,4 @@ Related repos: `furryman/terraform`, `furryman/eks-helm-charts`, `furryman/argoc
 
 ## Dependency Management
 
-Dependency updates are managed by **Renovate** (`renovate.json`), not Dependabot. Updates are grouped (e.g. `react`+`react-dom` together, `next-*` together, `eslint-*` together, `@types/*`, `actions/*`, `docker/*`) and tiered: patch updates auto-merge on green CI; minor and major updates open a PR for review. See `docs/modernization-notes.md` for the rationale (a Dependabot incident split `react` and `react-dom` into separate PRs and broke CI).
+Dependency updates are managed by **Renovate** (`renovate.json5`), not Dependabot. Updates are grouped (e.g. `react`+`react-dom` together, `next-*` together, `@types/*`, `actions/*`, `docker/*`) and tiered: patch updates auto-merge on green CI; minor and major updates open a PR for review. See `docs/modernization-notes.md` for the rationale (a Dependabot incident split `react` and `react-dom` into separate PRs and broke CI).

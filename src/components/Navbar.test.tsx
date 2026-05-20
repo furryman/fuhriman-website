@@ -1,5 +1,5 @@
-import { render, screen, act, fireEvent } from '@testing-library/react'
-import { describe, it, expect, vi, beforeEach } from 'vitest'
+import { act, fireEvent, render, screen } from '@testing-library/react'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
 import Navbar from './Navbar'
 
 describe('Navbar', () => {
@@ -25,7 +25,7 @@ describe('Navbar', () => {
 
   it('renders the logo, numbered links, How I Built This, and Resume button', () => {
     render(<Navbar />)
-    expect(screen.getByRole('link', { name: /AF/ })).toHaveAttribute('href', '#')
+    expect(screen.getByRole('link', { name: /back to top/i })).toHaveAttribute('href', '#top')
     expect(screen.getByRole('link', { name: /01.*About/i })).toHaveAttribute('href', '#about')
     expect(screen.getByRole('link', { name: /02.*Philosophy/i })).toHaveAttribute(
       'href',

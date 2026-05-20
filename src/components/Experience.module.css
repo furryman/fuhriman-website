@@ -11,7 +11,7 @@
 }
 
 .timeline::before {
-  content: '';
+  content: "";
   position: absolute;
   left: 0;
   top: 0;
@@ -32,7 +32,7 @@
 }
 
 .item::before {
-  content: '';
+  content: "";
   position: absolute;
   left: -2.375rem;
   top: 2rem;
@@ -93,7 +93,7 @@
 }
 
 .highlights li::before {
-  content: '\25B8';
+  content: "\25B8";
   position: absolute;
   left: 0;
   color: var(--accent);

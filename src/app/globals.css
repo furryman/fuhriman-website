@@ -32,12 +32,7 @@ html,
 body {
   max-width: 100vw;
   overflow-x: hidden;
-  font-family:
-    var(--font-body),
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    sans-serif;
+  font-family: var(--font-body), -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   background: linear-gradient(165deg, #0c0c14 0%, #12101f 40%, #110e1d 70%, #0d0c16 100%);
   background-attachment: fixed;
   color: var(--text);
@@ -47,7 +42,7 @@ body {
 /* Ambient background glow */
 body::before,
 body::after {
-  content: '';
+  content: "";
   position: fixed;
   border-radius: 50%;
   pointer-events: none;
@@ -132,11 +127,11 @@ main.portfolio section[id] h2::before {
   font-weight: 400;
   color: var(--accent);
   counter-increment: section;
-  content: '0' counter(section) '.';
+  content: "0" counter(section) ".";
 }
 
 main.portfolio section[id] h2::after {
-  content: '';
+  content: "";
   flex: 1;
   height: 1px;
   background: var(--border);

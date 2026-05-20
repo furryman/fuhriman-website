@@ -1,13 +1,13 @@
-import { ReactNode } from 'react'
-import ScrollReveal from '@/components/ScrollReveal'
+import type { ReactNode } from 'react'
 import {
   AWSIcon,
-  KubernetesIcon,
-  TerraformIcon,
-  GitHubActionsIcon,
-  PrometheusIcon,
   CodeIcon,
+  GitHubActionsIcon,
+  KubernetesIcon,
+  PrometheusIcon,
+  TerraformIcon,
 } from '@/components/Icons'
+import ScrollReveal from '@/components/ScrollReveal'
 import styles from './Skills.module.css'
 
 const skillCategories: { title: string; icon: ReactNode; skills: string[] }[] = [

@@ -1,6 +1,6 @@
-import styles from './page.module.css'
 import Link from 'next/link'
 import ArchitectureDiagram from '@/components/ArchitectureDiagram'
+import styles from './page.module.css'
 
 export const metadata = {
   title: 'How I Built This | Fuhriman',

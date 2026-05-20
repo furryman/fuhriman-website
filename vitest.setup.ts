@@ -1,10 +1,11 @@
 import '@testing-library/jest-dom/vitest'
-import { vi } from 'vitest'
 import React from 'react'
+import { vi } from 'vitest'
 
 class IntersectionObserverMock implements IntersectionObserver {
   readonly root: Element | Document | null = null
   readonly rootMargin: string = ''
+  readonly scrollMargin: string = ''
   readonly thresholds: ReadonlyArray<number> = []
   constructor(
     public callback: IntersectionObserverCallback,

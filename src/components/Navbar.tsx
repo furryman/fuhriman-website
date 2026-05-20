@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import styles from './Navbar.module.css'
 
 const navLinks = [
@@ -36,14 +36,16 @@ export default function Navbar() {
     )
 
     const sections = document.querySelectorAll('section[id]')
-    sections.forEach((section) => observer.observe(section))
+    for (const section of sections) {
+      observer.observe(section)
+    }
     return () => observer.disconnect()
   }, [])
 
   return (
     <nav className={`${styles.nav} ${scrolled ? styles.scrolled : ''}`}>
       <div className={styles.inner}>
-        <a href="#" className={styles.logo}>
+        <a href="#top" className={styles.logo} aria-label="Back to top">
           AF
         </a>
         <ul className={styles.links}>

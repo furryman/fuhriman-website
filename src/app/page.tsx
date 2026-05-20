@@ -1,11 +1,11 @@
-import Navbar from '@/components/Navbar'
-import Hero from '@/components/Hero'
 import About from '@/components/About'
-import Philosophy from '@/components/Philosophy'
-import Skills from '@/components/Skills'
-import Experience from '@/components/Experience'
-import Resume from '@/components/Resume'
 import Contact from '@/components/Contact'
+import Experience from '@/components/Experience'
+import Hero from '@/components/Hero'
+import Navbar from '@/components/Navbar'
+import Philosophy from '@/components/Philosophy'
+import Resume from '@/components/Resume'
+import Skills from '@/components/Skills'
 
 export default function Home() {
   return (

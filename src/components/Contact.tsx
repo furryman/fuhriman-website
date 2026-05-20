@@ -1,5 +1,5 @@
-import ScrollReveal from '@/components/ScrollReveal'
 import { EmailIcon, GitHubIcon, LinkedInIcon } from '@/components/Icons'
+import ScrollReveal from '@/components/ScrollReveal'
 import styles from './Contact.module.css'
 
 export default function Contact() {

@@ -26,14 +26,8 @@ jobs:
       - name: Audit dependencies for known vulnerabilities
         run: pnpm audit --audit-level=critical
 
-      - name: Run ESLint
-        run: pnpm lint
-
-      - name: Run Stylelint
-        run: pnpm stylelint
-
-      - name: Check Prettier formatting
-        run: pnpm format:check
+      - name: Biome check (lint + format)
+        run: pnpm biome check .
 
   typecheck:
     runs-on: ubuntu-latest
@@ -172,10 +166,11 @@ jobs:
         uses: aquasecurity/trivy-action@a9c7b0f06e461e9d4b4d1711f154ee024b8d7ab8 # v0.36.0
         with:
           image-ref: ${{ env.IMAGE_NAME }}:${{ steps.tag.outputs.tag }}
-          # Pin trivy binary to a version that still exists upstream — aquasecurity
-          # purged v0.27.x–v0.69.1 from GitHub releases, breaking older trivy-action
-          # versions whose hardcoded defaults pointed at deleted assets.
-          version: v0.70.0
+          # Pin trivy binary to v0.69.3 — explicitly named as a Safe Version in
+          # GHSA-69fq-xp46-6x23 (CRITICAL supply-chain advisory, 2026-03-21).
+          # v0.27.x–v0.69.1 were purged from GitHub releases as part of the
+          # remediation, and v0.69.4 is the compromised release.
+          version: v0.69.3
           format: table
           exit-code: 1
           severity: HIGH,CRITICAL
