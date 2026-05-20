@@ -9,6 +9,9 @@ next-env.d.ts
 # Production
 build/
 
+# Test coverage output
+coverage/
+
 # Debug
 npm-debug.log*
 
