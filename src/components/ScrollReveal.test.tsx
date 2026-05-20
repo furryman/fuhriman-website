@@ -21,9 +21,9 @@ describe('ScrollReveal', () => {
       vi.fn(function (this: IntersectionObserver, cb: IntersectionObserverCallback) {
         lastCallback = cb
         lastInstance = this
-        this.observe = observeSpy
-        this.disconnect = disconnectSpy
-        this.unobserve = unobserveSpy
+        this.observe = observeSpy as unknown as IntersectionObserver['observe']
+        this.disconnect = disconnectSpy as unknown as IntersectionObserver['disconnect']
+        this.unobserve = unobserveSpy as unknown as IntersectionObserver['unobserve']
         return this
       })
     )
