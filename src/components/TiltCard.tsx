@@ -29,24 +29,31 @@ export default function TiltCard({ children, className, maxAngle = 8 }: Props) {
     /* v8 ignore next */
     if (!el) return
     el.style.transform = 'perspective(800px) rotateX(0deg) rotateY(0deg)'
+    el.style.willChange = ''
+  }
+
+  const handleEnter = () => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    const el = ref.current
+    /* v8 ignore next */
+    if (!el) return
+    el.style.willChange = 'transform'
   }
 
   return (
-    <>
-      {/* biome-ignore lint/a11y/noStaticElementInteractions: decorative 3D tilt wrapper — mouse events drive a pure visual effect with no semantic interaction */}
-      <div
-        ref={ref}
-        className={className}
-        style={{
-          transition: 'transform 0.2s ease-out',
-          transformStyle: 'preserve-3d',
-          willChange: 'transform',
-        }}
-        onMouseMove={handleMove}
-        onMouseLeave={handleLeave}
-      >
-        {children}
-      </div>
-    </>
+    // biome-ignore lint/a11y/noStaticElementInteractions: decorative 3D tilt wrapper — mouse events drive a pure visual effect with no semantic interaction
+    <div
+      ref={ref}
+      className={className}
+      style={{
+        transition: 'transform 0.2s ease-out',
+        transformStyle: 'preserve-3d',
+      }}
+      onMouseMove={handleMove}
+      onMouseEnter={handleEnter}
+      onMouseLeave={handleLeave}
+    >
+      {children}
+    </div>
   )
 }

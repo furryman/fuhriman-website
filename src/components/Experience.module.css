@@ -45,7 +45,6 @@
 
 .item:hover {
   border-color: var(--border-hover);
-  transform: translateX(4px);
   box-shadow: var(--shadow-hover);
   background: rgb(26 24 48 / 70%);
 }

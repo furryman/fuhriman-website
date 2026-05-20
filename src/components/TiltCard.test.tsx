@@ -72,4 +72,50 @@ describe('TiltCard', () => {
     const card = container.firstElementChild as HTMLElement
     expect(card.className).toContain('my-card')
   })
+
+  it('sets willChange on mouseenter', () => {
+    const { container } = render(
+      <TiltCard>
+        <span>inner</span>
+      </TiltCard>
+    )
+    const card = container.firstElementChild as HTMLElement
+    fireEvent.mouseEnter(card)
+    expect(card.style.willChange).toBe('transform')
+  })
+
+  it('resets willChange on mouseleave', () => {
+    const { container } = render(
+      <TiltCard>
+        <span>inner</span>
+      </TiltCard>
+    )
+    const card = container.firstElementChild as HTMLElement
+    fireEvent.mouseEnter(card)
+    expect(card.style.willChange).toBe('transform')
+    fireEvent.mouseLeave(card)
+    expect(card.style.willChange).toBe('')
+  })
+
+  it('does not set willChange on mouseenter when prefers-reduced-motion is set', () => {
+    window.matchMedia = ((q: string) => ({
+      matches: q.includes('reduce'),
+      media: q,
+      onchange: null,
+      addListener: () => {},
+      removeListener: () => {},
+      addEventListener: () => {},
+      removeEventListener: () => {},
+      dispatchEvent: () => true,
+    })) as typeof window.matchMedia
+
+    const { container } = render(
+      <TiltCard>
+        <span>inner</span>
+      </TiltCard>
+    )
+    const card = container.firstElementChild as HTMLElement
+    fireEvent.mouseEnter(card)
+    expect(card.style.willChange).toBe('')
+  })
 })
