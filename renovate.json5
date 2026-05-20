@@ -1,0 +1,93 @@
+{
+  // -------------------------------------------------------------------------
+  // Renovate configuration — replaces .github/dependabot.yml
+  //
+  // Why Renovate over Dependabot:
+  //   Dependabot opened independent PRs for tightly-coupled packages
+  //   (e.g. react + react-dom, next + @next/*), and one half would merge
+  //   while the other lagged — breaking CI. Renovate's `groupName` rules
+  //   ship coupled packages as a single PR so they version in lockstep.
+  //
+  // Policy summary:
+  //   - Weekly batching: PRs open Monday before 6am America/Chicago.
+  //   - Security alerts bypass the schedule (open immediately, any time).
+  //   - Patch updates auto-merge on green CI (low risk, high volume).
+  //   - Minor + major updates require human review.
+  //   - rangeStrategy "bump" rewrites package.json ranges to the new version
+  //     so the lockfile and the manifest stay in sync.
+  // -------------------------------------------------------------------------
+
+  $schema: 'https://docs.renovatebot.com/renovate-schema.json',
+  extends: ['config:base', ':semanticCommits'],
+  timezone: 'America/Chicago',
+  schedule: ['before 6am on monday'],
+  vulnerabilityAlerts: {
+    enabled: true,
+    schedule: 'at any time',
+  },
+  rangeStrategy: 'bump',
+  prHourlyLimit: 0,
+  prConcurrentLimit: 5,
+  packageRules: [
+    // ---- Grouped package families (coupled versions stay in lockstep) ----
+    {
+      matchPackagePatterns: ['^react$', '^react-dom$', '^@types/react', '^@types/react-dom'],
+      groupName: 'react',
+    },
+    {
+      matchPackagePatterns: ['^next$', '^@next/', '^eslint-config-next$'],
+      groupName: 'next',
+    },
+    {
+      matchPackagePatterns: ['eslint'],
+      groupName: 'eslint',
+    },
+    {
+      matchPackagePatterns: ['^@typescript-eslint/'],
+      groupName: 'typescript-eslint',
+    },
+    {
+      matchPackagePatterns: ['^vitest$', '@vitest/', '^happy-dom$', '^@testing-library/'],
+      groupName: 'testing',
+    },
+    {
+      matchPackagePatterns: ['^@playwright/', '^playwright$'],
+      groupName: 'playwright',
+    },
+    {
+      matchPackagePatterns: ['^prettier'],
+      groupName: 'prettier',
+    },
+    {
+      matchPackagePatterns: ['^stylelint'],
+      groupName: 'stylelint',
+    },
+    {
+      matchPackagePatterns: ['^husky$', '^lint-staged$', '@commitlint/'],
+      groupName: 'git-hooks',
+    },
+    {
+      matchPackagePatterns: ['^@types/'],
+      groupName: 'types',
+    },
+    {
+      matchDatasources: ['github-actions'],
+      groupName: 'github-actions',
+    },
+    {
+      matchDatasources: ['docker'],
+      groupName: 'docker',
+    },
+
+    // ---- Tiered auto-merge: patch automerges, minor/major require review ----
+    {
+      matchUpdateTypes: ['patch'],
+      automerge: true,
+      platformAutomerge: true,
+    },
+    {
+      matchUpdateTypes: ['minor', 'major'],
+      automerge: false,
+    },
+  ],
+}
