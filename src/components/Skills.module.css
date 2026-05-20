@@ -60,11 +60,15 @@
   font-size: 0.8rem;
   font-family: var(--font-body), monospace;
   letter-spacing: 0.02em;
-  transition: all 0.2s ease;
+  transition:
+    box-shadow 150ms ease-out,
+    border-color 150ms ease-out,
+    background 150ms ease-out;
   border: 1px solid rgb(124 106 240 / 8%);
 }
 
 .tag:hover {
   background: var(--accent-hover);
-  border-color: rgb(124 106 240 / 20%);
+  border-color: var(--border-hover);
+  box-shadow: 0 0 12px rgba(240, 168, 104, 0.4);
 }
