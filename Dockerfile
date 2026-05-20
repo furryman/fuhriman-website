@@ -1,52 +1,43 @@
-# Multi-stage Dockerfile for Next.js
-FROM node:26-alpine AS base
+# syntax=docker/dockerfile:1.7
+# Multi-stage Dockerfile for Next.js (standalone output) on distroless
 
-# Install dependencies only when needed
-FROM base AS deps
-RUN apk add --no-cache libc6-compat
+# node 25+ no longer bundles corepack; install pnpm directly via npm at the version
+# pinned in package.json's `packageManager` field.
+ARG PNPM_VERSION=11.1.3
+
+# ---- Stage 1: deps (install only) ----
+FROM node:26-alpine@sha256:e71ac5e964b9201072425d59d2e876359efa25dc96bb1768cb73295728d6e4ea AS deps
+ARG PNPM_VERSION
+RUN apk add --no-cache libc6-compat && npm install -g pnpm@${PNPM_VERSION}
 WORKDIR /app
-
 COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
-RUN corepack enable && pnpm install --frozen-lockfile
+RUN pnpm install --frozen-lockfile
 
-# Rebuild the source code only when needed
-FROM base AS builder
+# ---- Stage 2: builder ----
+FROM node:26-alpine@sha256:e71ac5e964b9201072425d59d2e876359efa25dc96bb1768cb73295728d6e4ea AS builder
+ARG PNPM_VERSION
+RUN npm install -g pnpm@${PNPM_VERSION}
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
+ENV NEXT_TELEMETRY_DISABLED=1
+RUN pnpm build
 
-RUN corepack enable && pnpm build
-
-# Production image, copy all the files and run next
-FROM base AS runner
+# ---- Stage 3: runner (distroless, non-root) ----
+FROM gcr.io/distroless/nodejs26-debian13@sha256:89dcee6aec39e4c50acf16bf3669efdfb06f88c8abaf6be79d2e6385c3f6d648 AS runner
 WORKDIR /app
 
-ENV NODE_ENV=production
+ENV NODE_ENV=production \
+    NEXT_TELEMETRY_DISABLED=1 \
+    PORT=3000 \
+    HOSTNAME=0.0.0.0
 
-# Remove npm and its bundled dependencies (tar, glob, cross-spawn)
-# to eliminate vulnerabilities — the runner only needs node
-RUN npm cache clean --force && \
-    rm -rf /usr/local/lib/node_modules/npm /usr/local/bin/npm /usr/local/bin/npx && \
-    addgroup --system --gid 1001 nodejs && \
-    adduser --system --uid 1001 nextjs
+COPY --from=builder --chown=nonroot:nonroot /app/public ./public
+COPY --from=builder --chown=nonroot:nonroot /app/.next/standalone ./
+COPY --from=builder --chown=nonroot:nonroot /app/.next/static ./.next/static
 
-COPY --from=builder /app/public ./public
-
-# Set the correct permission for prerender cache
-RUN mkdir .next && chown nextjs:nodejs .next
-
-# Automatically leverage output traces to reduce image size
-COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
-COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
-
-USER nextjs
+USER nonroot
 
 EXPOSE 3000
 
-ENV PORT=3000
-ENV HOSTNAME="0.0.0.0"
-
-HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
-  CMD wget --no-verbose --tries=1 --spider http://localhost:3000/ || exit 1
-
-CMD ["node", "server.js"]
+CMD ["server.js"]
