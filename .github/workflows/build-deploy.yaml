@@ -169,9 +169,13 @@ jobs:
             ${{ env.IMAGE_NAME }}:latest
 
       - name: Scan Docker image for vulnerabilities
-        uses: aquasecurity/trivy-action@76071ef0d7ec797419534a183b498b4d6366cf37 # v0.31.0
+        uses: aquasecurity/trivy-action@a9c7b0f06e461e9d4b4d1711f154ee024b8d7ab8 # v0.36.0
         with:
           image-ref: ${{ env.IMAGE_NAME }}:${{ steps.tag.outputs.tag }}
+          # Pin trivy binary to a version that still exists upstream — aquasecurity
+          # purged v0.27.x–v0.69.1 from GitHub releases, breaking older trivy-action
+          # versions whose hardcoded defaults pointed at deleted assets.
+          version: v0.70.0
           format: table
           exit-code: 1
           severity: HIGH,CRITICAL
