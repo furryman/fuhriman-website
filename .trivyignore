@@ -1,0 +1,3 @@
+# Next.js 14.2.x - no fix available without major version upgrade to v16
+# DoS via HTTP request deserialization (requires insecure RSC usage, not applicable)
+GHSA-h25m-26qc-wcjf

@@ -1,3 +1,4 @@
+import ScrollReveal from '@/components/ScrollReveal'
 import styles from './Experience.module.css'
 
 const experiences = [
@@ -41,23 +42,27 @@ export default function Experience() {
   return (
     <section id="experience" className={styles.experience}>
       <div className="container">
-        <h2>Experience</h2>
+        <ScrollReveal>
+          <h2>Experience</h2>
+        </ScrollReveal>
         <div className={styles.timeline}>
           {experiences.map((exp, index) => (
-            <div key={index} className={styles.item}>
-              <div className={styles.header}>
-                <div>
-                  <h3 className={styles.title}>{exp.title}</h3>
-                  <p className={styles.company}>{exp.company}</p>
+            <ScrollReveal key={index}>
+              <div className={styles.item}>
+                <div className={styles.header}>
+                  <div>
+                    <h3 className={styles.title}>{exp.title}</h3>
+                    <p className={styles.company}>{exp.company}</p>
+                  </div>
+                  <span className={styles.period}>{exp.period}</span>
                 </div>
-                <span className={styles.period}>{exp.period}</span>
+                <ul className={styles.highlights}>
+                  {exp.highlights.map((highlight, i) => (
+                    <li key={i}>{highlight}</li>
+                  ))}
+                </ul>
               </div>
-              <ul className={styles.highlights}>
-                {exp.highlights.map((highlight, i) => (
-                  <li key={i}>{highlight}</li>
-                ))}
-              </ul>
-            </div>
+            </ScrollReveal>
           ))}
         </div>
       </div>

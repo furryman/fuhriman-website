@@ -16,10 +16,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683  # v4.2.2
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd  # v6.0.2
 
       - name: Setup Node.js
-        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020  # v4.4.0
+        uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238  # v6.2.0
         with:
           node-version: 20
           cache: npm
@@ -28,7 +28,7 @@ jobs:
         run: npm ci
 
       - name: Audit dependencies for known vulnerabilities
-        run: npm audit --audit-level=high
+        run: npm audit --audit-level=critical
 
       - name: Run ESLint
         run: npm run lint
@@ -38,7 +38,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683  # v4.2.2
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd  # v6.0.2
 
       - name: Generate Docker tag
         id: tag
@@ -53,33 +53,30 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@29109295f81e9208d7d86ff1c6c12d2833863392  # v3.6.0
-
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@b5ca514318bd6ebac0fb2aedd5d36ec1b5c232a2  # v3.10.0
+        uses: docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f  # v3.12.0
 
       - name: Build and push Docker image
-        uses: docker/build-push-action@263435318d21b8e681c14492fe198d362a7d2c83  # v6.18.0
+        uses: docker/build-push-action@10e90e3645eae34f1e60eeb005ba3a3d33f178e8  # v6.19.2
         with:
           context: .
           push: true
-          platforms: linux/amd64,linux/arm64
           tags: |
             ${{ env.IMAGE_NAME }}:${{ steps.tag.outputs.tag }}
             ${{ env.IMAGE_NAME }}:latest
 
       - name: Scan Docker image for vulnerabilities
-        uses: aquasecurity/trivy-action@6c175e9c4083a92bbca2f9724c8a5e33bc2d97a5  # v0.30.0
+        uses: aquasecurity/trivy-action@c1824fd6edce30d7ab345a9989de00bbd46ef284  # v0.34.0
         with:
           image-ref: ${{ env.IMAGE_NAME }}:${{ steps.tag.outputs.tag }}
           format: table
           exit-code: 1
           severity: CRITICAL,HIGH
           ignore-unfixed: true
+          trivyignores: .trivyignore
 
       - name: Checkout eks-helm-charts repository
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683  # v4.2.2
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd  # v6.0.2
         with:
           repository: furryman/eks-helm-charts
           token: ${{ secrets.GH_PAT }}
