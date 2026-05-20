@@ -1,5 +1,5 @@
 # Multi-stage Dockerfile for Next.js
-FROM node:20-alpine AS base
+FROM node:26-alpine AS base
 
 # Install dependencies only when needed
 FROM base AS deps
@@ -7,7 +7,7 @@ RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
 COPY package.json package-lock.json* ./
-RUN --mount=type=cache,target=/root/.npm npm ci
+RUN npm ci
 
 # Rebuild the source code only when needed
 FROM base AS builder
@@ -23,7 +23,11 @@ WORKDIR /app
 
 ENV NODE_ENV=production
 
-RUN addgroup --system --gid 1001 nodejs && \
+# Remove npm and its bundled dependencies (tar, glob, cross-spawn)
+# to eliminate vulnerabilities — the runner only needs node
+RUN npm cache clean --force && \
+    rm -rf /usr/local/lib/node_modules/npm /usr/local/bin/npm /usr/local/bin/npx && \
+    addgroup --system --gid 1001 nodejs && \
     adduser --system --uid 1001 nextjs
 
 COPY --from=builder /app/public ./public

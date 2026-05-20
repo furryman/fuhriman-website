@@ -1,5 +1,5 @@
 .about {
-  background: var(--background-light);
+  background: var(--background);
 }
 
 .content {
@@ -7,10 +7,10 @@
 }
 
 .content p {
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   line-height: 1.8;
   color: var(--text-secondary);
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.25rem;
 }
 
 .content p:last-child {

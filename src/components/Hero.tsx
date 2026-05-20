@@ -5,31 +5,37 @@ export default function Hero() {
   return (
     <section className={styles.hero}>
       <div className={`container ${styles.heroContent}`}>
-        <div className={styles.textContent}>
-          <h1 className={styles.title}>
-            Hi, I&apos;m <span className={styles.highlight}>Adam Fuhriman</span>
-          </h1>
-          <p className={styles.subtitle}>DevOps Engineer</p>
+        <div className={styles.textColumn}>
+          <p className={styles.greeting}>Hi, my name is</p>
+          <h1 className={`${styles.name} gradient-text`}>Adam Fuhriman</h1>
+          <h2 className={styles.tagline}>From code to cloud, automated.</h2>
           <p className={styles.description}>
-            5 years of experience building scalable infrastructure, automating deployments,
-            and bridging the gap between development and operations.
+            With 5 years in the DevOps space, I believe the best infrastructure is the kind
+            you never have to think about. I build the automation, platforms, and observability
+            that make that possible.
           </p>
           <div className={styles.cta}>
             <a href="#contact" className="btn">Get in Touch</a>
             <a href="#experience" className={styles.secondary}>View My Work</a>
-            <a href="/how-its-built" className={styles.secondary}>How It&apos;s Built</a>
-            <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className={styles.secondary}>View Resume</a>
+            <a href="/how-its-built" className={styles.secondary}>How I Built This</a>
           </div>
         </div>
         <div className={styles.imageWrapper}>
           <Image
             src="/headshot.jpg"
             alt="Adam Fuhriman"
-            width={320}
-            height={320}
+            width={300}
+            height={300}
             className={styles.headshot}
             priority
           />
+          <div className={styles.locationBadge}>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+              <circle cx="12" cy="10" r="3" />
+            </svg>
+            Salt Lake City, UT
+          </div>
         </div>
       </div>
     </section>
