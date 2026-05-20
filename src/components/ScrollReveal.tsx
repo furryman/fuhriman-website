@@ -1,42 +1,24 @@
 'use client'
 
-import { type ReactNode, useEffect, useRef } from 'react'
+import { motion } from 'motion/react'
+import type { ReactNode } from 'react'
 
-interface ScrollRevealProps {
+interface Props {
   children: ReactNode
   className?: string
   stagger?: boolean
 }
 
-export default function ScrollReveal({
-  children,
-  className = '',
-  stagger = false,
-}: ScrollRevealProps) {
-  const ref = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    const el = ref.current
-    if (!el) return
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          el.classList.add('visible')
-          observer.unobserve(el)
-        }
-      },
-      { threshold: 0.15 }
-    )
-
-    observer.observe(el)
-    return () => observer.disconnect()
-  }, [])
-
-  const baseClass = stagger ? 'stagger' : 'reveal'
+export default function ScrollReveal({ children, className = '', stagger = false }: Props) {
   return (
-    <div ref={ref} className={`${baseClass} ${className}`}>
+    <motion.div
+      className={`reveal ${className}${stagger ? ' stagger' : ''}`.trim().replace(/\s+/g, ' ')}
+      initial={{ opacity: 0, y: 12 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-10%' }}
+      transition={{ duration: 0.5, ease: 'easeOut' }}
+    >
       {children}
-    </div>
+    </motion.div>
   )
 }
