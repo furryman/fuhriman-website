@@ -26,12 +26,13 @@ export default function MagneticButton({
   rel,
   strength = 0.25,
 }: Props) {
-  const ref = useRef<HTMLElement | null>(null)
+  const anchorRef = useRef<HTMLAnchorElement>(null)
+  const buttonRef = useRef<HTMLButtonElement>(null)
   const MAX = 12
 
   const handleMove = (e: MouseEvent<HTMLElement>) => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
-    const el = ref.current
+    const el = anchorRef.current ?? buttonRef.current
     /* v8 ignore next */
     if (!el) return
     const rect = el.getBoundingClientRect()
@@ -46,7 +47,7 @@ export default function MagneticButton({
 
   const handleLeave = () => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
-    const el = ref.current
+    const el = anchorRef.current ?? buttonRef.current
     /* v8 ignore next */
     if (!el) return
     el.style.transform = 'translate(0px, 0px)'
@@ -55,7 +56,7 @@ export default function MagneticButton({
   if (href) {
     return (
       <a
-        ref={ref as any}
+        ref={anchorRef}
         href={href}
         target={target}
         rel={rel}
@@ -71,7 +72,7 @@ export default function MagneticButton({
 
   return (
     <button
-      ref={ref as any}
+      ref={buttonRef}
       type="button"
       className={className}
       style={STYLE_BASE}
