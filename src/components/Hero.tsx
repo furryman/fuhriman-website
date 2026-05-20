@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import MagneticButton from '@/components/MagneticButton'
 import styles from './Hero.module.css'
 
 export default function Hero() {
@@ -15,15 +16,15 @@ export default function Hero() {
             make that possible.
           </p>
           <div className={styles.cta}>
-            <a href="#contact" className="btn">
+            <MagneticButton href="#contact" className="btn">
               Get in Touch
-            </a>
-            <a href="#experience" className={styles.secondary}>
+            </MagneticButton>
+            <MagneticButton href="#experience" className={styles.secondary}>
               View My Work
-            </a>
-            <a href="/how-its-built" className={styles.secondary}>
+            </MagneticButton>
+            <MagneticButton href="/how-its-built" className={styles.secondary}>
               How I Built This
-            </a>
+            </MagneticButton>
           </div>
         </div>
         <div className={styles.imageWrapper}>
