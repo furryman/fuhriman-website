@@ -24,7 +24,7 @@ pnpm lighthouse           # Lighthouse CI against the built standalone server
 
 No `.env` file is needed — the app has zero environment variables.
 
-Docker (multi-stage build, Node 26 in the builder, **distroless** in the final stage, multi-arch amd64+arm64):
+Docker (multi-stage build, Node 26 in the builder, **distroless** in the final stage, amd64-only):
 
 ```bash
 docker build -t furryman/fuhriman-website:latest .
@@ -114,9 +114,9 @@ Examples: `feat(navbar): add active section indicator`, `chore(deps): bump next 
 
 ## Deployment
 
-Push to `main` triggers GitHub Actions, which runs the following jobs in parallel: `lint`, `typecheck`, `test` (with coverage upload), `build`, `e2e`, `lighthouse`, and `docker` (multi-arch buildx + Trivy scan + push). After all jobs pass, a sequential `deploy` job:
+Push to `main` triggers GitHub Actions, which runs the following jobs in parallel: `lint`, `typecheck`, `test` (with coverage upload), `build`, `e2e`, `lighthouse`, and `docker` (buildx + Trivy scan + push). After all jobs pass, a sequential `deploy` job:
 
-1. Pushes the image to Docker Hub with tags `ga-YYYY.MM.DD-HHMM` and `latest` (multi-arch: amd64 + arm64)
+1. Pushes the image to Docker Hub with tags `ga-YYYY.MM.DD-HHMM` and `latest` (amd64-only — arm64 deferred; QEMU emulation builds took >12 min in CI)
 2. Updates `eks-helm-charts/fuhriman-chart/values.yaml` with the new image tag (using `yq`)
 3. ArgoCD then syncs the change to the k3s cluster
 

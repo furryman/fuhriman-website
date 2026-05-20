@@ -16,7 +16,7 @@ Headline outcomes:
 - Vitest replaces a non-existent test framework. 95% coverage gate over a real surface.
 - Playwright smoke tests for both routes.
 - Lighthouse CI with budgets.
-- Distroless Node 26 runtime, multi-arch (amd64 + arm64).
+- Distroless Node 26 runtime, amd64-only (arm64 deferred — see "Multi-arch deferral" below).
 - ESLint 9 flat config; Prettier; Stylelint; husky + lint-staged + commitlint.
 - Renovate replaces Dependabot (grouped + tiered).
 - Conventional commits enforced at commit-time.
@@ -37,7 +37,7 @@ Headline outcomes:
 | Performance gate | none | Lighthouse CI with budgets |
 | Dep updates | Dependabot | Renovate (grouped + tiered) |
 | Commit conventions | none | Conventional Commits via husky `commit-msg` + commitlint |
-| Docker build | single-arch amd64 | multi-arch amd64 + arm64, distroless final stage |
+| Docker build | single-arch amd64 | distroless final stage, digest-pinned, non-root (amd64-only — see "Multi-arch deferral") |
 | CI structure | sequential | parallel jobs (lint, typecheck, test, build, e2e, lighthouse, docker) → sequential deploy |
 
 ## New Tooling Decisions and Rationale
@@ -69,7 +69,7 @@ The runtime image is `gcr.io/distroless/nodejs26-debian12`. Reasons:
 
 - **Smaller attack surface**: no shell, no package manager, no busybox utilities at runtime.
 - **Smaller image**: meaningful reduction over Alpine + Node.
-- **Multi-arch parity**: distroless is published for both amd64 and arm64, simplifying buildx.
+- **Multi-arch deferral**: distroless is published for both amd64 and arm64, but multi-arch CI builds via QEMU emulation took >12 min on `ubuntu-latest`. Reverted to amd64-only for CI throughput. To restore arm64, matrix the docker job across `ubuntu-latest` (amd64) and `ubuntu-24.04-arm` (native arm64), then merge manifests with `docker buildx imagetools create`.
 
 The builder stage stays on a full Node 26 image so corepack + pnpm + Next's build pipeline have everything they need; only the final stage is distroless.
 
