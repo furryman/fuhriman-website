@@ -7,27 +7,27 @@ const skillCategories: { title: string; icon: ReactNode; skills: string[] }[] = 
   {
     title: 'Cloud Platforms',
     icon: <AWSIcon size={28} />,
-    skills: ['AWS']
+    skills: ['AWS', 'Azure']
   },
   {
     title: 'Container & Orchestration',
     icon: <KubernetesIcon size={28} />,
-    skills: ['Kubernetes', 'Docker', 'Helm', 'ArgoCD', 'FluxCD']
+    skills: ['Kubernetes', 'Docker', 'Helm', 'ArgoCD', 'FluxCD', 'Istio']
   },
   {
     title: 'Infrastructure as Code',
     icon: <TerraformIcon size={28} />,
-    skills: ['Terraform', 'Terragrunt', 'CloudFormation']
+    skills: ['Terraform', 'Terragrunt', 'Terramate', 'CloudFormation']
   },
   {
     title: 'CI/CD',
     icon: <GitHubActionsIcon size={28} />,
-    skills: ['GitHub Actions', 'Jenkins']
+    skills: ['GitHub Actions', 'Azure DevOps', 'Jenkins']
   },
   {
     title: 'Monitoring & Observability',
     icon: <PrometheusIcon size={28} />,
-    skills: ['Prometheus', 'Grafana', 'Datadog', 'Backstage']
+    skills: ['Prometheus', 'Grafana', 'OpenTelemetry', 'Datadog', 'Backstage']
   },
   {
     title: 'Languages & Scripting',
