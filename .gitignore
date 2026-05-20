@@ -12,6 +12,15 @@ build/
 # Test coverage output
 coverage/
 
+# Playwright artifacts
+test-results/
+playwright-report/
+blob-report/
+/playwright/.cache/
+
+# Lighthouse CI artifacts
+.lighthouseci/
+
 # Debug
 npm-debug.log*
 
