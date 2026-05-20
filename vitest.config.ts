@@ -32,6 +32,8 @@ export default defineConfig({
         // Tool configs (commitlint, etc.)
         '**/*.config.*',
         'commitlint.config.*',
+        // canvas animation — not meaningfully testable in happy-dom
+        'src/components/AmbientBackground.tsx',
       ],
       thresholds: {
         lines: 95,

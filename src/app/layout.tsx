@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { DM_Serif_Display, Source_Sans_3 } from 'next/font/google'
+import AmbientBackground from '@/components/AmbientBackground'
 import './globals.css'
 
 const dmSerif = DM_Serif_Display({
@@ -27,7 +28,10 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${dmSerif.variable} ${sourceSans.variable}`}>
-      <body>{children}</body>
+      <body>
+        <AmbientBackground />
+        {children}
+      </body>
     </html>
   )
 }
