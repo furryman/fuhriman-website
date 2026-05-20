@@ -45,6 +45,7 @@ export default function MagneticButton({
   }
 
   const handleLeave = () => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
     const el = ref.current
     /* v8 ignore next */
     if (!el) return
@@ -54,7 +55,7 @@ export default function MagneticButton({
   if (href) {
     return (
       <a
-        ref={ref as React.RefObject<HTMLAnchorElement>}
+        ref={ref as any}
         href={href}
         target={target}
         rel={rel}
@@ -70,7 +71,7 @@ export default function MagneticButton({
 
   return (
     <button
-      ref={ref as React.RefObject<HTMLButtonElement>}
+      ref={ref as any}
       type="button"
       className={className}
       style={STYLE_BASE}

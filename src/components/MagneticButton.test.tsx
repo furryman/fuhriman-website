@@ -70,6 +70,25 @@ describe('MagneticButton', () => {
     expect(el.style.transform).toBe('')
   })
 
+  it('does not reset transform on mouseleave under prefers-reduced-motion', () => {
+    window.matchMedia = ((q: string) => ({
+      matches: q.includes('reduce'),
+      media: q,
+      onchange: null,
+      addListener: () => {},
+      removeListener: () => {},
+      addEventListener: () => {},
+      removeEventListener: () => {},
+      dispatchEvent: () => true,
+    })) as typeof window.matchMedia
+    const { container } = render(<MagneticButton>Test</MagneticButton>)
+    const el = container.firstElementChild as HTMLElement
+    // Manually set transform to verify it's not cleared on leave
+    el.style.transform = 'translate(5px, 5px)'
+    fireEvent.mouseLeave(el)
+    expect(el.style.transform).toBe('translate(5px, 5px)')
+  })
+
   it('passes through className', () => {
     const { container } = render(<MagneticButton className="my-btn">Test</MagneticButton>)
     const el = container.firstElementChild as HTMLElement
