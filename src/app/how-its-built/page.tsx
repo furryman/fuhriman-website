@@ -4,7 +4,8 @@ import ArchitectureDiagram from '@/components/ArchitectureDiagram'
 
 export const metadata = {
   title: 'How I Built This | Fuhriman',
-  description: 'Technical deep-dive into how this portfolio website is deployed using k3s, ArgoCD, Terraform, and GitHub Actions on a single EC2 instance.',
+  description:
+    'Technical deep-dive into how this portfolio website is deployed using k3s, ArgoCD, Terraform, and GitHub Actions on a single EC2 instance.',
 }
 
 const techStack = [
@@ -14,15 +15,21 @@ const techStack = [
   { name: 'ArgoCD', category: 'GitOps', description: 'Continuous deployment from Git' },
   { name: 'Terraform', category: 'IaC', description: 'Infrastructure as Code for AWS' },
   { name: 'GitHub Actions', category: 'CI/CD', description: 'Build and push automation' },
-  { name: 'cert-manager', category: 'TLS', description: 'Let\'s Encrypt certificates' },
-  { name: 'ingress-nginx', category: 'Networking', description: 'Traffic routing and TLS termination' },
+  { name: 'cert-manager', category: 'TLS', description: "Let's Encrypt certificates" },
+  {
+    name: 'ingress-nginx',
+    category: 'Networking',
+    description: 'Traffic routing and TLS termination',
+  },
 ]
 
 export default function HowItsBuilt() {
   return (
     <main className={styles.main}>
       <nav className={styles.nav}>
-        <Link href="/" className={styles.backLink}>← Back to Portfolio</Link>
+        <Link href="/" className={styles.backLink}>
+          ← Back to Portfolio
+        </Link>
       </nav>
 
       <header className={styles.header}>
@@ -37,8 +44,8 @@ export default function HowItsBuilt() {
         <ArchitectureDiagram />
         <p className={styles.architectureNote}>
           <strong>Cost-Optimized Design:</strong> A single t3.small EC2 instance (2GB RAM, $17/mo)
-          runs k3s (lightweight Kubernetes) instead of managed EKS. No NAT Gateway or multiple
-          nodes needed, reducing costs from ~$80/mo to ~$22/mo while maintaining GitOps best practices.
+          runs k3s (lightweight Kubernetes) instead of managed EKS. No NAT Gateway or multiple nodes
+          needed, reducing costs from ~$80/mo to ~$22/mo while maintaining GitOps best practices.
         </p>
       </section>
 
@@ -75,15 +82,27 @@ export default function HowItsBuilt() {
         <div className={styles.highlights}>
           <div className={styles.highlight}>
             <h4>VPC Module</h4>
-            <p>Creates a simple VPC (10.0.0.0/16) with a single public subnet in one availability zone. No NAT Gateway needed since everything runs in the public subnet, significantly reducing costs.</p>
+            <p>
+              Creates a simple VPC (10.0.0.0/16) with a single public subnet in one availability
+              zone. No NAT Gateway needed since everything runs in the public subnet, significantly
+              reducing costs.
+            </p>
           </div>
           <div className={styles.highlight}>
             <h4>k3s Module</h4>
-            <p>Provisions a single t3.small EC2 instance (Amazon Linux 2023, 2GB RAM) and installs k3s via cloud-init. ArgoCD and the app-of-apps pattern are deployed via Helm charts during bootstrap, with all output logged to /var/log/k3s-init.log.</p>
+            <p>
+              Provisions a single t3.small EC2 instance (Amazon Linux 2023, 2GB RAM) and installs
+              k3s via cloud-init. ArgoCD and the app-of-apps pattern are deployed via Helm charts
+              during bootstrap, with all output logged to /var/log/k3s-init.log.
+            </p>
           </div>
           <div className={styles.highlight}>
             <h4>Hairpin NAT Fix</h4>
-            <p>Installs iptables rules that jump pod CIDR traffic destined for the public IP directly into kube-proxy&apos;s KUBE-EXT chains. This solves the AWS hairpin NAT problem for cert-manager HTTP-01 validation at the network layer.</p>
+            <p>
+              Installs iptables rules that jump pod CIDR traffic destined for the public IP directly
+              into kube-proxy&apos;s KUBE-EXT chains. This solves the AWS hairpin NAT problem for
+              cert-manager HTTP-01 validation at the network layer.
+            </p>
           </div>
         </div>
       </section>
@@ -91,28 +110,38 @@ export default function HowItsBuilt() {
       <section className={styles.section}>
         <h2>GitOps with ArgoCD</h2>
         <p className={styles.sectionIntro}>
-          ArgoCD implements the GitOps pattern where Git is the single source of truth for the desired cluster state.
+          ArgoCD implements the GitOps pattern where Git is the single source of truth for the
+          desired cluster state.
         </p>
         <div className={styles.gitopsFlow}>
           <div className={styles.flowStep}>
             <div className={styles.stepNumber}>1</div>
             <div className={styles.stepContent}>
               <h4>App of Apps Pattern</h4>
-              <p>A parent Application manages child Applications, enabling hierarchical deployment of the entire stack.</p>
+              <p>
+                A parent Application manages child Applications, enabling hierarchical deployment of
+                the entire stack.
+              </p>
             </div>
           </div>
           <div className={styles.flowStep}>
             <div className={styles.stepNumber}>2</div>
             <div className={styles.stepContent}>
               <h4>Sync Waves</h4>
-              <p>Applications deploy in order: cert-manager (-2) → ingress-nginx (-1) → website (0), ensuring dependencies are ready.</p>
+              <p>
+                Applications deploy in order: cert-manager (-2) → ingress-nginx (-1) → website (0),
+                ensuring dependencies are ready.
+              </p>
             </div>
           </div>
           <div className={styles.flowStep}>
             <div className={styles.stepNumber}>3</div>
             <div className={styles.stepContent}>
               <h4>Auto-Sync & Self-Heal</h4>
-              <p>ArgoCD automatically applies Git changes and reverts any manual cluster modifications to maintain desired state.</p>
+              <p>
+                ArgoCD automatically applies Git changes and reverts any manual cluster
+                modifications to maintain desired state.
+              </p>
             </div>
           </div>
         </div>
@@ -127,25 +156,37 @@ export default function HowItsBuilt() {
           <div className={styles.pipelineStep}>
             <div className={styles.pipelineIcon}>1</div>
             <h4>Lint &amp; Audit</h4>
-            <p>ESLint checks code quality and <code>npm audit --audit-level=critical</code> scans dependencies for known vulnerabilities before anything builds.</p>
+            <p>
+              ESLint checks code quality and <code>npm audit --audit-level=critical</code> scans
+              dependencies for known vulnerabilities before anything builds.
+            </p>
           </div>
           <div className={styles.pipelineArrow}>→</div>
           <div className={styles.pipelineStep}>
             <div className={styles.pipelineIcon}>2</div>
             <h4>Build &amp; Push</h4>
-            <p>Multi-stage Docker build via Buildx creates an optimized AMD64 image, pushed to Docker Hub with a timestamp tag (ga-YYYY.MM.DD-HHMM) and latest.</p>
+            <p>
+              Multi-stage Docker build via Buildx creates an optimized AMD64 image, pushed to Docker
+              Hub with a timestamp tag (ga-YYYY.MM.DD-HHMM) and latest.
+            </p>
           </div>
           <div className={styles.pipelineArrow}>→</div>
           <div className={styles.pipelineStep}>
             <div className={styles.pipelineIcon}>3</div>
             <h4>Scan</h4>
-            <p>Trivy scans the pushed image for CRITICAL and HIGH CVEs. The pipeline fails if unfixed vulnerabilities are found, preventing insecure images from deploying.</p>
+            <p>
+              Trivy scans the pushed image for CRITICAL and HIGH CVEs. The pipeline fails if unfixed
+              vulnerabilities are found, preventing insecure images from deploying.
+            </p>
           </div>
           <div className={styles.pipelineArrow}>→</div>
           <div className={styles.pipelineStep}>
             <div className={styles.pipelineIcon}>4</div>
             <h4>Update</h4>
-            <p>The Helm chart&apos;s values.yaml is updated with the new image tag and committed to eks-helm-charts, triggering ArgoCD to sync.</p>
+            <p>
+              The Helm chart&apos;s values.yaml is updated with the new image tag and committed to
+              eks-helm-charts, triggering ArgoCD to sync.
+            </p>
           </div>
         </div>
         <div className={styles.codeBlock}>
@@ -241,22 +282,48 @@ jobs:
           The project is organized across 4 repositories following separation of concerns:
         </p>
         <div className={styles.repos}>
-          <a href="https://github.com/furryman/terraform" target="_blank" rel="noopener noreferrer" className={styles.repoCard}>
+          <a
+            href="https://github.com/furryman/terraform"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.repoCard}
+          >
             <h4>furryman/terraform</h4>
-            <p>Infrastructure as Code for AWS VPC, EC2 t3.small, k3s installation, and iptables hairpin NAT fix</p>
+            <p>
+              Infrastructure as Code for AWS VPC, EC2 t3.small, k3s installation, and iptables
+              hairpin NAT fix
+            </p>
             <span className={styles.repoTag}>Terraform</span>
           </a>
-          <a href="https://github.com/furryman/eks-helm-charts" target="_blank" rel="noopener noreferrer" className={styles.repoCard}>
+          <a
+            href="https://github.com/furryman/eks-helm-charts"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.repoCard}
+          >
             <h4>furryman/eks-helm-charts</h4>
             <p>Helm charts for cert-manager, ingress-nginx, and the website deployment</p>
             <span className={styles.repoTag}>Helm</span>
           </a>
-          <a href="https://github.com/furryman/argocd-app-of-apps" target="_blank" rel="noopener noreferrer" className={styles.repoCard}>
+          <a
+            href="https://github.com/furryman/argocd-app-of-apps"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.repoCard}
+          >
             <h4>furryman/argocd-app-of-apps</h4>
-            <p>Parent ArgoCD Application managing all child applications with sync waves and auto-sync enabled</p>
+            <p>
+              Parent ArgoCD Application managing all child applications with sync waves and
+              auto-sync enabled
+            </p>
             <span className={styles.repoTag}>ArgoCD</span>
           </a>
-          <a href="https://github.com/furryman/fuhriman-website" target="_blank" rel="noopener noreferrer" className={styles.repoCard}>
+          <a
+            href="https://github.com/furryman/fuhriman-website"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.repoCard}
+          >
             <h4>furryman/fuhriman-website</h4>
             <p>Next.js source code with multi-arch Dockerfile and GitHub Actions CI/CD workflow</p>
             <span className={styles.repoTag}>Next.js</span>
@@ -267,20 +334,38 @@ jobs:
       <section className={styles.section}>
         <h2>Certificate Management & Hairpin NAT Solution</h2>
         <p className={styles.sectionIntro}>
-          One of the interesting technical challenges was getting Let&apos;s Encrypt certificates to work on a single-node cluster behind a public IP.
+          One of the interesting technical challenges was getting Let&apos;s Encrypt certificates to
+          work on a single-node cluster behind a public IP.
         </p>
         <div className={styles.highlights}>
           <div className={styles.highlight}>
             <h4>The Hairpin NAT Problem</h4>
-            <p>When cert-manager validates HTTP-01 challenges, it connects to the public IP from inside the cluster. AWS VPC doesn&apos;t support hairpin NAT — the VPC router won&apos;t loop packets back to the same host — so these connections fail even though external validation works fine.</p>
+            <p>
+              When cert-manager validates HTTP-01 challenges, it connects to the public IP from
+              inside the cluster. AWS VPC doesn&apos;t support hairpin NAT — the VPC router
+              won&apos;t loop packets back to the same host — so these connections fail even though
+              external validation works fine.
+            </p>
           </div>
           <div className={styles.highlight}>
             <h4>iptables Network-Layer Fix</h4>
-            <p>During cloud-init on Amazon Linux 2023, the script waits for ArgoCD to deploy ingress-nginx, then waits for kube-proxy to create its LoadBalancer iptables rules (fixing a race condition where chain discovery would fail). It then discovers the KUBE-EXT chain names and adds rules that jump pod CIDR (10.42.0.0/16) traffic destined for the public IP directly into those chains — piggy-backing on kube-proxy&apos;s existing DNAT-to-pod routing with no application-level workarounds.</p>
+            <p>
+              During cloud-init on Amazon Linux 2023, the script waits for ArgoCD to deploy
+              ingress-nginx, then waits for kube-proxy to create its LoadBalancer iptables rules
+              (fixing a race condition where chain discovery would fail). It then discovers the
+              KUBE-EXT chain names and adds rules that jump pod CIDR (10.42.0.0/16) traffic destined
+              for the public IP directly into those chains — piggy-backing on kube-proxy&apos;s
+              existing DNAT-to-pod routing with no application-level workarounds.
+            </p>
           </div>
           <div className={styles.highlight}>
             <h4>Why Not Simple DNAT?</h4>
-            <p>iptables DNAT is a terminating target — once it fires, the packet exits the chain. A native DNAT to the private IP would bypass kube-proxy&apos;s service routing rules entirely. By jumping into kube-proxy&apos;s own chains instead, the packet follows the same path as external traffic.</p>
+            <p>
+              iptables DNAT is a terminating target — once it fires, the packet exits the chain. A
+              native DNAT to the private IP would bypass kube-proxy&apos;s service routing rules
+              entirely. By jumping into kube-proxy&apos;s own chains instead, the packet follows the
+              same path as external traffic.
+            </p>
           </div>
         </div>
         <div className={styles.codeBlock}>
@@ -316,33 +401,53 @@ iptables -t nat -A PREROUTING -s 10.42.0.0/16 -d $PUBLIC_IP \\
         <div className={styles.principles}>
           <div className={styles.principle}>
             <h4>Infrastructure as Code</h4>
-            <p>All infrastructure is version-controlled in Terraform, enabling reproducible deployments and peer review of changes.</p>
+            <p>
+              All infrastructure is version-controlled in Terraform, enabling reproducible
+              deployments and peer review of changes.
+            </p>
           </div>
           <div className={styles.principle}>
             <h4>GitOps</h4>
-            <p>Git is the single source of truth. All changes flow through pull requests, providing audit trails and rollback capabilities.</p>
+            <p>
+              Git is the single source of truth. All changes flow through pull requests, providing
+              audit trails and rollback capabilities.
+            </p>
           </div>
           <div className={styles.principle}>
             <h4>Immutable Infrastructure</h4>
-            <p>Each deployment creates a new container image with a unique tag. No in-place modifications to running containers.</p>
+            <p>
+              Each deployment creates a new container image with a unique tag. No in-place
+              modifications to running containers.
+            </p>
           </div>
           <div className={styles.principle}>
             <h4>Declarative Configuration</h4>
-            <p>Desired state is declared in YAML manifests. Kubernetes and ArgoCD continuously reconcile actual state to match.</p>
+            <p>
+              Desired state is declared in YAML manifests. Kubernetes and ArgoCD continuously
+              reconcile actual state to match.
+            </p>
           </div>
           <div className={styles.principle}>
             <h4>Cost Optimization</h4>
-            <p>Using k3s on a single t3.small instance instead of managed EKS reduces monthly costs from ~$80 to ~$22 while maintaining production-grade GitOps practices.</p>
+            <p>
+              Using k3s on a single t3.small instance instead of managed EKS reduces monthly costs
+              from ~$80 to ~$22 while maintaining production-grade GitOps practices.
+            </p>
           </div>
           <div className={styles.principle}>
             <h4>Automation First</h4>
-            <p>Certificate renewal, hairpin NAT configuration, and application deployment are fully automated. Zero manual intervention required after initial setup.</p>
+            <p>
+              Certificate renewal, hairpin NAT configuration, and application deployment are fully
+              automated. Zero manual intervention required after initial setup.
+            </p>
           </div>
         </div>
       </section>
 
       <footer className={styles.footer}>
-        <Link href="/" className="btn">Back to Portfolio</Link>
+        <Link href="/" className="btn">
+          Back to Portfolio
+        </Link>
         <p>This page is part of the portfolio at fuhriman.org</p>
       </footer>
     </main>

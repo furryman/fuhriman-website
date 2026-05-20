@@ -17,17 +17,14 @@ const sourceSans = Source_Sans_3({
 
 export const metadata: Metadata = {
   title: 'Adam Fuhriman | DevOps Engineer',
-  description: 'Portfolio website showcasing 5 years of DevOps experience with Kubernetes, AWS, Terraform, and CI/CD pipelines.',
+  description:
+    'Portfolio website showcasing 5 years of DevOps experience with Kubernetes, AWS, Terraform, and CI/CD pipelines.',
   icons: {
     icon: '/favicon.svg',
   },
 }
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${dmSerif.variable} ${sourceSans.variable}`}>
       <body>{children}</body>

@@ -3,7 +3,7 @@
   flex-direction: column;
   align-items: center;
   padding: 2.5rem 1.5rem;
-  background: rgba(16, 15, 28, 0.5);
+  background: rgb(16 15 28 / 50%);
   border: 1px solid var(--border);
   border-radius: 16px;
   overflow: hidden;
@@ -17,18 +17,19 @@
   gap: 0.2rem;
   padding: 1rem 2rem;
   border-radius: 12px;
-  background: rgba(22, 21, 37, 0.7);
+  background: rgb(22 21 37 / 70%);
   backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
   border: 1px solid var(--border);
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
   min-width: 160px;
   text-align: center;
 }
 
 .node:hover {
   border-color: var(--border-hover);
-  box-shadow: 0 0 20px -4px rgba(124, 106, 240, 0.15);
+  box-shadow: 0 0 20px -4px rgb(124 106 240 / 15%);
 }
 
 .nodeIcon {
@@ -49,37 +50,82 @@
 }
 
 /* ---------- color accents ---------- */
-.developer { border-color: rgba(56, 189, 248, 0.3); }
-.developer:hover { border-color: rgba(56, 189, 248, 0.6); box-shadow: 0 0 20px -4px rgba(56, 189, 248, 0.15); }
-.developer .nodeIcon { color: #38bdf8; }
+.developer {
+  border-color: rgb(56 189 248 / 30%);
+}
 
-.registry { border-color: rgba(96, 165, 250, 0.3); }
-.registry:hover { border-color: rgba(96, 165, 250, 0.6); box-shadow: 0 0 20px -4px rgba(96, 165, 250, 0.15); }
-.registry .nodeIcon { color: #60a5fa; }
+.developer:hover {
+  border-color: rgb(56 189 248 / 60%);
+  box-shadow: 0 0 20px -4px rgb(56 189 248 / 15%);
+}
 
-.helmCharts { border-color: rgba(167, 139, 250, 0.3); }
-.helmCharts:hover { border-color: rgba(167, 139, 250, 0.6); box-shadow: 0 0 20px -4px rgba(167, 139, 250, 0.15); }
-.helmCharts .nodeIcon { color: #a78bfa; }
+.developer .nodeIcon {
+  color: #38bdf8;
+}
 
-.argocd { border-color: rgba(251, 146, 60, 0.3); }
-.argocd:hover { border-color: rgba(251, 146, 60, 0.6); box-shadow: 0 0 20px -4px rgba(251, 146, 60, 0.15); }
-.argocd .nodeIcon { color: #fb923c; }
+.registry {
+  border-color: rgb(96 165 250 / 30%);
+}
+
+.registry:hover {
+  border-color: rgb(96 165 250 / 60%);
+  box-shadow: 0 0 20px -4px rgb(96 165 250 / 15%);
+}
+
+.registry .nodeIcon {
+  color: #60a5fa;
+}
+
+.helmCharts {
+  border-color: rgb(167 139 250 / 30%);
+}
+
+.helmCharts:hover {
+  border-color: rgb(167 139 250 / 60%);
+  box-shadow: 0 0 20px -4px rgb(167 139 250 / 15%);
+}
+
+.helmCharts .nodeIcon {
+  color: #a78bfa;
+}
+
+.argocd {
+  border-color: rgb(251 146 60 / 30%);
+}
+
+.argocd:hover {
+  border-color: rgb(251 146 60 / 60%);
+  box-shadow: 0 0 20px -4px rgb(251 146 60 / 15%);
+}
+
+.argocd .nodeIcon {
+  color: #fb923c;
+}
 
 .output {
-  background: linear-gradient(135deg, rgba(124, 106, 240, 0.15), rgba(56, 189, 248, 0.1));
-  border-color: rgba(124, 106, 240, 0.35);
+  background: linear-gradient(135deg, rgb(124 106 240 / 15%), rgb(56 189 248 / 10%));
+  border-color: rgb(124 106 240 / 35%);
 }
-.output:hover { border-color: rgba(124, 106, 240, 0.6); box-shadow: 0 0 24px -4px rgba(124, 106, 240, 0.25); }
-.output .nodeLabel { background: var(--gradient-text); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-size: 0.95rem; }
+
+.output:hover {
+  border-color: rgb(124 106 240 / 60%);
+  box-shadow: 0 0 24px -4px rgb(124 106 240 / 25%);
+}
+
+.output .nodeLabel {
+  background: var(--gradient-text);
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-size: 0.95rem;
+}
 
 /* ---------- group nodes ---------- */
 .nodeGroup {
   width: 100%;
   max-width: 680px;
   border-radius: 14px;
-  background: rgba(22, 21, 37, 0.55);
+  background: rgb(22 21 37 / 55%);
   backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
   border: 1px solid var(--border);
   overflow: hidden;
   transition: border-color 0.3s ease;
@@ -99,15 +145,20 @@
   font-size: 0.85rem;
   color: var(--text-bright);
   border-bottom: 1px solid var(--border);
-  background: rgba(124, 106, 240, 0.06);
+  background: rgb(124 106 240 / 6%);
 }
 
 .groupIcon {
   font-size: 1.1rem;
 }
 
-.cicd .groupHeader { color: #a78bfa; }
-.cluster .groupHeader { color: #38bdf8; }
+.cicd .groupHeader {
+  color: #a78bfa;
+}
+
+.cluster .groupHeader {
+  color: #38bdf8;
+}
 
 /* ---------- CI/CD pipeline row ---------- */
 .pipelineFlow {
@@ -120,8 +171,8 @@
 
 .pipelineNode {
   padding: 0.5rem 0.85rem;
-  background: rgba(124, 106, 240, 0.08);
-  border: 1px solid rgba(124, 106, 240, 0.18);
+  background: rgb(124 106 240 / 8%);
+  border: 1px solid rgb(124 106 240 / 18%);
   border-radius: 8px;
   font-size: 0.75rem;
   font-family: var(--font-body), monospace;
@@ -131,8 +182,8 @@
 }
 
 .pipelineNode:hover {
-  background: rgba(124, 106, 240, 0.16);
-  border-color: rgba(124, 106, 240, 0.4);
+  background: rgb(124 106 240 / 16%);
+  border-color: rgb(124 106 240 / 40%);
   color: var(--text-bright);
 }
 
@@ -170,7 +221,7 @@
   flex: 1;
   min-width: 120px;
   padding: 1rem 0.75rem;
-  background: rgba(16, 15, 28, 0.6);
+  background: rgb(16 15 28 / 60%);
   border: 1px solid var(--border);
   border-radius: 10px;
   font-size: 0.8rem;
@@ -196,27 +247,51 @@
   color: var(--text-secondary);
 }
 
-.certManager { border-color: rgba(52, 211, 153, 0.25); }
-.certManager:hover { border-color: rgba(52, 211, 153, 0.5); }
-.certManager .workloadIcon { color: #34d399; }
+.certManager {
+  border-color: rgb(52 211 153 / 25%);
+}
 
-.ingress { border-color: rgba(96, 165, 250, 0.25); }
-.ingress:hover { border-color: rgba(96, 165, 250, 0.5); }
-.ingress .workloadIcon { color: #60a5fa; }
+.certManager:hover {
+  border-color: rgb(52 211 153 / 50%);
+}
 
-.website { border-color: rgba(124, 106, 240, 0.3); }
-.website:hover { border-color: rgba(124, 106, 240, 0.55); }
-.website .workloadIcon { color: var(--accent); }
+.certManager .workloadIcon {
+  color: #34d399;
+}
+
+.ingress {
+  border-color: rgb(96 165 250 / 25%);
+}
+
+.ingress:hover {
+  border-color: rgb(96 165 250 / 50%);
+}
+
+.ingress .workloadIcon {
+  color: #60a5fa;
+}
+
+.website {
+  border-color: rgb(124 106 240 / 30%);
+}
+
+.website:hover {
+  border-color: rgb(124 106 240 / 55%);
+}
+
+.website .workloadIcon {
+  color: var(--accent);
+}
 
 .iptablesBar {
   margin-top: 1rem;
   padding: 0.6rem 1rem;
-  background: rgba(251, 146, 60, 0.06);
-  border: 1px dashed rgba(251, 146, 60, 0.25);
+  background: rgb(251 146 60 / 6%);
+  border: 1px dashed rgb(251 146 60 / 25%);
   border-radius: 8px;
   font-size: 0.7rem;
   font-family: var(--font-body), monospace;
-  color: rgba(251, 191, 131, 0.85);
+  color: rgb(251 191 131 / 85%);
   text-align: center;
 }
 
@@ -246,7 +321,7 @@
 .vLine {
   width: 2px;
   height: 28px;
-  background: rgba(124, 106, 240, 0.35);
+  background: rgb(124 106 240 / 35%);
 }
 
 .connectorLabel {
@@ -254,7 +329,7 @@
   font-family: var(--font-body), monospace;
   color: var(--text-secondary);
   padding: 0.15rem 0.5rem;
-  background: rgba(124, 106, 240, 0.08);
+  background: rgb(124 106 240 / 8%);
   border-radius: 4px;
 }
 
@@ -312,7 +387,7 @@
 }
 
 /* ---------- responsive ---------- */
-@media (max-width: 700px) {
+@media (width <= 700px) {
   .diagram {
     padding: 1.5rem 0.75rem;
   }
@@ -338,7 +413,7 @@
     top: 0;
     width: 2px;
     height: 100%;
-    background: rgba(124, 106, 240, 0.35);
+    background: rgb(124 106 240 / 35%);
     transform: translateX(-50%);
   }
 
@@ -366,7 +441,7 @@
     content: '';
     width: 2px;
     height: 20px;
-    background: rgba(124, 106, 240, 0.35);
+    background: rgb(124 106 240 / 35%);
   }
 
   .pipelineFlow {

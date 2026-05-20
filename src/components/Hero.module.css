@@ -104,9 +104,8 @@
   align-items: center;
   gap: 0.4rem;
   padding: 0.5rem 1rem;
-  background: rgba(22, 21, 37, 0.6);
+  background: rgb(22 21 37 / 60%);
   backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
   border: 1px solid var(--border);
   border-radius: 9999px;
   font-size: 0.85rem;
@@ -124,6 +123,7 @@
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -131,12 +131,17 @@
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 0.9; }
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 0.9;
+  }
 }
 
 /* Tablet: shrink the headshot so text keeps breathing room */
-@media (max-width: 1024px) {
+@media (width <= 1024px) {
   .heroContent {
     gap: 2rem;
   }
@@ -152,7 +157,7 @@
   }
 }
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
   .heroContent {
     padding-top: 2rem;
   }

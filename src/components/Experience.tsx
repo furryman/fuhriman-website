@@ -13,8 +13,8 @@ const experiences = [
       'Managed and maintained CI/CD pipelines and version control systems in Github Actions, which cut lead times from a monthly cadence to weekly releases',
       'Managed a comprehensive monitoring stack with Prometheus and Grafana',
       'Built a PoC for an Internal Developer Portal (IDP) using Backstage',
-      'Led numerous optimization/refactoring projects for Terraform modules, simplifying the codebase, and cutting repeated code by over 50%'
-    ]
+      'Led numerous optimization/refactoring projects for Terraform modules, simplifying the codebase, and cutting repeated code by over 50%',
+    ],
   },
   {
     title: 'DevOps Engineer',
@@ -23,8 +23,8 @@ const experiences = [
     highlights: [
       'Led DevOps tranformation during a period of rapid growth by automating many previously manual processes',
       'Designed and built CI/CD pipelines with Jenkins, cutting deployment times by 70%',
-      'Implemented SSO with Azure and reduced onboarding times by several hours and saved $1500/mo by identifying wasteful user licenses'
-    ]
+      'Implemented SSO with Azure and reduced onboarding times by several hours and saved $1500/mo by identifying wasteful user licenses',
+    ],
   },
   {
     title: 'IT Support Specialist',
@@ -33,9 +33,9 @@ const experiences = [
     highlights: [
       'Maintained Windows servers and performed software/security updates on VMWare VMs',
       'Cut monthly software spending costs by $2000 by migrating the organization to Jira and consolidating work management tools',
-      'Coordinated with dev teams for performing bi-weekly roll-outs to production'
-    ]
-  }
+      'Coordinated with dev teams for performing bi-weekly roll-outs to production',
+    ],
+  },
 ]
 
 export default function Experience() {

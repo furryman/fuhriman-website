@@ -43,7 +43,9 @@ export default function Navbar() {
   return (
     <nav className={`${styles.nav} ${scrolled ? styles.scrolled : ''}`}>
       <div className={styles.inner}>
-        <a href="#" className={styles.logo}>AF</a>
+        <a href="#" className={styles.logo}>
+          AF
+        </a>
         <ul className={styles.links}>
           {navLinks.map((link, i) => (
             <li key={link.href}>
@@ -62,7 +64,12 @@ export default function Navbar() {
             </a>
           </li>
           <li>
-            <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className={styles.resumeBtn}>
+            <a
+              href="/resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.resumeBtn}
+            >
               Resume
             </a>
           </li>

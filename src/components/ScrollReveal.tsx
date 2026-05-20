@@ -8,7 +8,11 @@ interface ScrollRevealProps {
   stagger?: boolean
 }
 
-export default function ScrollReveal({ children, className = '', stagger = false }: ScrollRevealProps) {
+export default function ScrollReveal({
+  children,
+  className = '',
+  stagger = false,
+}: ScrollRevealProps) {
   const ref = useRef<HTMLDivElement>(null)
 
   useEffect(() => {

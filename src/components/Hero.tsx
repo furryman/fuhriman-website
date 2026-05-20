@@ -10,14 +10,20 @@ export default function Hero() {
           <h1 className={`${styles.name} gradient-text`}>Adam Fuhriman</h1>
           <h2 className={styles.tagline}>From code to cloud, automated.</h2>
           <p className={styles.description}>
-            With 5 years in the DevOps space, I believe the best infrastructure is the kind
-            you never have to think about. I build the automation, platforms, and observability
-            that make that possible.
+            With 5 years in the DevOps space, I believe the best infrastructure is the kind you
+            never have to think about. I build the automation, platforms, and observability that
+            make that possible.
           </p>
           <div className={styles.cta}>
-            <a href="#contact" className="btn">Get in Touch</a>
-            <a href="#experience" className={styles.secondary}>View My Work</a>
-            <a href="/how-its-built" className={styles.secondary}>How I Built This</a>
+            <a href="#contact" className="btn">
+              Get in Touch
+            </a>
+            <a href="#experience" className={styles.secondary}>
+              View My Work
+            </a>
+            <a href="/how-its-built" className={styles.secondary}>
+              How I Built This
+            </a>
           </div>
         </div>
         <div className={styles.imageWrapper}>
@@ -30,7 +36,16 @@ export default function Hero() {
             priority
           />
           <div className={styles.locationBadge}>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
               <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
               <circle cx="12" cy="10" r="3" />
             </svg>

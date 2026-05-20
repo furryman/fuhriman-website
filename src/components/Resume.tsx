@@ -9,7 +9,8 @@ export default function Resume() {
           <div className={styles.card}>
             <h3 className={styles.heading}>Want the full picture?</h3>
             <p className={styles.description}>
-              Check out my resume for a complete look at my experience, certifications, and technical skills.
+              Check out my resume for a complete look at my experience, certifications, and
+              technical skills.
             </p>
             <a
               href="/resume.pdf"

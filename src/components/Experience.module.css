@@ -21,9 +21,8 @@
 }
 
 .item {
-  background: rgba(22, 21, 37, 0.6);
+  background: rgb(22 21 37 / 60%);
   backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
   border: 1px solid var(--border);
   border-radius: 8px;
   padding: 2rem;
@@ -48,7 +47,7 @@
   border-color: var(--border-hover);
   transform: translateX(4px);
   box-shadow: var(--shadow-hover);
-  background: rgba(26, 24, 48, 0.7);
+  background: rgb(26 24 48 / 70%);
 }
 
 .header {
@@ -106,7 +105,7 @@
   margin-bottom: 0;
 }
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
   .header {
     flex-direction: column;
     gap: 0.5rem;
