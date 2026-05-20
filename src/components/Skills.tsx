@@ -8,6 +8,7 @@ import {
   TerraformIcon,
 } from '@/components/Icons'
 import ScrollReveal from '@/components/ScrollReveal'
+import TiltCard from '@/components/TiltCard'
 import styles from './Skills.module.css'
 
 const skillCategories: { title: string; icon: ReactNode; skills: string[] }[] = [
@@ -53,7 +54,7 @@ export default function Skills() {
         <ScrollReveal stagger>
           <div className={styles.grid}>
             {skillCategories.map((category) => (
-              <div key={category.title} className={styles.card}>
+              <TiltCard key={category.title} className={styles.card}>
                 <div className={styles.cardHeader}>
                   <span className={styles.cardIcon}>{category.icon}</span>
                   <h3 className={styles.cardTitle}>{category.title}</h3>
@@ -65,7 +66,7 @@ export default function Skills() {
                     </span>
                   ))}
                 </div>
-              </div>
+              </TiltCard>
             ))}
           </div>
         </ScrollReveal>

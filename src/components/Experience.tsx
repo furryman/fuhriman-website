@@ -1,4 +1,5 @@
 import ScrollReveal from '@/components/ScrollReveal'
+import TiltCard from '@/components/TiltCard'
 import styles from './Experience.module.css'
 
 const experiences = [
@@ -48,7 +49,7 @@ export default function Experience() {
         <div className={styles.timeline}>
           {experiences.map((exp) => (
             <ScrollReveal key={`${exp.company}-${exp.period}`}>
-              <div className={styles.item}>
+              <TiltCard className={styles.item}>
                 <div className={styles.header}>
                   <div>
                     <h3 className={styles.title}>{exp.title}</h3>
@@ -61,7 +62,7 @@ export default function Experience() {
                     <li key={highlight}>{highlight}</li>
                   ))}
                 </ul>
-              </div>
+              </TiltCard>
             </ScrollReveal>
           ))}
         </div>
