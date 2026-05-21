@@ -1,4 +1,30 @@
 {
-  "fetchedAt": null,
-  "artists": []
+  "fetchedAt": "2026-05-21T03:02:41.638Z",
+  "artists": [
+    {
+      "name": "The Midnight",
+      "url": "https://open.spotify.com/artist/2NFrAuh8RQdQoS7iYFbckw",
+      "image": "https://i.scdn.co/image/ab6761610000e5ebbeb65e1c821ecd888cf5e115"
+    },
+    {
+      "name": "PRIZM",
+      "url": "https://open.spotify.com/artist/0elWefATNt1GKkpPX2L5bo",
+      "image": "https://i.scdn.co/image/ab6761610000e5eb016e0799a6571c7e265afffa"
+    },
+    {
+      "name": "Thrice",
+      "url": "https://open.spotify.com/artist/3NChzMpu9exTlNPiqUQ2DE",
+      "image": "https://i.scdn.co/image/ab6761610000e5eb058f5640966c28abd8df4ba9"
+    },
+    {
+      "name": "Carpenter Brut",
+      "url": "https://open.spotify.com/artist/1l2oLiukA9i5jEtIyNWIEP",
+      "image": "https://i.scdn.co/image/ab6761610000e5ebac2f9a19a87d094626992c94"
+    },
+    {
+      "name": "Kendrick Lamar",
+      "url": "https://open.spotify.com/artist/2YZyLoL8N0Wb9xBt1NhZWg",
+      "image": "https://i.scdn.co/image/ab6761610000e5eb39ba6dcd4355c03de0b50918"
+    }
+  ]
 }
