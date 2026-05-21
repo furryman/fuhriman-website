@@ -39,12 +39,21 @@ jobs:
 
       - name: Commit changes if any
         run: |
-          if [[ -n "$(git status --porcelain public/)" ]]; then
-            git config user.name 'github-actions[bot]'
-            git config user.email 'github-actions[bot]@users.noreply.github.com'
-            git add public/spotify-top.json public/steam-recent.json
-            git commit -m "chore(data): refresh interests JSON"
-            git push
-          else
+          if [[ -z "$(git status --porcelain public/)" ]]; then
             echo "No changes to commit"
+            exit 0
           fi
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          git add public/spotify-top.json public/steam-recent.json
+          git commit -m "chore(data): refresh interests JSON"
+          # Retry on push race — rebase onto whatever landed since checkout
+          for attempt in 1 2 3; do
+            if git push; then
+              exit 0
+            fi
+            echo "Push attempt $attempt failed, pulling --rebase and retrying…"
+            git pull --rebase origin main
+          done
+          echo "Push failed after 3 attempts"
+          exit 1

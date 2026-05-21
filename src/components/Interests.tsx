@@ -35,8 +35,8 @@ interface Props {
 }
 
 // Profile URLs — replace placeholders when you have them set up
-const SPOTIFY_PROFILE = 'https://open.spotify.com/user/fuhriman'
-const STEAM_PROFILE = 'https://steamcommunity.com/id/fuhriman'
+const SPOTIFY_PROFILE = 'https://open.spotify.com/user/irvine33'
+const STEAM_PROFILE = 'http://steamcommunity.com/profiles/76561197970391856'
 
 export default function Interests({
   spotify = spotifyJson as SpotifyData,
