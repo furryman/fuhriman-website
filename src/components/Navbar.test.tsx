@@ -36,7 +36,8 @@ describe('Navbar', () => {
       'href',
       '#experience'
     )
-    expect(screen.getByRole('link', { name: /05.*Contact/i })).toHaveAttribute('href', '#contact')
+    expect(screen.getByRole('link', { name: /05.*Projects/i })).toHaveAttribute('href', '#projects')
+    expect(screen.getByRole('link', { name: /06.*Contact/i })).toHaveAttribute('href', '#contact')
     expect(screen.getByRole('link', { name: 'How I Built This' })).toHaveAttribute(
       'href',
       '/how-its-built'

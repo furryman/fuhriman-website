@@ -4,6 +4,7 @@ import Experience from '@/components/Experience'
 import Hero from '@/components/Hero'
 import Navbar from '@/components/Navbar'
 import Philosophy from '@/components/Philosophy'
+import Projects from '@/components/Projects'
 import Resume from '@/components/Resume'
 import Skills from '@/components/Skills'
 
@@ -17,6 +18,7 @@ export default function Home() {
         <Philosophy />
         <Skills />
         <Experience />
+        <Projects />
         <Resume />
         <Contact />
       </main>
