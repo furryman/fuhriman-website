@@ -34,6 +34,8 @@ export default defineConfig({
         'commitlint.config.*',
         // canvas animation — not meaningfully testable in happy-dom
         'src/components/AmbientBackground.tsx',
+        // WebGL / R3F Canvas — happy-dom has no WebGL renderer; Canvas internals untestable
+        'src/components/HeroScene.tsx',
       ],
       thresholds: {
         lines: 95,

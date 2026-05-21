@@ -19,11 +19,10 @@ describe('Hero', () => {
     )
   })
 
-  it('renders the headshot image and location badge', () => {
+  it('renders the description text', () => {
     render(<Hero />)
-    const img = screen.getByAltText('Adam Fuhriman')
-    expect(img).toBeInTheDocument()
-    expect(img).toHaveAttribute('src', '/headshot.jpg')
-    expect(screen.getByText('Salt Lake City, UT')).toBeInTheDocument()
+    // HeroScene is lazy-loaded (ssr: false) so 3D canvas is not in the test render.
+    // Assert the description text is present to confirm the Hero renders correctly.
+    expect(screen.getByText(/I build the automation/i)).toBeInTheDocument()
   })
 })

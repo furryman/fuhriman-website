@@ -94,6 +94,16 @@
   gap: 0.75rem;
 }
 
+/* 3D hero scene — visible only on desktop */
+.heroVisual {
+  flex: 0 0 400px;
+  width: 400px;
+  height: 400px;
+  display: none;
+  opacity: 0;
+  animation: fadeIn 1s ease 0.8s forwards;
+}
+
 .headshot {
   border-radius: 8px;
   object-fit: cover;
@@ -137,6 +147,13 @@
 
   to {
     opacity: 0.9;
+  }
+}
+
+/* Desktop: show 3D scene */
+@media (width >= 1024px) {
+  .heroVisual {
+    display: block;
   }
 }
 

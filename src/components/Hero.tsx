@@ -1,6 +1,10 @@
-import Image from 'next/image'
+'use client'
+
+import dynamic from 'next/dynamic'
 import MagneticButton from '@/components/MagneticButton'
 import styles from './Hero.module.css'
+
+const HeroScene = dynamic(() => import('./HeroScene'), { ssr: false, loading: () => null })
 
 export default function Hero() {
   return (
@@ -27,32 +31,8 @@ export default function Hero() {
             </MagneticButton>
           </div>
         </div>
-        <div className={styles.imageWrapper}>
-          <Image
-            src="/headshot.jpg"
-            alt="Adam Fuhriman"
-            width={300}
-            height={300}
-            className={styles.headshot}
-            priority
-          />
-          <div className={styles.locationBadge}>
-            <svg
-              aria-hidden="true"
-              width="14"
-              height="14"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-              <circle cx="12" cy="10" r="3" />
-            </svg>
-            Salt Lake City, UT
-          </div>
+        <div className={styles.heroVisual}>
+          <HeroScene />
         </div>
       </div>
     </section>
