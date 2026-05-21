@@ -15,7 +15,7 @@ export default function ScrollReveal({ children, className = '', stagger = false
       className={`reveal ${className}${stagger ? ' stagger' : ''}`.trim().replace(/\s+/g, ' ')}
       initial={{ opacity: 0, y: 12 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-10%' }}
+      viewport={{ once: true, amount: 0.1 }}
       transition={{ duration: 0.5, ease: 'easeOut' }}
     >
       {children}
