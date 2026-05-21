@@ -3,7 +3,7 @@
   flex-direction: column;
   align-items: center;
   padding: 2.5rem 1.5rem;
-  background: rgb(16 15 28 / 50%);
+  background: rgb(26 24 24 / 50%);
   border: 1px solid var(--border);
   border-radius: 16px;
   overflow: hidden;
@@ -17,7 +17,7 @@
   gap: 0.2rem;
   padding: 1rem 2rem;
   border-radius: 12px;
-  background: rgb(22 21 37 / 70%);
+  background: rgb(34 30 28 / 70%);
   backdrop-filter: blur(8px);
   border: 1px solid var(--border);
   transition:
@@ -29,7 +29,7 @@
 
 .node:hover {
   border-color: var(--border-hover);
-  box-shadow: 0 0 20px -4px rgb(124 106 240 / 15%);
+  box-shadow: 0 0 20px -4px rgb(240 168 104 / 15%);
 }
 
 .nodeIcon {
@@ -50,66 +50,72 @@
 }
 
 /* ---------- color accents ---------- */
+
+/* developer: amber — code origin */
 .developer {
-  border-color: rgb(56 189 248 / 30%);
+  border-color: rgb(240 168 104 / 30%);
 }
 
 .developer:hover {
-  border-color: rgb(56 189 248 / 60%);
-  box-shadow: 0 0 20px -4px rgb(56 189 248 / 15%);
+  border-color: rgb(240 168 104 / 60%);
+  box-shadow: 0 0 20px -4px rgb(240 168 104 / 20%);
 }
 
 .developer .nodeIcon {
-  color: #38bdf8;
+  color: var(--accent);
 }
 
+/* registry: rust red — container image store */
 .registry {
-  border-color: rgb(96 165 250 / 30%);
+  border-color: rgb(201 56 56 / 30%);
 }
 
 .registry:hover {
-  border-color: rgb(96 165 250 / 60%);
-  box-shadow: 0 0 20px -4px rgb(96 165 250 / 15%);
+  border-color: rgb(201 56 56 / 60%);
+  box-shadow: 0 0 20px -4px rgb(201 56 56 / 15%);
 }
 
 .registry .nodeIcon {
-  color: #60a5fa;
+  color: var(--rust);
 }
 
+/* helmCharts: deep amber — config/manifest repo */
 .helmCharts {
-  border-color: rgb(167 139 250 / 30%);
+  border-color: rgb(201 124 61 / 30%);
 }
 
 .helmCharts:hover {
-  border-color: rgb(167 139 250 / 60%);
-  box-shadow: 0 0 20px -4px rgb(167 139 250 / 15%);
+  border-color: rgb(201 124 61 / 60%);
+  box-shadow: 0 0 20px -4px rgb(201 124 61 / 15%);
 }
 
 .helmCharts .nodeIcon {
-  color: #a78bfa;
+  color: var(--accent-deep);
 }
 
+/* argocd: accent-light cream/warm — GitOps engine */
 .argocd {
-  border-color: rgb(251 146 60 / 30%);
+  border-color: rgb(255 217 168 / 30%);
 }
 
 .argocd:hover {
-  border-color: rgb(251 146 60 / 60%);
-  box-shadow: 0 0 20px -4px rgb(251 146 60 / 15%);
+  border-color: rgb(255 217 168 / 60%);
+  box-shadow: 0 0 20px -4px rgb(255 217 168 / 15%);
 }
 
 .argocd .nodeIcon {
-  color: #fb923c;
+  color: var(--accent-light);
 }
 
+/* output: gradient highlight — the live website */
 .output {
-  background: linear-gradient(135deg, rgb(124 106 240 / 15%), rgb(56 189 248 / 10%));
-  border-color: rgb(124 106 240 / 35%);
+  background: linear-gradient(135deg, rgb(240 168 104 / 15%), rgb(201 56 56 / 10%));
+  border-color: rgb(240 168 104 / 35%);
 }
 
 .output:hover {
-  border-color: rgb(124 106 240 / 60%);
-  box-shadow: 0 0 24px -4px rgb(124 106 240 / 25%);
+  border-color: rgb(240 168 104 / 60%);
+  box-shadow: 0 0 24px -4px rgb(240 168 104 / 25%);
 }
 
 .output .nodeLabel {
@@ -124,7 +130,7 @@
   width: 100%;
   max-width: 680px;
   border-radius: 14px;
-  background: rgb(22 21 37 / 55%);
+  background: rgb(34 30 28 / 55%);
   backdrop-filter: blur(8px);
   border: 1px solid var(--border);
   overflow: hidden;
@@ -145,7 +151,7 @@
   font-size: 0.85rem;
   color: var(--text-bright);
   border-bottom: 1px solid var(--border);
-  background: rgb(124 106 240 / 6%);
+  background: rgb(240 168 104 / 6%);
 }
 
 .groupIcon {
@@ -153,11 +159,11 @@
 }
 
 .cicd .groupHeader {
-  color: #a78bfa;
+  color: var(--accent);
 }
 
 .cluster .groupHeader {
-  color: #38bdf8;
+  color: var(--accent-light);
 }
 
 /* ---------- CI/CD pipeline row ---------- */
@@ -171,8 +177,8 @@
 
 .pipelineNode {
   padding: 0.5rem 0.85rem;
-  background: rgb(124 106 240 / 8%);
-  border: 1px solid rgb(124 106 240 / 18%);
+  background: rgb(240 168 104 / 8%);
+  border: 1px solid rgb(240 168 104 / 18%);
   border-radius: 8px;
   font-size: 0.75rem;
   font-family: var(--font-body), monospace;
@@ -182,8 +188,8 @@
 }
 
 .pipelineNode:hover {
-  background: rgb(124 106 240 / 16%);
-  border-color: rgb(124 106 240 / 40%);
+  background: rgb(240 168 104 / 16%);
+  border-color: rgb(240 168 104 / 40%);
   color: var(--text-bright);
 }
 
@@ -221,7 +227,7 @@
   flex: 1;
   min-width: 120px;
   padding: 1rem 0.75rem;
-  background: rgb(16 15 28 / 60%);
+  background: rgb(26 24 24 / 60%);
   border: 1px solid var(--border);
   border-radius: 10px;
   font-size: 0.8rem;
@@ -247,51 +253,55 @@
   color: var(--text-secondary);
 }
 
+/* cert-manager: green-ish teal — security/TLS */
 .certManager {
-  border-color: rgb(52 211 153 / 25%);
+  border-color: rgb(180 200 150 / 25%);
 }
 
 .certManager:hover {
-  border-color: rgb(52 211 153 / 50%);
+  border-color: rgb(180 200 150 / 50%);
 }
 
 .certManager .workloadIcon {
-  color: #34d399;
+  color: #b4c896;
 }
 
+/* ingress: rust red — networking/traffic */
 .ingress {
-  border-color: rgb(96 165 250 / 25%);
+  border-color: rgb(201 56 56 / 25%);
 }
 
 .ingress:hover {
-  border-color: rgb(96 165 250 / 50%);
+  border-color: rgb(201 56 56 / 50%);
 }
 
 .ingress .workloadIcon {
-  color: #60a5fa;
+  color: var(--rust);
 }
 
+/* website: amber — the app itself */
 .website {
-  border-color: rgb(124 106 240 / 30%);
+  border-color: rgb(240 168 104 / 30%);
 }
 
 .website:hover {
-  border-color: rgb(124 106 240 / 55%);
+  border-color: rgb(240 168 104 / 55%);
 }
 
 .website .workloadIcon {
   color: var(--accent);
 }
 
+/* iptables bar: deep amber tones */
 .iptablesBar {
   margin-top: 1rem;
   padding: 0.6rem 1rem;
-  background: rgb(251 146 60 / 6%);
-  border: 1px dashed rgb(251 146 60 / 25%);
+  background: rgb(201 124 61 / 6%);
+  border: 1px dashed rgb(201 124 61 / 25%);
   border-radius: 8px;
   font-size: 0.7rem;
   font-family: var(--font-body), monospace;
-  color: rgb(251 191 131 / 85%);
+  color: rgb(255 217 168 / 85%);
   text-align: center;
 }
 
@@ -321,7 +331,7 @@
 .vLine {
   width: 2px;
   height: 28px;
-  background: rgb(124 106 240 / 35%);
+  background: rgb(240 168 104 / 35%);
 }
 
 .connectorLabel {
@@ -329,7 +339,7 @@
   font-family: var(--font-body), monospace;
   color: var(--text-secondary);
   padding: 0.15rem 0.5rem;
-  background: rgb(124 106 240 / 8%);
+  background: rgb(240 168 104 / 8%);
   border-radius: 4px;
 }
 
@@ -413,7 +423,7 @@
     top: 0;
     width: 2px;
     height: 100%;
-    background: rgb(124 106 240 / 35%);
+    background: rgb(240 168 104 / 35%);
     transform: translateX(-50%);
   }
 
@@ -441,7 +451,7 @@
     content: "";
     width: 2px;
     height: 20px;
-    background: rgb(124 106 240 / 35%);
+    background: rgb(240 168 104 / 35%);
   }
 
   .pipelineFlow {
