@@ -1,6 +1,7 @@
 'use client'
 
 import dynamic from 'next/dynamic'
+import Image from 'next/image'
 import MagneticButton from '@/components/MagneticButton'
 import styles from './Hero.module.css'
 
@@ -32,7 +33,21 @@ export default function Hero() {
           </div>
         </div>
         <div className={styles.heroVisual}>
-          <HeroScene />
+          {/* Headshot — always visible on tablet+ */}
+          <div className={styles.headshotLayer}>
+            <Image
+              src="/headshot.jpg"
+              alt="Adam Fuhriman"
+              width={300}
+              height={300}
+              className={styles.headshot}
+              priority
+            />
+          </div>
+          {/* 3D cluster — desktop-only ambient layer behind headshot */}
+          <div className={styles.clusterLayer} aria-hidden="true">
+            <HeroScene />
+          </div>
         </div>
       </div>
     </section>

@@ -19,10 +19,12 @@ describe('Hero', () => {
     )
   })
 
-  it('renders the description text', () => {
+  it('renders the description text and headshot', () => {
     render(<Hero />)
     // HeroScene is lazy-loaded (ssr: false) so 3D canvas is not in the test render.
     // Assert the description text is present to confirm the Hero renders correctly.
     expect(screen.getByText(/I build the automation/i)).toBeInTheDocument()
+    // Headshot should always be present (tablet+); alt text identifies the image.
+    expect(screen.getByAltText('Adam Fuhriman')).toBeInTheDocument()
   })
 })
