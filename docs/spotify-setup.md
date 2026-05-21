@@ -19,7 +19,7 @@ Use the [Authorization Code flow](https://developer.spotify.com/documentation/we
 Open this URL in your browser (replace `YOUR_CLIENT_ID`):
 
 ```text
-https://accounts.spotify.com/authorize?client_id=YOUR_CLIENT_ID&response_type=code&redirect_uri=http://127.0.0.1:8888/callback&scope=user-top-read
+https://accounts.spotify.com/authorize?client_id=32dcb9377a2649c2bfb8192ead54a909&response_type=code&redirect_uri=http://127.0.0.1:8888/callback&scope=user-top-read
 ```
 
 Spotify will show a consent screen. Click **Agree**.
@@ -40,14 +40,32 @@ Copy everything between `code=` and the next `&` (or end of URL). That's your au
 
 ### Step 2c — Exchange the code for a refresh token
 
+The repo includes a helper script that handles the exchange (avoids gotchas with shell quoting / base64 subshells):
+
 ```bash
+pnpm tsx scripts/get-spotify-refresh-token.ts \
+  --client-id=YOUR_CLIENT_ID \
+  --client-secret=YOUR_CLIENT_SECRET \
+  --code=YOUR_CODE_FROM_STEP_2B
+```
+
+If the exchange succeeds, the script prints your refresh token. Save it — it goes into the `SPOTIFY_REFRESH_TOKEN` GitHub secret in the next step.
+
+If you'd rather do it with curl directly, compute the base64 first:
+
+```bash
+# 1) Compute the base64-encoded credentials by themselves first.
+echo -n 'YOUR_CLIENT_ID:YOUR_CLIENT_SECRET' | base64
+# Copy the output.
+
+# 2) Use that base64 string as the Authorization header value:
 curl -X POST https://accounts.spotify.com/api/token \
   -H "Content-Type: application/x-www-form-urlencoded" \
-  -H "Authorization: Basic $(echo -n 'YOUR_CLIENT_ID:YOUR_CLIENT_SECRET' | base64)" \
+  -H "Authorization: Basic THE_BASE64_OUTPUT_FROM_STEP_1" \
   -d "grant_type=authorization_code&code=YOUR_CODE&redirect_uri=http://127.0.0.1:8888/callback"
 ```
 
-The JSON response includes a `refresh_token` field. **Save that value** — you'll add it as a GitHub secret in the next step.
+The JSON response includes a `refresh_token` field.
 
 ## 3. Add three GitHub secrets
 
