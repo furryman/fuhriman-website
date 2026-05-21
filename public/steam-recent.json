@@ -1,4 +1,45 @@
 {
-  "fetchedAt": null,
-  "games": []
+  "fetchedAt": "2026-05-21T06:42:25.490Z",
+  "games": [
+    {
+      "appid": 3241660,
+      "name": "R.E.P.O.",
+      "playtime_2weeks_min": 194,
+      "playtime_forever_min": 13625,
+      "imageUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/3241660/header.jpg",
+      "url": "https://store.steampowered.com/app/3241660/"
+    },
+    {
+      "appid": 3357650,
+      "name": "PRAGMATA",
+      "playtime_2weeks_min": 127,
+      "playtime_forever_min": 393,
+      "imageUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/3357650/header.jpg",
+      "url": "https://store.steampowered.com/app/3357650/"
+    },
+    {
+      "appid": 1097150,
+      "name": "Fall Guys",
+      "playtime_2weeks_min": 119,
+      "playtime_forever_min": 4779,
+      "imageUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1097150/header.jpg",
+      "url": "https://store.steampowered.com/app/1097150/"
+    },
+    {
+      "appid": 250820,
+      "name": "SteamVR",
+      "playtime_2weeks_min": 42,
+      "playtime_forever_min": 378982,
+      "imageUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/250820/header.jpg",
+      "url": "https://store.steampowered.com/app/250820/"
+    },
+    {
+      "appid": 1114420,
+      "name": "PLAY'A VR Video Player",
+      "playtime_2weeks_min": 26,
+      "playtime_forever_min": 1006,
+      "imageUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1114420/header.jpg",
+      "url": "https://store.steampowered.com/app/1114420/"
+    }
+  ]
 }
