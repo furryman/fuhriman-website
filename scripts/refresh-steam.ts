@@ -29,17 +29,24 @@ async function fetchRecent(): Promise<RawGame[]> {
   return data.response?.games ?? []
 }
 
-const games = await fetchRecent()
-const out = {
-  fetchedAt: new Date().toISOString(),
-  games: games.map((g) => ({
-    appid: g.appid,
-    name: g.name,
-    playtime_2weeks_min: g.playtime_2weeks,
-    playtime_forever_min: g.playtime_forever,
-    imageUrl: `https://cdn.cloudflare.steamstatic.com/steam/apps/${g.appid}/header.jpg`,
-    url: `https://store.steampowered.com/app/${g.appid}/`,
-  })),
+async function main() {
+  const games = await fetchRecent()
+  const out = {
+    fetchedAt: new Date().toISOString(),
+    games: games.map((g) => ({
+      appid: g.appid,
+      name: g.name,
+      playtime_2weeks_min: g.playtime_2weeks,
+      playtime_forever_min: g.playtime_forever,
+      imageUrl: `https://cdn.cloudflare.steamstatic.com/steam/apps/${g.appid}/header.jpg`,
+      url: `https://store.steampowered.com/app/${g.appid}/`,
+    })),
+  }
+  writeFileSync(resolve('public/steam-recent.json'), `${JSON.stringify(out, null, 2)}\n`)
+  console.log(`Wrote ${out.games.length} Steam games`)
 }
-writeFileSync(resolve('public/steam-recent.json'), `${JSON.stringify(out, null, 2)}\n`)
-console.log(`Wrote ${out.games.length} Steam games`)
+
+main().catch((err) => {
+  console.error(err)
+  process.exit(1)
+})

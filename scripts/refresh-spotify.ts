@@ -45,16 +45,23 @@ async function fetchTopArtists(token: string): Promise<RawArtist[]> {
   return data.items
 }
 
-const accessToken = await exchangeToken()
-const items = await fetchTopArtists(accessToken)
-const out = {
-  fetchedAt: new Date().toISOString(),
-  artists: items.map((a) => ({
-    name: a.name,
-    url: a.external_urls.spotify,
-    image: a.images[0]?.url ?? '',
-    genres: a.genres,
-  })),
+async function main() {
+  const accessToken = await exchangeToken()
+  const items = await fetchTopArtists(accessToken)
+  const out = {
+    fetchedAt: new Date().toISOString(),
+    artists: items.map((a) => ({
+      name: a.name,
+      url: a.external_urls.spotify,
+      image: a.images[0]?.url ?? '',
+      genres: a.genres,
+    })),
+  }
+  writeFileSync(resolve('public/spotify-top.json'), `${JSON.stringify(out, null, 2)}\n`)
+  console.log(`Wrote ${out.artists.length} Spotify artists`)
 }
-writeFileSync(resolve('public/spotify-top.json'), `${JSON.stringify(out, null, 2)}\n`)
-console.log(`Wrote ${out.artists.length} Spotify artists`)
+
+main().catch((err) => {
+  console.error(err)
+  process.exit(1)
+})

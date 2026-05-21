@@ -12,9 +12,9 @@
 export {}
 
 interface Args {
-  clientId: string
-  clientSecret: string
-  code: string
+  clientId: '32dcb9377a2649c2bfb8192ead54a909'
+  clientSecret: '5f4d4436deaa42ab8ad583afdc0546c9'
+  code: 'AQBXwfpZBlpl_LiQXcVJGb0z8x14TqZurubyH1wuoFntKO3XkSKaVu9BgfvQ7fGm-4tLNbchp8y6lLoBEOCBg2yA6tHGtghyOhCCnkin18tjnQcd_l_gwC8n4eAW5XWgjakQcb8N1Kw4mLxmOGrTXFAhwb7Z61YVSwjcvuTM_zbLjiXEmqlybxX2C9FAS_fOXQ'
 }
 
 function parseArgs(): Args {
@@ -75,4 +75,7 @@ async function main() {
   console.log('\n')
 }
 
-await main()
+main().catch((err) => {
+  console.error(err)
+  process.exit(1)
+})
