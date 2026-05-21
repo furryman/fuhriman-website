@@ -8,7 +8,7 @@ interface Props {
   maxAngle?: number
 }
 
-export default function TiltCard({ children, className, maxAngle = 8 }: Props) {
+export default function TiltCard({ children, className, maxAngle = 4 }: Props) {
   const ref = useRef<HTMLDivElement>(null)
 
   const handleMove = (e: MouseEvent<HTMLDivElement>) => {
@@ -19,8 +19,8 @@ export default function TiltCard({ children, className, maxAngle = 8 }: Props) {
     const rect = el.getBoundingClientRect()
     const px = (e.clientX - rect.left) / rect.width - 0.5
     const py = (e.clientY - rect.top) / rect.height - 0.5
-    const rx = -py * maxAngle * 2
-    const ry = px * maxAngle * 2
+    const rx = -py * maxAngle
+    const ry = px * maxAngle
     el.style.transform = `perspective(800px) rotateX(${rx}deg) rotateY(${ry}deg)`
   }
 
@@ -46,7 +46,7 @@ export default function TiltCard({ children, className, maxAngle = 8 }: Props) {
       ref={ref}
       className={className}
       style={{
-        transition: 'transform 0.2s ease-out',
+        transition: 'transform 0.3s ease-out',
         transformStyle: 'preserve-3d',
       }}
       onMouseMove={handleMove}
