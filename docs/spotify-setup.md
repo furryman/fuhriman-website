@@ -1,6 +1,6 @@
 # Spotify Top Artists Setup
 
-The Interests section's "On rotation" panel reads from `public/spotify-top.json`, refreshed daily by the GitHub Action at `.github/workflows/interests-refresh.yaml`. This file documents the one-time setup needed to obtain a refresh token.
+The Interests section's "On rotation" panel reads from `public/spotify-top.json`, refreshed weekly (Mondays at 06:00 UTC) by the GitHub Action at `.github/workflows/interests-refresh.yaml`. This file documents the one-time setup needed to obtain a refresh token.
 
 ## 1. Create a Spotify Developer App
 
