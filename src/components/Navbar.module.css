@@ -88,6 +88,28 @@
   color: var(--accent-light);
 }
 
+.cmdkTrigger {
+  background: var(--accent-muted);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  cursor: pointer;
+  transition:
+    border-color 120ms,
+    color 120ms;
+  font-family: ui-monospace, "JetBrains Mono", monospace;
+}
+.cmdkTrigger:hover {
+  border-color: var(--border-hover);
+  color: var(--text);
+}
+.cmdkTrigger kbd {
+  font-family: inherit;
+  background: transparent;
+}
+
 @media (width <= 900px) {
   .links {
     gap: 1rem;

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { DM_Serif_Display, Source_Sans_3 } from 'next/font/google'
 import AmbientBackground from '@/components/AmbientBackground'
+import CommandPalette from '@/components/CommandPalette'
 import './globals.css'
 
 const dmSerif = DM_Serif_Display({
@@ -30,6 +31,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={`${dmSerif.variable} ${sourceSans.variable}`}>
       <body>
         <AmbientBackground />
+        <CommandPalette />
         {children}
       </body>
     </html>

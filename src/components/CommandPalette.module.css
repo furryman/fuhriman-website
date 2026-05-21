@@ -1,0 +1,62 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgb(10 8 8 / 60%);
+  backdrop-filter: blur(6px);
+  z-index: 60;
+}
+.dialog {
+  z-index: 61;
+}
+.content {
+  position: fixed;
+  top: 18vh;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(600px, 90vw);
+  background: var(--background-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: 0 30px 80px -20px rgb(0 0 0 / 80%);
+  overflow: hidden;
+  z-index: 62;
+}
+.input {
+  width: 100%;
+  padding: 18px 22px;
+  font-size: 16px;
+  font-family: inherit;
+  background: transparent;
+  color: var(--text);
+  border: none;
+  border-bottom: 1px solid var(--border);
+  outline: none;
+}
+.list {
+  max-height: 50vh;
+  overflow: auto;
+  padding: 8px 0;
+}
+.empty {
+  padding: 18px 22px;
+  color: var(--text-secondary);
+}
+.group [cmdk-group-heading] {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.7px;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  padding: 14px 22px 6px;
+}
+:global([cmdk-item]) {
+  padding: 10px 22px;
+  cursor: pointer;
+  color: var(--text);
+  font-size: 14px;
+  transition: background 120ms;
+}
+:global([cmdk-item][data-selected="true"]),
+:global([cmdk-item]):hover {
+  background: var(--accent-muted);
+}

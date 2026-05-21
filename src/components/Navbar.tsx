@@ -66,6 +66,18 @@ export default function Navbar() {
             </a>
           </li>
           <li>
+            <button
+              type="button"
+              className={styles.cmdkTrigger}
+              aria-label="Open command palette"
+              onClick={() =>
+                window.dispatchEvent(new KeyboardEvent('keydown', { key: 'k', metaKey: true }))
+              }
+            >
+              <kbd>⌘K</kbd>
+            </button>
+          </li>
+          <li>
             <a
               href="/resume.pdf"
               target="_blank"
