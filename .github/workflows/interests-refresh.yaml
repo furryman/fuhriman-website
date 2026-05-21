@@ -34,6 +34,7 @@ jobs:
         env:
           STEAM_API_KEY: ${{ secrets.STEAM_API_KEY }}
           STEAM_ID_64: ${{ secrets.STEAM_ID_64 }}
+          STEAM_BLOCKLIST_APPIDS: ${{ secrets.STEAM_BLOCKLIST_APPIDS }}
         run: pnpm tsx scripts/refresh-steam.ts
         continue-on-error: true
 

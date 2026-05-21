@@ -10,6 +10,21 @@ function requireEnv(name: string): string {
 const key = requireEnv('STEAM_API_KEY')
 const steamId = requireEnv('STEAM_ID_64')
 
+// Games to exclude from the public "recently playing" list.
+// Configured via the STEAM_BLOCKLIST_APPIDS env var (comma-separated Steam
+// appids). Kept out of source so the list itself isn't part of the public repo.
+const BLOCKLIST_APPIDS: ReadonlySet<number> = new Set(
+  (process.env.STEAM_BLOCKLIST_APPIDS ?? '')
+    .split(',')
+    .map((s) => Number.parseInt(s.trim(), 10))
+    .filter((n) => Number.isFinite(n) && n > 0)
+)
+
+// We fetch a wider window than we display so the blocklist doesn't shrink the
+// visible list below TOP_N.
+const FETCH_COUNT = 15
+const TOP_N = 5
+
 interface RawGame {
   appid: number
   name: string
@@ -22,7 +37,7 @@ async function fetchRecent(): Promise<RawGame[]> {
   const url = new URL('https://api.steampowered.com/IPlayerService/GetRecentlyPlayedGames/v0001/')
   url.searchParams.set('key', key)
   url.searchParams.set('steamid', steamId)
-  url.searchParams.set('count', '5')
+  url.searchParams.set('count', String(FETCH_COUNT))
   const r = await fetch(url.toString())
   if (!r.ok) throw new Error(`Steam ${r.status}: ${await r.text()}`)
   const data = (await r.json()) as { response?: { games?: RawGame[] } }
@@ -30,7 +45,8 @@ async function fetchRecent(): Promise<RawGame[]> {
 }
 
 async function main() {
-  const games = await fetchRecent()
+  const raw = await fetchRecent()
+  const games = raw.filter((g) => !BLOCKLIST_APPIDS.has(g.appid)).slice(0, TOP_N)
   const out = {
     fetchedAt: new Date().toISOString(),
     games: games.map((g) => ({
