@@ -99,8 +99,8 @@ export default function ArchitectureDiagram() {
           <text
             x="135"
             y="195"
-            fill="rgba(201,56,56,0.4)"
-            fontSize="9"
+            fill="rgba(240,168,104,0.9)"
+            fontSize="10"
             fontFamily="monospace"
             textAnchor="end"
           >
@@ -113,7 +113,7 @@ export default function ArchitectureDiagram() {
             strokeWidth="2"
             fill="none"
           />
-          <text x="385" y="22" fill="rgba(255,217,168,0.5)" fontSize="9" fontFamily="monospace">
+          <text x="385" y="22" fill="rgba(255,217,168,0.95)" fontSize="10" fontFamily="monospace">
             watches
           </text>
           {/* ArgoCD down to k3s */}
@@ -123,7 +123,7 @@ export default function ArchitectureDiagram() {
             strokeWidth="2"
             fill="none"
           />
-          <text x="310" y="175" fill="rgba(255,217,168,0.5)" fontSize="9" fontFamily="monospace">
+          <text x="310" y="175" fill="rgba(255,217,168,0.95)" fontSize="10" fontFamily="monospace">
             deploys
           </text>
         </svg>
