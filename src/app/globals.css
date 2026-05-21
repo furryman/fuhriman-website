@@ -141,57 +141,6 @@ main.portfolio section[id] h2::after {
   text-decoration: none;
 }
 
-/* Scroll reveal animations */
-.reveal {
-  opacity: 0;
-  transform: translateY(20px);
-  transition:
-    opacity 0.6s ease,
-    transform 0.6s ease;
-}
-
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.stagger > * {
-  opacity: 0;
-  transform: translateY(20px);
-  transition:
-    opacity 0.5s ease,
-    transform 0.5s ease;
-}
-
-.stagger.visible > *:nth-child(1) {
-  transition-delay: 0ms;
-}
-
-.stagger.visible > *:nth-child(2) {
-  transition-delay: 100ms;
-}
-
-.stagger.visible > *:nth-child(3) {
-  transition-delay: 200ms;
-}
-
-.stagger.visible > *:nth-child(4) {
-  transition-delay: 300ms;
-}
-
-.stagger.visible > *:nth-child(5) {
-  transition-delay: 400ms;
-}
-
-.stagger.visible > *:nth-child(6) {
-  transition-delay: 500ms;
-}
-
-.stagger.visible > * {
-  opacity: 1;
-  transform: translateY(0);
-}
-
 /* Gradient text utility for headings */
 .gradient-text {
   background: var(--gradient-text);
