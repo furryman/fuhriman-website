@@ -1,0 +1,45 @@
+name: Refresh Interests (Spotify + Steam)
+
+on:
+  schedule:
+    - cron: '0 6 * * *' # daily 06:00 UTC
+  workflow_dispatch:
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - name: Setup Node + pnpm
+        uses: ./.github/actions/setup
+
+      - name: Refresh Spotify top artists
+        env:
+          SPOTIFY_CLIENT_ID: ${{ secrets.SPOTIFY_CLIENT_ID }}
+          SPOTIFY_CLIENT_SECRET: ${{ secrets.SPOTIFY_CLIENT_SECRET }}
+          SPOTIFY_REFRESH_TOKEN: ${{ secrets.SPOTIFY_REFRESH_TOKEN }}
+        run: pnpm tsx scripts/refresh-spotify.ts
+        continue-on-error: true
+
+      - name: Refresh Steam recent games
+        env:
+          STEAM_API_KEY: ${{ secrets.STEAM_API_KEY }}
+          STEAM_ID_64: ${{ secrets.STEAM_ID_64 }}
+        run: pnpm tsx scripts/refresh-steam.ts
+        continue-on-error: true
+
+      - name: Commit changes if any
+        run: |
+          if [[ -n "$(git status --porcelain public/)" ]]; then
+            git config user.name 'github-actions[bot]'
+            git config user.email 'github-actions[bot]@users.noreply.github.com'
+            git add public/spotify-top.json public/steam-recent.json
+            git commit -m "chore(data): refresh interests JSON"
+            git push
+          else
+            echo "No changes to commit"
+          fi
