@@ -33,7 +33,7 @@ export default function HowItsBuilt() {
       </nav>
 
       <header className={styles.header}>
-        <h1 className="gradient-text">How I Built This</h1>
+        <h1 className={`gradient-text ${styles.pageTitle}`}>How I Built This</h1>
         <p className={styles.subtitle}>
           A technical deep-dive into the infrastructure and CI/CD pipeline powering this portfolio
         </p>

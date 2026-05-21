@@ -38,6 +38,7 @@
   line-height: 1.1;
   margin-bottom: 0.5rem;
   animation: fadeUp 0.5s ease 0.2s both;
+  view-transition-name: page-title;
 }
 
 .tagline {
