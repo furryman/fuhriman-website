@@ -125,6 +125,7 @@ jobs:
           path: .lighthouseci/
           if-no-files-found: warn
           retention-days: 14
+          include-hidden-files: true
 
   docker:
     needs: [lint, typecheck, test, build, e2e, lighthouse]
