@@ -34,3 +34,7 @@ Thumbs.db
 .idea/
 *.swp
 *.swo
+
+# Local working areas (design specs, review reports, planning docs)
+docs/superpowers/
+.ui-design/
