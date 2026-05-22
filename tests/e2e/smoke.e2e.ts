@@ -26,7 +26,9 @@ test.describe('Home page', () => {
     const sections = ['about', 'philosophy', 'skills', 'experience', 'contact']
 
     for (const id of sections) {
-      const link = page.locator(`nav a[href="#${id}"]`)
+      // Scope to the desktop nav `<div class="inner">` — the mobile panel
+      // (#mobile-nav-panel) duplicates every link in the DOM at all viewports.
+      const link = page.locator(`nav > div:not(#mobile-nav-panel) a[href="#${id}"]`)
       await link.click()
       await expect(page).toHaveURL(new RegExp(`#${id}$`))
 
