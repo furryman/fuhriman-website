@@ -44,17 +44,40 @@ async function fetchRecent(): Promise<RawGame[]> {
   return data.response?.games ?? []
 }
 
+// Steam moved newer titles to a content-hashed asset host
+// (shared.akamai.steamstatic.com/store_item_assets/...) and the legacy
+// cdn.cloudflare.steamstatic.com/steam/apps/{appid}/header.jpg path returns 404
+// for those games. The storefront API is the only reliable source of the
+// canonical header URL — fall back to the legacy path only if it errors.
+async function fetchHeaderImage(appid: number): Promise<string> {
+  const fallback = `https://cdn.cloudflare.steamstatic.com/steam/apps/${appid}/header.jpg`
+  try {
+    const r = await fetch(
+      `https://store.steampowered.com/api/appdetails?appids=${appid}&filters=basic`
+    )
+    if (!r.ok) return fallback
+    const data = (await r.json()) as Record<
+      string,
+      { success: boolean; data?: { header_image?: string } }
+    >
+    return data[String(appid)]?.data?.header_image ?? fallback
+  } catch {
+    return fallback
+  }
+}
+
 async function main() {
   const raw = await fetchRecent()
   const games = raw.filter((g) => !BLOCKLIST_APPIDS.has(g.appid)).slice(0, TOP_N)
+  const imageUrls = await Promise.all(games.map((g) => fetchHeaderImage(g.appid)))
   const out = {
     fetchedAt: new Date().toISOString(),
-    games: games.map((g) => ({
+    games: games.map((g, i) => ({
       appid: g.appid,
       name: g.name,
       playtime_2weeks_min: g.playtime_2weeks,
       playtime_forever_min: g.playtime_forever,
-      imageUrl: `https://cdn.cloudflare.steamstatic.com/steam/apps/${g.appid}/header.jpg`,
+      imageUrl: imageUrls[i],
       url: `https://store.steampowered.com/app/${g.appid}/`,
     })),
   }

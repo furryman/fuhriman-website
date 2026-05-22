@@ -6,7 +6,7 @@
       "name": "R.E.P.O.",
       "playtime_2weeks_min": 194,
       "playtime_forever_min": 13625,
-      "imageUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/3241660/header.jpg",
+      "imageUrl": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3241660/a12c92856b71315da885924ea5e1d5290c8025b8/header_alt_assets_2.jpg?t=1778158882",
       "url": "https://store.steampowered.com/app/3241660/"
     },
     {
@@ -14,7 +14,7 @@
       "name": "PRAGMATA",
       "playtime_2weeks_min": 127,
       "playtime_forever_min": 393,
-      "imageUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/3357650/header.jpg",
+      "imageUrl": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3357650/e32e168b25ed68a0cf6264c220c07e96c2abfb56/header.jpg?t=1777351016",
       "url": "https://store.steampowered.com/app/3357650/"
     },
     {
@@ -22,7 +22,7 @@
       "name": "Fall Guys",
       "playtime_2weeks_min": 119,
       "playtime_forever_min": 4779,
-      "imageUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1097150/header.jpg",
+      "imageUrl": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1097150/header.jpg?t=1698763175",
       "url": "https://store.steampowered.com/app/1097150/"
     },
     {
@@ -30,7 +30,7 @@
       "name": "Beat Saber",
       "playtime_2weeks_min": 41,
       "playtime_forever_min": 28529,
-      "imageUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/620980/header.jpg",
+      "imageUrl": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/620980/3067664ee110fed550f5c3a1b74340cabd7d53f0/header.jpg?t=1778574113",
       "url": "https://store.steampowered.com/app/620980/"
     }
   ]
