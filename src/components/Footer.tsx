@@ -8,6 +8,7 @@ export default function Footer() {
       <div className="container">
         <p className={styles.line}>
           Built with Next 16 · React 19 · Biome 2 · Deployed to k3s · Scanned by Trivy ·{' '}
+          <a href="/how-its-built">How I built this →</a> ·{' '}
           <a
             href="https://github.com/furryman/fuhriman-website"
             target="_blank"

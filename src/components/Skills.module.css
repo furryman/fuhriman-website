@@ -9,7 +9,7 @@
 }
 
 .card {
-  background: rgb(22 21 37 / 60%);
+  background: var(--surface-card);
   backdrop-filter: blur(8px);
   border: 1px solid var(--border);
   border-radius: 8px;
@@ -22,7 +22,7 @@
   border-color: var(--border-hover);
   transform: translateY(-4px);
   box-shadow: var(--shadow-hover);
-  background: rgb(26 24 48 / 70%);
+  background: var(--surface-card-hover);
 }
 
 .cardHeader {
@@ -42,7 +42,7 @@
 
 .cardTitle {
   font-family: var(--font-heading), serif;
-  font-size: 1.1rem;
+  font-size: var(--font-size-xl);
   color: var(--text-bright);
 }
 
@@ -64,11 +64,11 @@
     box-shadow 150ms ease-out,
     border-color 150ms ease-out,
     background 150ms ease-out;
-  border: 1px solid rgb(124 106 240 / 8%);
+  border: 1px solid var(--border);
 }
 
 .tag:hover {
   background: var(--accent-hover);
   border-color: var(--border-hover);
-  box-shadow: 0 0 12px rgba(240, 168, 104, 0.4);
+  box-shadow: 0 0 12px rgb(240 168 104 / 40%);
 }

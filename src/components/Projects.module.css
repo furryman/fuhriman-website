@@ -1,12 +1,8 @@
-.projects {
-  padding: 80px 0;
-}
-
 .grid {
   display: grid;
-  gap: 24px;
+  gap: var(--space-6);
   grid-template-columns: 1fr;
-  margin-top: 32px;
+  margin-top: var(--space-8);
 }
 
 @media (min-width: 768px) {
@@ -37,7 +33,7 @@
 
 .name {
   font-family: var(--font-heading);
-  font-size: 22px;
+  font-size: var(--font-size-xl);
   margin: 0;
   color: var(--text-bright);
 }

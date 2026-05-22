@@ -55,6 +55,8 @@ export default function CommandPalette() {
           <Command.Item onSelect={() => run(go('philosophy'))}>Philosophy</Command.Item>
           <Command.Item onSelect={() => run(go('skills'))}>Skills</Command.Item>
           <Command.Item onSelect={() => run(go('experience'))}>Experience</Command.Item>
+          <Command.Item onSelect={() => run(go('projects'))}>Projects</Command.Item>
+          <Command.Item onSelect={() => run(go('interests'))}>Interests</Command.Item>
           <Command.Item onSelect={() => run(go('contact'))}>Contact</Command.Item>
         </Command.Group>
         <Command.Group heading="Actions" className={styles.group}>

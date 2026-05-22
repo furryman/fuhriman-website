@@ -1,11 +1,11 @@
 .resume {
-  padding: 4rem 0;
+  padding: var(--space-section-y-tight) 0;
 }
 
 .card {
   text-align: center;
   padding: 3rem 2rem;
-  background: rgb(22 21 37 / 50%);
+  background: var(--surface-card-soft);
   backdrop-filter: blur(8px);
   border: 1px solid var(--border);
   border-radius: 12px;
@@ -14,9 +14,9 @@
 
 .heading {
   font-family: var(--font-heading), serif;
-  font-size: 1.5rem;
+  font-size: var(--font-size-2xl);
   color: var(--text-bright);
-  margin-bottom: 0.75rem;
+  margin-bottom: var(--space-3);
 }
 
 .description {

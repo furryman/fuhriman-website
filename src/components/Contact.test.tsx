@@ -26,11 +26,8 @@ describe('Contact', () => {
     )
   })
 
-  it('renders the footer with a How I built this link', () => {
-    render(<Contact />)
-    expect(screen.getByRole('link', { name: /How I built this/i })).toHaveAttribute(
-      'href',
-      '/how-its-built'
-    )
+  it('no longer renders an inline footer (moved to global Footer to avoid duplication)', () => {
+    const { container } = render(<Contact />)
+    expect(container.querySelector('footer')).toBeNull()
   })
 })

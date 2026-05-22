@@ -33,7 +33,7 @@
   gap: 0.75rem;
   color: var(--text);
   padding: 1rem 1.5rem;
-  background: rgb(22 21 37 / 50%);
+  background: var(--surface-card-soft);
   backdrop-filter: blur(8px);
   border: 1px solid var(--border);
   border-radius: 8px;
@@ -47,29 +47,12 @@
   transform: translateY(-3px);
   box-shadow: var(--shadow-hover);
   text-decoration: none;
-  background: rgb(26 24 48 / 65%);
+  background: var(--surface-card-soft-hover);
 }
 
 .icon {
   color: var(--accent);
   flex-shrink: 0;
-}
-
-.footer {
-  padding-top: 2rem;
-  border-top: 1px solid var(--border);
-}
-
-.footer p {
-  color: var(--text-secondary);
-  font-size: 0.85rem;
-  font-family: var(--font-body), monospace;
-  letter-spacing: 0.02em;
-}
-
-.footer a {
-  color: var(--accent);
-  transition: color 0.25s ease;
 }
 
 @media (width <= 768px) {

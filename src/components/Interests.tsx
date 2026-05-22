@@ -123,7 +123,7 @@ export default function Interests({
                           {g.name}
                         </a>
                         <div className={styles.tileMeta}>
-                          {Math.round(g.playtime_2weeks_min / 60)} hrs · 2 weeks
+                          {Math.round(g.playtime_2weeks_min / 60)} recent hrs
                         </div>
                       </div>
                     </li>

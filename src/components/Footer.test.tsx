@@ -19,6 +19,14 @@ describe('Footer', () => {
     expect(link).toHaveAttribute('rel', expect.stringContaining('noopener'))
   })
 
+  it('has a How I built this link to the technical deep-dive page', () => {
+    render(<Footer />)
+    expect(screen.getByRole('link', { name: /how i built this/i })).toHaveAttribute(
+      'href',
+      '/how-its-built'
+    )
+  })
+
   it('renders the copyright with the current year', () => {
     render(<Footer />)
     const year = new Date().getFullYear()

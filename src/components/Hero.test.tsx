@@ -9,10 +9,7 @@ describe('Hero', () => {
     expect(screen.getByRole('heading', { level: 1, name: /Adam Fuhriman/i })).toBeInTheDocument()
     expect(screen.getByText('From code to cloud, automated.')).toBeInTheDocument()
     expect(screen.getByRole('link', { name: /Get in Touch/i })).toHaveAttribute('href', '#contact')
-    expect(screen.getByRole('link', { name: /View My Work/i })).toHaveAttribute(
-      'href',
-      '#experience'
-    )
+    expect(screen.getByRole('link', { name: /View My Work/i })).toHaveAttribute('href', '#projects')
     expect(screen.getByRole('link', { name: /How I Built This/i })).toHaveAttribute(
       'href',
       '/how-its-built'

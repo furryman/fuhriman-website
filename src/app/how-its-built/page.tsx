@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import ArchitectureDiagram from '@/components/ArchitectureDiagram'
+import CollapsibleCode from '@/components/CollapsibleCode'
 import MagneticButton from '@/components/MagneticButton'
 import ScrollReveal from '@/components/ScrollReveal'
 import TiltCard from '@/components/TiltCard'
@@ -13,7 +14,11 @@ export const metadata = {
 
 const techStack = [
   { name: 'Next.js', category: 'Frontend', description: 'React framework for the website' },
-  { name: 'Docker', category: 'Container', description: 'Optimized production builds (AMD64)' },
+  {
+    name: 'Docker',
+    category: 'Container',
+    description: 'Multi-stage build → distroless runtime (AMD64)',
+  },
   { name: 'k3s', category: 'Orchestration', description: 'Lightweight Kubernetes on EC2' },
   { name: 'ArgoCD', category: 'GitOps', description: 'Continuous deployment from Git' },
   { name: 'Terraform', category: 'IaC', description: 'Infrastructure as Code for AWS' },
@@ -188,10 +193,10 @@ export default function HowItsBuilt() {
           <div className={styles.pipeline}>
             <div className={styles.pipelineStep}>
               <div className={styles.pipelineIcon}>1</div>
-              <h4>Lint &amp; Audit</h4>
+              <h4>Quality Gates</h4>
               <p>
-                ESLint checks code quality and <code>npm audit --audit-level=critical</code> scans
-                dependencies for known vulnerabilities before anything builds.
+                Six jobs run in parallel: Biome 2 (lint + format), TypeScript, Vitest with a 95%
+                coverage gate, Next.js build, Playwright smoke, and Lighthouse CI. All must pass.
               </p>
             </div>
             <div className={styles.pipelineArrow}>→</div>
@@ -199,8 +204,8 @@ export default function HowItsBuilt() {
               <div className={styles.pipelineIcon}>2</div>
               <h4>Build &amp; Push</h4>
               <p>
-                Multi-stage Docker build via Buildx creates an optimized AMD64 image, pushed to
-                Docker Hub with a timestamp tag (ga-YYYY.MM.DD-HHMM) and latest.
+                Multi-stage Docker build (Node 26 builder → distroless runtime) produces an AMD64
+                image, pushed to Docker Hub with a timestamp tag (ga-YYYY.MM.DD-HHMM) and latest.
               </p>
             </div>
             <div className={styles.pipelineArrow}>→</div>
@@ -208,8 +213,8 @@ export default function HowItsBuilt() {
               <div className={styles.pipelineIcon}>3</div>
               <h4>Scan</h4>
               <p>
-                Trivy scans the pushed image for CRITICAL and HIGH CVEs. The pipeline fails if
-                unfixed vulnerabilities are found, preventing insecure images from deploying.
+                Trivy v0.69.3 (SHA-pinned) scans the pushed image for CRITICAL and HIGH CVEs with
+                ignore-unfixed enabled. The pipeline fails if any fixable vulnerabilities surface.
               </p>
             </div>
             <div className={styles.pipelineArrow}>→</div>
@@ -217,16 +222,17 @@ export default function HowItsBuilt() {
               <div className={styles.pipelineIcon}>4</div>
               <h4>Update</h4>
               <p>
-                The Helm chart&apos;s values.yaml is updated with the new image tag and committed to
-                eks-helm-charts, triggering ArgoCD to sync.
+                <code>yq</code> updates fuhriman-chart/values.yaml in eks-helm-charts with the new
+                image tag; ArgoCD detects the commit and syncs the change to the k3s cluster.
               </p>
             </div>
           </div>
         </ScrollReveal>
         <ScrollReveal>
-          <div className={styles.codeBlock}>
-            <div className={styles.codeHeader}>.github/workflows/build-deploy.yaml</div>
-            <pre>{`name: Build and Deploy
+          <CollapsibleCode
+            header=".github/workflows/build-deploy.yaml"
+            collapsedHeight="20em"
+            code={`name: Build and Deploy
 on:
   push:
     branches: [main]
@@ -235,44 +241,48 @@ permissions:
   contents: read           # Least-privilege security
 
 jobs:
-  lint:                     # Gate: code quality + dependency audit
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@11bd7190...  # Pinned SHA
-      - uses: actions/setup-node@49933ea...
-      - run: npm ci
-      - run: npm audit --audit-level=critical
-      - run: npm run lint
+  # Six parallel quality gates — all must pass before docker runs
+  lint:        # biome check (lint + format)
+  typecheck:   # tsc --noEmit
+  test:        # vitest run --coverage  (95/95/95/95 gate)
+  build:       # next build --output standalone
+  e2e:         # playwright against built standalone
+  lighthouse:  # perf >= 90, a11y >= 0.95, BP >= 95, SEO >= 95
 
-  build-and-deploy:
-    needs: lint             # Only runs if lint passes
+  docker:
+    needs: [lint, typecheck, test, build, e2e, lighthouse]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@11bd7190...
+      - uses: actions/checkout@11bd7190...           # SHA-pinned
+      - uses: pnpm/action-setup@a7487c7e...          # corepack-pinned pnpm
       - run: echo "tag=ga-$(date +'%Y.%m.%d-%H%M')" >> $GITHUB_OUTPUT
 
       - uses: docker/login-action@74a5d142...
       - uses: docker/setup-buildx-action@b5ca5143...
-
       - uses: docker/build-push-action@26343531...
         with:
           push: true
+          platforms: linux/amd64
           tags: furryman/fuhriman-website:${'${{ steps.tag.outputs.tag }}'},latest
 
-      # Trivy CVE scan — fails on CRITICAL/HIGH
-      - uses: aquasecurity/trivy-action@6c175e9c...
+      # Trivy v0.69.3 (binary pinned; addresses GHSA-69fq-xp46-6x23)
+      - uses: aquasecurity/trivy-action@6c175e9c...  # SHA-pinned
         with:
           severity: CRITICAL,HIGH
+          ignore-unfixed: true
           exit-code: 1
 
-      # Update Helm chart to trigger ArgoCD
+  deploy:
+    needs: docker
+    runs-on: ubuntu-latest
+    steps:
       - uses: actions/checkout@11bd7190...
         with:
           repository: furryman/eks-helm-charts
-          token: ${'${{ secrets.GH_PAT }}'}
+          token: ${'${{ secrets.GH_PAT }}'}              # repo scope — fires downstream workflows
       - run: yq -i '.image.tag = "..."' fuhriman-chart/values.yaml
-      - run: git commit -am "Update image" && git push`}</pre>
-          </div>
+      - run: git commit -am "Bump image" && git push   # ArgoCD picks this up`}
+          />
         </ScrollReveal>
       </section>
 
@@ -376,7 +386,8 @@ jobs:
               >
                 <h4>furryman/fuhriman-website</h4>
                 <p>
-                  Next.js source code with multi-arch Dockerfile and GitHub Actions CI/CD workflow
+                  Next.js 16 + React 19 source. Multi-stage Dockerfile → distroless (AMD64) and a
+                  6-job parallel GitHub Actions CI/CD pipeline.
                 </p>
                 <span className={styles.repoTag}>Next.js</span>
               </a>
@@ -430,9 +441,10 @@ jobs:
           </div>
         </ScrollReveal>
         <ScrollReveal>
-          <div className={styles.codeBlock}>
-            <div className={styles.codeHeader}>iptables Hairpin NAT Rules (from user_data.sh)</div>
-            <pre>{`# Wait for ArgoCD to deploy ingress-nginx
+          <CollapsibleCode
+            header="iptables Hairpin NAT Rules (from user_data.sh)"
+            collapsedHeight="14em"
+            code={`# Wait for ArgoCD to deploy ingress-nginx
 until kubectl get svc -n ingress-nginx ingress-nginx-controller &>/dev/null; do
   sleep 5
 done
@@ -454,8 +466,8 @@ HTTPS_CHAIN=$(iptables -t nat -L KUBE-SERVICES -n \\
 iptables -t nat -A PREROUTING -s 10.42.0.0/16 -d $PUBLIC_IP \\
   -p tcp --dport 80 -j $HTTP_CHAIN
 iptables -t nat -A PREROUTING -s 10.42.0.0/16 -d $PUBLIC_IP \\
-  -p tcp --dport 443 -j $HTTPS_CHAIN`}</pre>
-          </div>
+  -p tcp --dport 443 -j $HTTPS_CHAIN`}
+          />
         </ScrollReveal>
       </section>
 

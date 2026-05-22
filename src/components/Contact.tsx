@@ -36,12 +36,6 @@ export default function Contact() {
               <span>linkedin.com/in/adam-fuhriman</span>
             </a>
           </div>
-          <footer className={styles.footer}>
-            <p>
-              Built with Next.js, deployed on Kubernetes with ArgoCD.{' '}
-              <a href="/how-its-built">How I built this →</a>
-            </p>
-          </footer>
         </ScrollReveal>
       </div>
     </section>

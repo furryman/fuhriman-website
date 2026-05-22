@@ -1,0 +1,70 @@
+.block {
+  background: var(--background-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  margin: var(--space-6) 0;
+}
+
+.header {
+  background: var(--border);
+  padding: var(--space-3) var(--space-4);
+  font-family: Monaco, Menlo, monospace;
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+}
+
+.preWrap {
+  position: relative;
+  overflow: hidden;
+  max-height: 4000px;
+  transition: max-height 0.4s ease-out;
+}
+
+.preWrap.collapsed {
+  max-height: var(--collapsed-height);
+}
+
+.pre {
+  padding: var(--space-4);
+  margin: 0;
+  font-family: Monaco, Menlo, monospace;
+  font-size: var(--font-size-sm);
+  line-height: 1.6;
+  overflow-x: auto;
+  color: var(--text);
+}
+
+.fade {
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 5em;
+  background: linear-gradient(to bottom, transparent, var(--background-card) 85%);
+  pointer-events: none;
+}
+
+.toggle {
+  width: 100%;
+  padding: var(--space-3);
+  background: transparent;
+  border: none;
+  border-top: 1px solid var(--border);
+  color: var(--accent);
+  font-family: var(--font-body), monospace;
+  font-size: var(--font-size-sm);
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition:
+    background 200ms,
+    color 200ms;
+}
+
+.toggle:hover {
+  background: var(--accent-muted);
+  color: var(--accent-light);
+}
+
+.toggle:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
+}

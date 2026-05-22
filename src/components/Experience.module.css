@@ -21,7 +21,7 @@
 }
 
 .item {
-  background: rgb(22 21 37 / 60%);
+  background: var(--surface-card);
   backdrop-filter: blur(8px);
   border: 1px solid var(--border);
   border-radius: 8px;
@@ -46,7 +46,7 @@
 .item:hover {
   border-color: var(--border-hover);
   box-shadow: var(--shadow-hover);
-  background: rgb(26 24 48 / 70%);
+  background: var(--surface-card-hover);
 }
 
 .header {
@@ -58,9 +58,9 @@
 
 .title {
   font-family: var(--font-heading), serif;
-  font-size: 1.3rem;
+  font-size: var(--font-size-xl);
   color: var(--text-bright);
-  margin-bottom: 0.25rem;
+  margin-bottom: var(--space-1);
 }
 
 .company {

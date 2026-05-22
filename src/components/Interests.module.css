@@ -1,17 +1,13 @@
-.interests {
-  padding: 80px 0;
-}
-
 .subhead {
   color: var(--text-secondary);
-  margin: 4px 0 24px;
+  margin: var(--space-1) 0 var(--space-6);
 }
 
 .grid {
   display: grid;
-  gap: 24px;
+  gap: var(--space-6);
   grid-template-columns: 1fr;
-  margin-top: 32px;
+  margin-top: var(--space-8);
 }
 
 @media (min-width: 1024px) {
@@ -41,7 +37,7 @@
 
 .panelTitle {
   font-family: var(--font-heading);
-  font-size: 20px;
+  font-size: var(--font-size-xl);
   margin: 0;
   color: var(--text-bright);
 }

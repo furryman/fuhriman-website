@@ -126,6 +126,32 @@ describe('CommandPalette', () => {
       expect(scrollMock).toHaveBeenCalledWith({ behavior: 'smooth' })
     })
 
+    it('selects Projects scroll item', async () => {
+      const scrollMock = vi.fn()
+      document.body.innerHTML = '<section id="projects"></section>'
+      const el = document.getElementById('projects')!
+      el.scrollIntoView = scrollMock
+
+      render(<CommandPalette />)
+      fireEvent.keyDown(window, { key: 'k', metaKey: true })
+      const item = await screen.findByText('Projects')
+      fireEvent.click(item)
+      expect(scrollMock).toHaveBeenCalledWith({ behavior: 'smooth' })
+    })
+
+    it('selects Interests scroll item', async () => {
+      const scrollMock = vi.fn()
+      document.body.innerHTML = '<section id="interests"></section>'
+      const el = document.getElementById('interests')!
+      el.scrollIntoView = scrollMock
+
+      render(<CommandPalette />)
+      fireEvent.keyDown(window, { key: 'k', metaKey: true })
+      const item = await screen.findByText('Interests')
+      fireEvent.click(item)
+      expect(scrollMock).toHaveBeenCalledWith({ behavior: 'smooth' })
+    })
+
     it('opens resume PDF in new tab', async () => {
       render(<CommandPalette />)
       fireEvent.keyDown(window, { key: 'k', metaKey: true })

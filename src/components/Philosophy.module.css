@@ -9,7 +9,7 @@
 }
 
 .card {
-  background: rgb(22 21 37 / 50%);
+  background: var(--surface-card-soft);
   backdrop-filter: blur(8px);
   border: 1px solid var(--border);
   border-radius: 8px;
@@ -23,25 +23,23 @@
   border-color: var(--border-hover);
   transform: translateY(-5px);
   box-shadow: var(--shadow-hover);
-  background: rgb(26 24 48 / 65%);
+  background: var(--surface-card-soft-hover);
 }
 
 .cardNumber {
   font-family: var(--font-heading), serif;
   font-size: 4rem;
-  font-weight: 700;
   color: var(--accent);
   opacity: 0.15;
   line-height: 1;
-  margin-bottom: 0.5rem;
+  margin-bottom: var(--space-2);
   display: block;
 }
 
 .cardTitle {
   font-family: var(--font-heading), serif;
-  font-size: 1.3rem;
-  font-weight: 600;
-  margin-bottom: 0.75rem;
+  font-size: var(--font-size-xl);
+  margin-bottom: var(--space-3);
   color: var(--text-bright);
 }
 

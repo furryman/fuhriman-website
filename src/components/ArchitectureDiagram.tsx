@@ -52,13 +52,13 @@ export default function ArchitectureDiagram() {
         >
           <path
             d="M 300 0 L 300 15 L 150 15 L 150 40"
-            stroke="rgba(240,168,104,0.35)"
+            stroke="rgb(240 168 104 / 35%)"
             strokeWidth="2"
             fill="none"
           />
           <path
             d="M 300 0 L 300 15 L 450 15 L 450 40"
-            stroke="rgba(240,168,104,0.35)"
+            stroke="rgb(240 168 104 / 35%)"
             strokeWidth="2"
             fill="none"
           />
@@ -91,7 +91,7 @@ export default function ArchitectureDiagram() {
           {/* Docker Hub dashed line — runs down the left side into k3s */}
           <path
             d="M 150 0 L 150 200"
-            stroke="rgba(201,56,56,0.3)"
+            stroke="rgb(201 56 56 / 30%)"
             strokeWidth="2"
             fill="none"
             strokeDasharray="6 4"
@@ -99,7 +99,7 @@ export default function ArchitectureDiagram() {
           <text
             x="135"
             y="195"
-            fill="rgba(240,168,104,0.9)"
+            fill="rgb(240 168 104 / 90%)"
             fontSize="10"
             fontFamily="monospace"
             textAnchor="end"
@@ -109,21 +109,21 @@ export default function ArchitectureDiagram() {
           {/* eks-helm-charts line down to ArgoCD */}
           <path
             d="M 450 0 L 450 30 L 300 30 L 300 60"
-            stroke="rgba(240,168,104,0.35)"
+            stroke="rgb(240 168 104 / 35%)"
             strokeWidth="2"
             fill="none"
           />
-          <text x="385" y="22" fill="rgba(255,217,168,0.95)" fontSize="10" fontFamily="monospace">
+          <text x="385" y="22" fill="rgb(255 217 168 / 95%)" fontSize="10" fontFamily="monospace">
             watches
           </text>
           {/* ArgoCD down to k3s */}
           <path
             d="M 300 140 L 300 200"
-            stroke="rgba(240,168,104,0.35)"
+            stroke="rgb(240 168 104 / 35%)"
             strokeWidth="2"
             fill="none"
           />
-          <text x="310" y="175" fill="rgba(255,217,168,0.95)" fontSize="10" fontFamily="monospace">
+          <text x="310" y="175" fill="rgb(255 217 168 / 95%)" fontSize="10" fontFamily="monospace">
             deploys
           </text>
         </svg>

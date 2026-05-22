@@ -24,7 +24,7 @@ export default function Hero() {
             <MagneticButton href="#contact" className="btn">
               Get in Touch
             </MagneticButton>
-            <MagneticButton href="#experience" className={styles.secondary}>
+            <MagneticButton href="#projects" className={styles.secondary}>
               View My Work
             </MagneticButton>
             <MagneticButton href="/how-its-built" className={styles.secondary}>
