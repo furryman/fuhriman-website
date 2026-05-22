@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-05-21T07:18:37.463Z",
+  "fetchedAt": "2026-05-22T21:21:35.395Z",
   "games": [
     {
       "appid": 3241660,
@@ -24,6 +24,14 @@
       "playtime_forever_min": 4779,
       "imageUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1097150/header.jpg",
       "url": "https://store.steampowered.com/app/1097150/"
+    },
+    {
+      "appid": 620980,
+      "name": "Beat Saber",
+      "playtime_2weeks_min": 41,
+      "playtime_forever_min": 28529,
+      "imageUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/620980/header.jpg",
+      "url": "https://store.steampowered.com/app/620980/"
     }
   ]
 }
