@@ -142,7 +142,7 @@ export default function ArchitectureDiagram() {
         <div className={`${styles.nodeGroup} ${styles.cluster}`}>
           <div className={styles.groupHeader}>
             <span className={styles.groupIcon}>&#9729;</span>
-            AWS EC2 t3.small &mdash; k3s
+            AWS EC2 t4g.medium (ARM Graviton) &mdash; k3s &mdash; Packer-built AMI
           </div>
           <div className={styles.clusterInner}>
             <div className={styles.groupSubHeader}>Kubernetes Workloads</div>
@@ -154,8 +154,13 @@ export default function ArchitectureDiagram() {
               </div>
               <div className={`${styles.workloadNode} ${styles.ingress}`}>
                 <span className={styles.workloadIcon}>&#127760;</span>
-                ingress-nginx
-                <span className={styles.workloadSub}>ServiceLB</span>
+                envoy-gateway
+                <span className={styles.workloadSub}>Gateway API</span>
+              </div>
+              <div className={`${styles.workloadNode} ${styles.certManager}`}>
+                <span className={styles.workloadIcon}>&#127919;</span>
+                external-dns
+                <span className={styles.workloadSub}>Route53 sync</span>
               </div>
               <div className={`${styles.workloadNode} ${styles.website}`}>
                 <span className={styles.workloadIcon}>&#9734;</span>
@@ -164,7 +169,8 @@ export default function ArchitectureDiagram() {
               </div>
             </div>
             <div className={styles.iptablesBar}>
-              iptables: Hairpin NAT fix (pod CIDR &#8594; kube-proxy chains)
+              Elastic IP 52.37.95.130 &#8594; Route53 (fuhriman.org) &#8594; HTTPRoute via Gateway
+              API
             </div>
           </div>
         </div>
