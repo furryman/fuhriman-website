@@ -23,7 +23,7 @@ const techStack = [
   {
     name: 'Envoy Gateway',
     category: 'Networking',
-    description: 'Gateway API implementation — replaces ingress-nginx',
+    description: 'Gateway API implementation handling TLS termination and routing',
   },
   {
     name: 'cert-manager',
@@ -163,8 +163,7 @@ export default function HowItsBuilt() {
               <h4>VPC Module</h4>
               <p>
                 Simple VPC (10.0.0.0/16) with a single public subnet in one AZ. No NAT Gateway
-                needed — everything runs in the public subnet. Honest single-AZ slicing (no
-                misleading multi-AZ data sources).
+                needed — everything runs in the public subnet.
               </p>
             </div>
             <div className={styles.highlight}>
@@ -463,12 +462,13 @@ jobs:
         <ScrollReveal stagger>
           <div className={styles.highlights}>
             <div className={styles.highlight}>
-              <h4>Cold-Start Math</h4>
+              <h4>~60-Second Cold-Start</h4>
               <p>
-                Pre-Packer: ~5–10 minutes from instance launch to a working ArgoCD (dnf updates, k3s
-                download, helm install, repo adds, then chart installs). Packer-baked AMI:{' '}
-                <strong>~60 seconds</strong> to argocd-server Running, <strong>~3 minutes</strong>{' '}
-                to full convergence with all certs issued.
+                k3s, helm, ssm-agent, and the helm repo cache are pre-baked into the AMI. First boot
+                is purely runtime-specific: fetch the IMDSv2 public IP for k3s&apos;s{' '}
+                <code>--tls-san</code>, install ArgoCD, hand off to App-of-Apps. Instance launch to
+                argocd-server Running: <strong>~60 seconds</strong>. Full convergence with all certs
+                issued: <strong>~3 minutes</strong>.
               </p>
             </div>
             <div className={styles.highlight}>
@@ -652,74 +652,6 @@ jobs:
                 <span className={styles.repoTag}>Next.js</span>
               </a>
             </TiltCard>
-          </div>
-        </ScrollReveal>
-      </section>
-
-      <section className={styles.section}>
-        <ScrollReveal>
-          <h2>The Migration Story</h2>
-        </ScrollReveal>
-        <ScrollReveal>
-          <p className={styles.sectionIntro}>
-            The architecture above didn&apos;t spring fully-formed — it&apos;s the end state of a{' '}
-            <strong>nine-phase refactor</strong> from an earlier setup. The git history (and the
-            design + manual-steps docs in <code>furryman/terraform/docs/plans/</code>) tells the
-            full story; the highlights:
-          </p>
-        </ScrollReveal>
-        <ScrollReveal stagger>
-          <div className={styles.highlights}>
-            <div className={styles.highlight}>
-              <h4>From ingress-nginx to Gateway API</h4>
-              <p>
-                The original cluster ran ingress-nginx with an iptables hairpin-NAT hack to make
-                cert-manager&apos;s HTTP-01 self-checks succeed on a single-instance VPC. Phase 4
-                replaced both with Envoy Gateway + Gateway API — same outcome, modern primitives, no
-                iptables.
-              </p>
-            </div>
-            <div className={styles.highlight}>
-              <h4>Sized up for the new components</h4>
-              <p>
-                t3.small (2GB x86) hit memory pressure under Envoy Gateway + the ArgoCD chart 9 bump
-                (argocd-server got OOM-killed mid-Phase-4). Phase 3.5 migrated to t4g.medium (4GB
-                ARM Graviton) — more memory + ARM cost savings in one swap.
-              </p>
-            </div>
-            <div className={styles.highlight}>
-              <h4>SSH replaced by SSM</h4>
-              <p>
-                Phase 2 removed inbound 22 and 6443 entirely. No SSH server reachable from the
-                internet; no public kube-apiserver. Admin is IAM-authenticated SSM, fully audited
-                through CloudTrail.
-              </p>
-            </div>
-            <div className={styles.highlight}>
-              <h4>State migrated to S3 (no DynamoDB)</h4>
-              <p>
-                Terraform 1.15+ supports native S3 state locking via <code>use_lockfile</code>.
-                Phase 0 migrated from local state, skipping the deprecated DynamoDB lock-table
-                pattern entirely.
-              </p>
-            </div>
-            <div className={styles.highlight}>
-              <h4>ArgoCD chart 5.55 → 9.5.x</h4>
-              <p>
-                Four major chart versions in one go (Phase 5). ArgoCD v3.x with refreshed UI,
-                argocd-redis-secret-init, and Gateway-API-ready service shapes. Held a snapshot for
-                rollback; chart upgrade landed clean on the first try.
-              </p>
-            </div>
-            <div className={styles.highlight}>
-              <h4>From imperative cloud-init to Packer-built AMI</h4>
-              <p>
-                The original bootstrap took ~5–10 minutes per instance launch. Phase 7 baked k3s,
-                helm, ssm-agent, and helm repo caches into a versioned AMI. Cold-start dropped to
-                ~60 seconds. The full Packer pipeline took 8 build attempts to settle — each fix in
-                git history.
-              </p>
-            </div>
           </div>
         </ScrollReveal>
       </section>
