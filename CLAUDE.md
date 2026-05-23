@@ -2,42 +2,49 @@
 
 Guidance for Claude Code working in this repository.
 
-## Build and Development Commands
+The Next.js portfolio at **https://fuhriman.org**. Deploys via GitHub Actions → Docker Hub (multi-arch) → `furryman/eks-helm-charts` (CI bumps the image tag) → ArgoCD → k3s on AWS Graviton. See sibling repos at the end.
 
-This project uses **pnpm**, pinned via the `packageManager` field in `package.json`. Run `corepack enable` once locally so the pinned version is invoked automatically — do not use npm or yarn.
+## Commands
+
+This project uses **pnpm**, pinned via the `packageManager` field. Run `corepack enable` once locally so the pinned version is invoked automatically — do not use npm or yarn.
 
 ```bash
 pnpm install              # First-time setup (use --frozen-lockfile in CI)
-pnpm dev                  # Start development server at localhost:3000
+pnpm dev                  # Development server at localhost:3000
 pnpm build                # Production build (standalone output)
 pnpm start                # Start production server
 pnpm lint                 # Biome lint
 pnpm format               # Biome format --write
 pnpm format:check         # Biome format check
 pnpm check                # Biome check (lint + format together — CI gate)
-pnpm test                 # Vitest run (unit tests)
-pnpm coverage             # Vitest with coverage; gate at 95/95/95/95
+pnpm test                 # Vitest run
+pnpm coverage             # Vitest with coverage; 95/95/95/95 gate
 pnpm e2e                  # Playwright smoke tests
-pnpm e2e:install          # Install Playwright browsers (one-time per machine)
-pnpm lighthouse           # Lighthouse CI against the built standalone server
+pnpm e2e:install          # Install Playwright browsers (once per machine)
+pnpm lighthouse           # Lighthouse CI against the standalone server
 ```
 
 No `.env` file is needed — the app has zero application-side environment variables. The Spotify and Steam refresh scripts require env vars but only run in the `interests-refresh` GitHub Action; locally you can leave them unset.
 
-Docker is a multi-stage build (Node 26 in the builder, **distroless** runtime, amd64-only):
+Docker is a **multi-stage, multi-arch** build (Node 26 in the builder, distroless runtime, `linux/amd64` + `linux/arm64`):
 
 ```bash
-docker build -t furryman/fuhriman-website:latest .
-docker run -p 3000:3000 furryman/fuhriman-website:latest
+# Local single-arch build for quick iteration
+docker build -t furryman/fuhriman-website:dev .
+docker run -p 3000:3000 furryman/fuhriman-website:dev
+
+# Multi-arch reproduction of CI (rare; CI handles this on push)
+docker buildx build --platform linux/amd64,linux/arm64 \
+  -t furryman/fuhriman-website:dev --load .
 ```
 
-The builder stage uses corepack to invoke pnpm with `pnpm install --frozen-lockfile`. The runtime stage is `gcr.io/distroless/nodejs26-debian13` and runs `node server.js` directly from the Next.js standalone output.
+The builder stage uses corepack to invoke pnpm with `pnpm install --frozen-lockfile`. The runtime stage is `gcr.io/distroless/nodejs26-debian13` and runs `node server.js` directly from the Next.js standalone output. The cluster node is ARM Graviton, so a single-arch amd64 build would not run in production.
 
 ## Architecture
 
 Next.js 16 (App Router) + React 19 + TypeScript strict mode.
 
-**Path alias**: `@/*` maps to `./src/*`
+**Path alias**: `@/*` maps to `./src/*`.
 
 **Pages**:
 
@@ -75,7 +82,7 @@ All design values live as CSS custom properties on `:root` in `src/app/globals.c
 --gradient-text:     linear-gradient(135deg, #f0a868 0%, #ffd9a8 50%, #c93838 100%);
 ```
 
-**Translucent surfaces** (warm-dark glass for cards, panels, and overlays — two tiers plus a separate navbar treatment):
+**Translucent surfaces** (warm-dark glass for cards, panels, overlays):
 
 ```css
 --surface-card:             rgb(26 22 21 / 60%);
@@ -87,7 +94,7 @@ All design values live as CSS custom properties on `:root` in `src/app/globals.c
 --surface-overlay:          rgb(10 8 8 / 60%);
 ```
 
-**Spacing** (4px baseline scale, for gaps, padding, and vertical rhythm):
+**Spacing** (4px baseline scale):
 
 ```css
 --space-1: 0.25rem; --space-2: 0.5rem; --space-3: 0.75rem; --space-4: 1rem;
@@ -128,7 +135,7 @@ Respects `prefers-reduced-motion: reduce` in both layers.
 
 **Command palette** (`CommandPalette.tsx`): triggers on ⌘K / Ctrl+K, also accessible via the kbd-styled button in the Navbar. Two groups: "Jump to" (all 7 sections) and "Actions" (Resume PDF, How It's Built, Copy email, GitHub, LinkedIn).
 
-**CollapsibleCode** (`CollapsibleCode.tsx`): wraps long code blocks with a collapsed-by-default view, a fade gradient at the cutoff, and a "Show full snippet" toggle. Used on `/how-its-built` for the GitHub Actions yaml and iptables snippets. Per-instance `collapsedHeight` prop (default `16em`) drives the cutoff via a `--collapsed-height` CSS custom property; the `max-height` transition gives a smooth expand/collapse.
+**CollapsibleCode** (`CollapsibleCode.tsx`): wraps long code blocks with a collapsed-by-default view, a fade gradient at the cutoff, and a "Show full snippet" toggle. Used on `/how-its-built` for the GitHub Actions yaml and other snippets. Per-instance `collapsedHeight` prop (default `16em`) drives the cutoff via a `--collapsed-height` CSS custom property; the `max-height` transition gives a smooth expand/collapse.
 
 **ScrollReveal** (`ScrollReveal.tsx`): client wrapper using `motion`. Adds `reveal` (and optionally `stagger`) class on a `<motion.div>` and animates opacity/y on viewport entry via `whileInView` with `viewport: { once: true, amount: 0.1 }`.
 
@@ -136,7 +143,7 @@ Respects `prefers-reduced-motion: reduce` in both layers.
 
 **Numbered section headings**: CSS counters scoped to `main.portfolio section[id] h2` — sections without an `id` don't get numbered.
 
-**View Transitions**: declared via `view-transition-name: page-title` on the hero `<h1>` and the matching `<h1>` on `/how-its-built`. The browser handles the morph during route navigation (Chromium-only; Firefox/Safari fall back to instant nav). Custom `::view-transition-old/new(root)` and `::view-transition-old/new(page-title)` keyframes in `globals.css` give a 300ms cross-fade.
+**View Transitions**: `view-transition-name: page-title` on the hero `<h1>` and the matching `<h1>` on `/how-its-built`. The browser handles the morph during route navigation (Chromium-only; Firefox/Safari fall back to instant nav). Custom `::view-transition-old/new(root)` and `::view-transition-old/new(page-title)` keyframes in `globals.css` give a 300ms cross-fade.
 
 **Data in components**: Skills, Experience, Projects, Principles data are arrays at the top of each component file and mapped for rendering. Interests data comes from `public/spotify-top.json` and `public/steam-recent.json`, imported at module load.
 
@@ -154,11 +161,11 @@ Respects `prefers-reduced-motion: reduce` in both layers.
 
 Unit tests: **Vitest 4** + **React Testing Library** + **happy-dom**. Tests are colocated as `*.test.tsx` / `*.test.ts` (no separate `__tests__/` directory).
 
-- `pnpm test` — single run
-- `pnpm coverage` — v8 coverage provider; enforces the 95/95/95/95 gate (lines/statements/branches/functions)
+- `pnpm test` — single run.
+- `pnpm coverage` — v8 coverage; enforces the 95/95/95/95 gate (lines/statements/branches/functions).
 - Coverage exclusions live in `vitest.config.ts` with rationale comments: `next.config.js`, `next-env.d.ts`, `src/app/layout.tsx`, `src/components/AmbientBackground.tsx` (canvas — not testable in happy-dom), `src/components/HeroScene.tsx` (WebGL — same reason), `.next/**`, `**/*.d.ts`.
 
-**Playwright** smoke tests live under `tests/e2e/`. Filenames must end in `.e2e.ts` so Vitest's default pattern skips them. Cover the golden path for `/` and `/how-its-built` against the built standalone. Run `pnpm e2e:install` once per machine.
+**Playwright** smoke tests live under `tests/e2e/`. Filenames must end in `.e2e.ts` so Vitest's default pattern skips them. They cover the golden path for `/` and `/how-its-built` against the built standalone. Run `pnpm e2e:install` once per machine.
 
 **Lighthouse CI** via `pnpm lighthouse` against the standalone server. Budgets: Performance ≥ 90, Accessibility ≥ 0.95, Best Practices ≥ 95, SEO ≥ 95. INP assertion is `off` (cannot be measured in synthetic runs).
 
@@ -174,7 +181,7 @@ Unit tests: **Vitest 4** + **React Testing Library** + **happy-dom**. Tests are 
 
 - Rules: recommended set with `useUniqueElementIds` off (single-page nav uses literal IDs like `#about`).
 - Per-file overrides: relax `noNonNullAssertion` in test files; relax `noTemplateCurlyInString` in `src/app/how-its-built/page.tsx` (the page contains literal `${var}` strings in displayed code samples).
-- A husky pre-commit hook runs `biome check --write` on staged files via lint-staged. Don't bypass with `--no-verify`.
+- A husky pre-commit hook runs `biome check --write` on staged files via lint-staged. Don't bypass with `--no-verify` unless the user explicitly asks.
 
 ## Commit Conventions
 
@@ -186,10 +193,19 @@ Examples: `feat(navbar): add command palette trigger`, `chore(deps): bump motion
 
 ## Deployment
 
-Push to `main` triggers GitHub Actions, which runs six jobs in parallel: `lint`, `typecheck`, `test` (with coverage upload), `build`, `e2e`, `lighthouse`. After all six pass, a `docker` job builds the amd64 image (Trivy v0.69.3 scan with severity HIGH/CRITICAL and `--ignore-unfixed`) and pushes to Docker Hub with tags `ga-YYYY.MM.DD-HHMM` and `latest`. A final sequential `deploy` job:
+Push to `main` triggers `.github/workflows/build-deploy.yaml`. Six jobs run in parallel: `lint`, `typecheck`, `test` (with coverage upload), `build`, `e2e`, `lighthouse`. After all six pass, a `docker` job:
 
-1. Updates `eks-helm-charts/fuhriman-chart/values.yaml` with the new image tag (via `yq`).
-2. ArgoCD then syncs the change to the k3s cluster.
+1. Sets up QEMU + buildx (`docker/setup-qemu-action` + `docker/setup-buildx-action`).
+2. Builds **multi-arch** (`linux/amd64,linux/arm64`) and pushes to Docker Hub with tags `ga-YYYY.MM.DD-HHMM` and `latest`.
+3. Runs Trivy v0.69.3 scan (severity HIGH/CRITICAL, `--ignore-unfixed`).
+
+A final sequential `deploy` job:
+
+1. Clones `furryman/eks-helm-charts`.
+2. Bumps the image tag in `fuhriman-chart/values.yaml` via `yq`.
+3. Commits + pushes. ArgoCD picks up the change on next reconciliation and rolls the deployment on the k3s cluster.
+
+ARM matters here: the production cluster runs on a Graviton (`t4g.medium`) node. Building amd64-only would deploy a working image to Docker Hub that can't run in production. **Don't disable arm64 in the buildx step.**
 
 Required GitHub secrets: `DOCKERHUB_USERNAME`, `DOCKERHUB_TOKEN`, `GH_PAT` (repo scope — used for the helm-chart push AND by the `interests-refresh` workflow's checkout so its data-refresh push triggers `build-deploy`).
 
@@ -224,7 +240,7 @@ Dependency updates are managed by **Renovate** (`renovate.json5`). Updates are g
 **Defaults**:
 
 - Reach for the smallest change that satisfies the request. Avoid speculative refactors.
-- Every new component gets a co-located `*.test.tsx` file. The 95/95/95/95 coverage gate is enforced — your PR will fail CI if it drops below the threshold on any of the four metrics.
+- Every new component gets a co-located `*.test.tsx`. The 95/95/95/95 coverage gate is enforced — your PR will fail CI if it drops below the threshold on any of the four metrics.
 - Use spacing tokens (`var(--space-*)`) and type tokens (`var(--font-size-*)`) instead of magic numbers when adding new CSS. New translucent surfaces use one of the `--surface-*` tokens.
 - Use Motion for animation, not raw CSS transitions, unless the animation is purely declarative and trivial (hover transitions, etc.).
 - Use the modern `rgb(R G B / X%)` form for semi-transparent colors. Never `rgba()`.
@@ -237,7 +253,10 @@ Dependency updates are managed by **Renovate** (`renovate.json5`). Updates are g
 - Don't use `as React.RefObject<HTMLAnchorElement>` or `as any` casts on JSX refs. If you need to support multiple element types, declare separate narrow refs (see `MagneticButton`).
 - The 3D hero (`HeroScene.tsx`) uses `<primitive object={...} />` for line geometry because R3F v9 renames `<line>` to `<threeLine>` to avoid SVG conflicts.
 - Test files importing `@playwright/test` must be named `*.e2e.ts` (not `*.spec.ts`) so Vitest's default pattern skips them.
+- The image tag in `eks-helm-charts/fuhriman-chart/values.yaml` is written by **this repo's** CI. Don't hand-edit it from the helm-charts side; that change will be overwritten on the next push here.
+- Docker builds in CI are multi-arch via QEMU. Locally `docker build` produces only your host arch — fine for iteration but the cluster expects arm64.
 
-## Reference docs
+## Reference
 
 - `docs/spotify-setup.md` — one-time Spotify OAuth setup + Steam API key requirements.
+- `AGENT.md` — short "framework-agnostic" guide intended for other AI coding tools (Codex, Cursor, Aider). The deep version is this file.
