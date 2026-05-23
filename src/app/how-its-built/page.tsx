@@ -61,6 +61,16 @@ const techStack = [
     category: 'Compute',
     description: 't4g.medium (ARM) — ~20% cheaper than equivalent x86',
   },
+  {
+    name: 'AWS DLM',
+    category: 'Backups',
+    description: 'Native EBS snapshot lifecycle — monthly × 3 retention',
+  },
+  {
+    name: 'Route53',
+    category: 'DNS',
+    description: 'Public zone; Squarespace delegates via NS records',
+  },
 ]
 
 export default function HowItsBuilt() {
@@ -265,6 +275,16 @@ export default function HowItsBuilt() {
                 issues via HTTP-01, creating a temporary HTTPRoute through the public Gateway for
                 the ACME challenge. Auto-renews 30 days before expiry. <code>R13</code>{' '}
                 intermediate.
+              </p>
+            </div>
+            <div className={styles.highlight}>
+              <h4>klipper-lb + EIP Override</h4>
+              <p>
+                k3s ships <code>klipper-lb</code> as its default Service LoadBalancer, which
+                advertises the node&apos;s <em>private</em> IP — not what we want ExternalDNS
+                publishing to Route53. The fix is one annotation on the Gateway:{' '}
+                <code>external-dns.alpha.kubernetes.io/target: 52.37.95.130</code> (the Elastic IP).
+                One line, no extra LoadBalancer controller.
               </p>
             </div>
           </div>
@@ -473,6 +493,52 @@ jobs:
 
       <section className={styles.section}>
         <ScrollReveal>
+          <h2>Backups &amp; Observability Tradeoffs</h2>
+        </ScrollReveal>
+        <ScrollReveal>
+          <p className={styles.sectionIntro}>
+            A single-node portfolio cluster doesn&apos;t need everything a production fleet does.
+            Two deliberate calls: keep backups cheap and visible, and don&apos;t pay for
+            observability that nothing acts on.
+          </p>
+        </ScrollReveal>
+        <ScrollReveal stagger>
+          <div className={styles.highlights}>
+            <div className={styles.highlight}>
+              <h4>AWS DLM — Monthly × 3 EBS Snapshots</h4>
+              <p>
+                <code>aws_dlm_lifecycle_policy</code> (Data Lifecycle Manager, native AWS — no
+                third-party scheduler) takes a snapshot of the root EBS volume on the 1st of each
+                month at 04:00 UTC and retains the 3 most recent. Cost: pennies per month. Recovery
+                time: a few minutes to launch a new instance from a chosen snapshot. DLM was picked
+                over AWS Backup for cost (DLM has no per-protected-resource pricing) and over
+                Velero/restic for simplicity (no in-cluster moving parts).
+              </p>
+            </div>
+            <div className={styles.highlight}>
+              <h4>$40/mo Budget Alert</h4>
+              <p>
+                An AWS Budget watches actual spend against the cost model (~$31/mo target, $40/mo
+                alert). If anything regresses — orphaned EIPs, runaway DLM snapshots, an
+                instance-type drift — email lands before the AWS bill does.
+              </p>
+            </div>
+            <div className={styles.highlight}>
+              <h4>No Prometheus (by choice)</h4>
+              <p>
+                A Prometheus + Grafana stack would add ~512 MiB of memory pressure to a 4 GB node
+                and would never be acted on for a portfolio site. Chart values disable Prometheus
+                metric emitters across envoy-gateway and external-dns. If something genuinely
+                breaks, <code>kubectl logs</code> and CloudWatch Container Insights for the
+                ec2-level signals are enough. This is a deliberate tradeoff, not negligence.
+              </p>
+            </div>
+          </div>
+        </ScrollReveal>
+      </section>
+
+      <section className={styles.section}>
+        <ScrollReveal>
           <h2>Kubernetes Resources</h2>
         </ScrollReveal>
         <ScrollReveal>
@@ -632,7 +698,7 @@ jobs:
             <div className={styles.highlight}>
               <h4>State migrated to S3 (no DynamoDB)</h4>
               <p>
-                Terraform 1.11+ supports native S3 state locking via <code>use_lockfile</code>.
+                Terraform 1.15+ supports native S3 state locking via <code>use_lockfile</code>.
                 Phase 0 migrated from local state, skipping the deprecated DynamoDB lock-table
                 pattern entirely.
               </p>

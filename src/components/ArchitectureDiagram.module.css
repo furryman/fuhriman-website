@@ -396,7 +396,156 @@
   z-index: 1;
 }
 
+/* ---------- entry row (Developer + Visitor) ---------- */
+.entryRow {
+  display: flex;
+  justify-content: center;
+  gap: 5rem;
+  width: 100%;
+}
+
+/* visitor: amber-light — the user request origin */
+.visitor {
+  border-color: rgb(255 217 168 / 30%);
+}
+
+.visitor:hover {
+  border-color: rgb(255 217 168 / 60%);
+  box-shadow: 0 0 20px -4px rgb(255 217 168 / 20%);
+}
+
+.visitor .nodeIcon {
+  color: var(--accent-light);
+}
+
+/* ---------- second pipeline (build-ami.yml) ---------- */
+.pipelineSubFlow {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0 1.25rem 1.25rem;
+  flex-wrap: wrap;
+}
+
+.pipelineSubLabel {
+  font-size: 0.65rem;
+  font-family: var(--font-body), monospace;
+  color: var(--text-secondary);
+  margin-right: 0.25rem;
+}
+
+/* ---------- triple row (Docker Hub | app-of-apps | helm-charts) ---------- */
+.tripleRow {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 600px;
+}
+
+/* app-of-apps: accent-light, parent-chart vibe */
+.appOfApps {
+  border-color: rgb(255 217 168 / 30%);
+}
+
+.appOfApps:hover {
+  border-color: rgb(255 217 168 / 60%);
+  box-shadow: 0 0 20px -4px rgb(255 217 168 / 15%);
+}
+
+.appOfApps .nodeIcon {
+  color: var(--accent-light);
+}
+
+/* ---------- Envoy Gateway chokepoint band inside cluster ---------- */
+.gatewayBand {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 0.85rem 1rem;
+  background: rgb(201 56 56 / 8%);
+  border: 1px solid rgb(201 56 56 / 30%);
+  border-radius: 10px;
+  margin-bottom: 0.85rem;
+}
+
+.gatewayIcon {
+  font-size: 1.5rem;
+  color: var(--rust);
+  flex-shrink: 0;
+}
+
+.gatewayLabel {
+  font-family: var(--font-body), monospace;
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--text-bright);
+  line-height: 1.3;
+}
+
+.gatewaySub {
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+  margin-top: 0.15rem;
+}
+
+/* ---------- HTTPRoute pills row ---------- */
+.routesRow {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.routePill {
+  padding: 0.35rem 0.75rem;
+  background: rgb(201 56 56 / 8%);
+  border: 1px solid rgb(201 56 56 / 25%);
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-family: var(--font-body), monospace;
+  color: rgb(255 217 168 / 90%);
+}
+
+/* ---------- admin (SSM) side bar inside cluster ---------- */
+.adminBar {
+  margin-top: 0.5rem;
+  padding: 0.55rem 1rem;
+  background: rgb(180 200 150 / 5%);
+  border: 1px dashed rgb(180 200 150 / 30%);
+  border-radius: 8px;
+  font-size: 0.7rem;
+  font-family: var(--font-body), monospace;
+  color: rgb(204 220 180 / 85%);
+  text-align: center;
+}
+
 /* ---------- responsive ---------- */
+@media (width <= 700px) {
+  .entryRow {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.85rem;
+  }
+
+  .tripleRow {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.85rem;
+  }
+
+  .gatewayBand {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .pipelineSubFlow {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
 @media (width <= 700px) {
   .diagram {
     padding: 1.5rem 0.75rem;
