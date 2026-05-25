@@ -1,11 +1,11 @@
 {
-  "fetchedAt": "2026-05-22T21:21:35.395Z",
+  "fetchedAt": "2026-05-25T07:37:20.969Z",
   "games": [
     {
       "appid": 3241660,
       "name": "R.E.P.O.",
-      "playtime_2weeks_min": 194,
-      "playtime_forever_min": 13625,
+      "playtime_2weeks_min": 353,
+      "playtime_forever_min": 13783,
       "imageUrl": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3241660/a12c92856b71315da885924ea5e1d5290c8025b8/header_alt_assets_2.jpg?t=1778158882",
       "url": "https://store.steampowered.com/app/3241660/"
     },
@@ -28,10 +28,18 @@
     {
       "appid": 620980,
       "name": "Beat Saber",
-      "playtime_2weeks_min": 41,
-      "playtime_forever_min": 28529,
+      "playtime_2weeks_min": 74,
+      "playtime_forever_min": 28561,
       "imageUrl": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/620980/3067664ee110fed550f5c3a1b74340cabd7d53f0/header.jpg?t=1778574113",
       "url": "https://store.steampowered.com/app/620980/"
+    },
+    {
+      "appid": 1962700,
+      "name": "Subnautica 2",
+      "playtime_2weeks_min": 33,
+      "playtime_forever_min": 33,
+      "imageUrl": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1962700/header.jpg?t=1779437128",
+      "url": "https://store.steampowered.com/app/1962700/"
     }
   ]
 }
