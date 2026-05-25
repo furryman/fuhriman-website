@@ -5,17 +5,12 @@ import styles from './ArchitectureDiagram.module.css'
 export default function ArchitectureDiagram() {
   return (
     <div className={styles.diagram}>
-      {/* Row 1: Developer (left) and Visitor (right) — two entry points into the system */}
+      {/* Row 1: Developer — entry point into the CI/CD pipeline */}
       <div className={styles.entryRow}>
         <div className={`${styles.node} ${styles.developer}`}>
           <span className={styles.nodeIcon}>&#9998;</span>
           <span className={styles.nodeLabel}>Developer</span>
           <span className={styles.nodeSub}>git push</span>
-        </div>
-        <div className={`${styles.node} ${styles.visitor}`}>
-          <span className={styles.nodeIcon}>&#128100;</span>
-          <span className={styles.nodeLabel}>Visitor</span>
-          <span className={styles.nodeSub}>HTTPS</span>
         </div>
       </div>
 
@@ -135,7 +130,7 @@ export default function ArchitectureDiagram() {
             strokeWidth="2"
             fill="none"
           />
-          <text x="380" y="22" fill="rgb(255 217 168 / 95%)" fontSize="10" fontFamily="monospace">
+          <text x="410" y="45" fill="rgb(255 217 168 / 95%)" fontSize="10" fontFamily="monospace">
             child Apps watch
           </text>
           {/* ArgoCD down to k3s */}

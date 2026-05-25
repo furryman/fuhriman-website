@@ -74,10 +74,14 @@
   line-height: 1.6;
 }
 
-.architectureNote strong {
+.architectureNote strong:first-child {
   color: var(--accent);
   display: block;
   margin-bottom: 0.5rem;
+}
+
+.architectureNote strong {
+  color: var(--accent);
 }
 
 .diagram {

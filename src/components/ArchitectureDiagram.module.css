@@ -404,20 +404,6 @@
   width: 100%;
 }
 
-/* visitor: amber-light — the user request origin */
-.visitor {
-  border-color: rgb(255 217 168 / 30%);
-}
-
-.visitor:hover {
-  border-color: rgb(255 217 168 / 60%);
-  box-shadow: 0 0 20px -4px rgb(255 217 168 / 20%);
-}
-
-.visitor .nodeIcon {
-  color: var(--accent-light);
-}
-
 /* ---------- second pipeline (build-ami.yml) ---------- */
 .pipelineSubFlow {
   display: flex;

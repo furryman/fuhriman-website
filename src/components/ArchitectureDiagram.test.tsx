@@ -19,14 +19,12 @@ describe('ArchitectureDiagram', () => {
     expect(screen.getByText('https://fuhriman.org')).toBeInTheDocument()
   })
 
-  it('renders the visitor entry point and request path', () => {
+  it('renders the request path through the Gateway', () => {
     render(<ArchitectureDiagram />)
-    expect(screen.getByText('Visitor')).toBeInTheDocument()
-    expect(screen.getByText('HTTPS')).toBeInTheDocument()
     expect(screen.getByText(/Envoy Gateway.*public/i)).toBeInTheDocument()
     expect(screen.getByText('HTTPRoute fuhriman-website')).toBeInTheDocument()
     expect(screen.getByText('HTTPRoute argocd-server')).toBeInTheDocument()
-    // Request flow bar: Route53 → EIP → Gateway → HTTPRoute, in logical order
+    // Request flow bar: Visitor → Route53 → EIP → Gateway → HTTPRoute, in logical order
     expect(screen.getByText(/Visitor.*Route53.*EIP.*Envoy Gateway.*HTTPRoute/i)).toBeInTheDocument()
   })
 
