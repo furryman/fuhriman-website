@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-05-25T07:37:19.801Z",
+  "fetchedAt": "2026-06-01T07:49:21.329Z",
   "artists": [
     {
       "name": "The Midnight",
@@ -22,9 +22,9 @@
       "image": "https://i.scdn.co/image/ab6761610000e5ebac2f9a19a87d094626992c94"
     },
     {
-      "name": "Kendrick Lamar",
-      "url": "https://open.spotify.com/artist/2YZyLoL8N0Wb9xBt1NhZWg",
-      "image": "https://i.scdn.co/image/ab6761610000e5eb39ba6dcd4355c03de0b50918"
+      "name": "The Suicide Machines",
+      "url": "https://open.spotify.com/artist/31v7ijnAMVL9V7Uzr1sFcI",
+      "image": "https://i.scdn.co/image/ab6761610000e5eb33a5a510c4591ae887d9f89e"
     }
   ]
 }
