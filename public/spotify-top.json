@@ -1,10 +1,15 @@
 {
-  "fetchedAt": "2026-06-01T07:49:21.329Z",
+  "fetchedAt": "2026-06-08T07:45:28.563Z",
   "artists": [
     {
       "name": "The Midnight",
       "url": "https://open.spotify.com/artist/2NFrAuh8RQdQoS7iYFbckw",
       "image": "https://i.scdn.co/image/ab6761610000e5ebbeb65e1c821ecd888cf5e115"
+    },
+    {
+      "name": "Carpenter Brut",
+      "url": "https://open.spotify.com/artist/1l2oLiukA9i5jEtIyNWIEP",
+      "image": "https://i.scdn.co/image/ab6761610000e5ebac2f9a19a87d094626992c94"
     },
     {
       "name": "PRIZM",
@@ -15,11 +20,6 @@
       "name": "Thrice",
       "url": "https://open.spotify.com/artist/3NChzMpu9exTlNPiqUQ2DE",
       "image": "https://i.scdn.co/image/ab6761610000e5eb058f5640966c28abd8df4ba9"
-    },
-    {
-      "name": "Carpenter Brut",
-      "url": "https://open.spotify.com/artist/1l2oLiukA9i5jEtIyNWIEP",
-      "image": "https://i.scdn.co/image/ab6761610000e5ebac2f9a19a87d094626992c94"
     },
     {
       "name": "The Suicide Machines",

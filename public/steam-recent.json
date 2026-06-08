@@ -1,36 +1,28 @@
 {
-  "fetchedAt": "2026-06-01T07:49:22.718Z",
+  "fetchedAt": "2026-06-08T07:45:29.644Z",
   "games": [
-    {
-      "appid": 3241660,
-      "name": "R.E.P.O.",
-      "playtime_2weeks_min": 158,
-      "playtime_forever_min": 13783,
-      "imageUrl": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3241660/a12c92856b71315da885924ea5e1d5290c8025b8/header_alt_assets_2.jpg?t=1778158882",
-      "url": "https://store.steampowered.com/app/3241660/"
-    },
-    {
-      "appid": 620980,
-      "name": "Beat Saber",
-      "playtime_2weeks_min": 74,
-      "playtime_forever_min": 28561,
-      "imageUrl": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/620980/b9712436ac5be8f96ba21ddd0b229f6585c8f8ad/header_alt_assets_3.jpg?t=1779975890",
-      "url": "https://store.steampowered.com/app/620980/"
-    },
     {
       "appid": 1962700,
       "name": "Subnautica 2",
-      "playtime_2weeks_min": 33,
-      "playtime_forever_min": 33,
-      "imageUrl": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1962700/header.jpg?t=1779930099",
+      "playtime_2weeks_min": 399,
+      "playtime_forever_min": 433,
+      "imageUrl": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1962700/header.jpg?t=1780372044",
       "url": "https://store.steampowered.com/app/1962700/"
+    },
+    {
+      "appid": 2909400,
+      "name": "FINAL FANTASY VII REBIRTH",
+      "playtime_2weeks_min": 289,
+      "playtime_forever_min": 738,
+      "imageUrl": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2909400/header.jpg?t=1775124617",
+      "url": "https://store.steampowered.com/app/2909400/"
     },
     {
       "appid": 2694490,
       "name": "Path of Exile 2",
       "playtime_2weeks_min": 10,
       "playtime_forever_min": 5235,
-      "imageUrl": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2694490/24eeddcbda17903f03d819588757e40845f8115f/header.jpg?t=1779752119",
+      "imageUrl": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2694490/24eeddcbda17903f03d819588757e40845f8115f/header.jpg?t=1780888530",
       "url": "https://store.steampowered.com/app/2694490/"
     }
   ]
