@@ -1,6 +1,14 @@
 {
-  "fetchedAt": "2026-06-08T07:45:29.644Z",
+  "fetchedAt": "2026-06-15T08:02:39.285Z",
   "games": [
+    {
+      "appid": 2909400,
+      "name": "FINAL FANTASY VII REBIRTH",
+      "playtime_2weeks_min": 3014,
+      "playtime_forever_min": 3463,
+      "imageUrl": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2909400/header.jpg?t=1775124617",
+      "url": "https://store.steampowered.com/app/2909400/"
+    },
     {
       "appid": 1962700,
       "name": "Subnautica 2",
@@ -10,20 +18,12 @@
       "url": "https://store.steampowered.com/app/1962700/"
     },
     {
-      "appid": 2909400,
-      "name": "FINAL FANTASY VII REBIRTH",
-      "playtime_2weeks_min": 289,
-      "playtime_forever_min": 738,
-      "imageUrl": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2909400/header.jpg?t=1775124617",
-      "url": "https://store.steampowered.com/app/2909400/"
-    },
-    {
-      "appid": 2694490,
-      "name": "Path of Exile 2",
-      "playtime_2weeks_min": 10,
-      "playtime_forever_min": 5235,
-      "imageUrl": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2694490/24eeddcbda17903f03d819588757e40845f8115f/header.jpg?t=1780888530",
-      "url": "https://store.steampowered.com/app/2694490/"
+      "appid": 620980,
+      "name": "Beat Saber",
+      "playtime_2weeks_min": 1,
+      "playtime_forever_min": 28562,
+      "imageUrl": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/620980/b9712436ac5be8f96ba21ddd0b229f6585c8f8ad/header_alt_assets_3.jpg?t=1779975890",
+      "url": "https://store.steampowered.com/app/620980/"
     }
   ]
 }
