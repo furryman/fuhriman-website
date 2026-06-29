@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-06-22T08:04:38.078Z",
+  "fetchedAt": "2026-06-29T07:45:57.861Z",
   "artists": [
     {
       "name": "The Midnight",
@@ -17,14 +17,14 @@
       "image": "https://i.scdn.co/image/ab6761610000e5eb016e0799a6571c7e265afffa"
     },
     {
+      "name": "Unleash The Archers",
+      "url": "https://open.spotify.com/artist/6irKXFXk2sPNmHtKqmrfuU",
+      "image": "https://i.scdn.co/image/ab6761610000e5eb8138046dbc917588b96bfc72"
+    },
+    {
       "name": "Thrice",
       "url": "https://open.spotify.com/artist/3NChzMpu9exTlNPiqUQ2DE",
       "image": "https://i.scdn.co/image/ab6761610000e5eb058f5640966c28abd8df4ba9"
-    },
-    {
-      "name": "The Suicide Machines",
-      "url": "https://open.spotify.com/artist/31v7ijnAMVL9V7Uzr1sFcI",
-      "image": "https://i.scdn.co/image/ab6761610000e5eb33a5a510c4591ae887d9f89e"
     }
   ]
 }

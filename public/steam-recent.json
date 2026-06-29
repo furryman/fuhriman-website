@@ -1,21 +1,13 @@
 {
-  "fetchedAt": "2026-06-22T08:04:39.211Z",
+  "fetchedAt": "2026-06-29T07:45:58.959Z",
   "games": [
     {
       "appid": 2909400,
       "name": "FINAL FANTASY VII REBIRTH",
-      "playtime_2weeks_min": 3904,
-      "playtime_forever_min": 4642,
+      "playtime_2weeks_min": 2309,
+      "playtime_forever_min": 5773,
       "imageUrl": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2909400/header.jpg?t=1775124617",
       "url": "https://store.steampowered.com/app/2909400/"
-    },
-    {
-      "appid": 620980,
-      "name": "Beat Saber",
-      "playtime_2weeks_min": 1,
-      "playtime_forever_min": 28562,
-      "imageUrl": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/620980/3067664ee110fed550f5c3a1b74340cabd7d53f0/header.jpg?t=1779975890",
-      "url": "https://store.steampowered.com/app/620980/"
     }
   ]
 }
