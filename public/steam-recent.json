@@ -1,13 +1,21 @@
 {
-  "fetchedAt": "2026-06-29T07:45:58.959Z",
+  "fetchedAt": "2026-07-06T07:35:03.638Z",
   "games": [
     {
       "appid": 2909400,
       "name": "FINAL FANTASY VII REBIRTH",
-      "playtime_2weeks_min": 2309,
-      "playtime_forever_min": 5773,
+      "playtime_2weeks_min": 1947,
+      "playtime_forever_min": 6590,
       "imageUrl": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2909400/header.jpg?t=1775124617",
       "url": "https://store.steampowered.com/app/2909400/"
+    },
+    {
+      "appid": 3241660,
+      "name": "R.E.P.O.",
+      "playtime_2weeks_min": 129,
+      "playtime_forever_min": 13913,
+      "imageUrl": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3241660/a12c92856b71315da885924ea5e1d5290c8025b8/header_alt_assets_2.jpg?t=1778158882",
+      "url": "https://store.steampowered.com/app/3241660/"
     }
   ]
 }
