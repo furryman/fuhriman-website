@@ -1,15 +1,10 @@
 {
-  "fetchedAt": "2026-07-06T07:35:02.665Z",
+  "fetchedAt": "2026-07-13T09:19:50.395Z",
   "artists": [
     {
       "name": "The Midnight",
       "url": "https://open.spotify.com/artist/2NFrAuh8RQdQoS7iYFbckw",
       "image": "https://i.scdn.co/image/ab6761610000e5ebbeb65e1c821ecd888cf5e115"
-    },
-    {
-      "name": "Carpenter Brut",
-      "url": "https://open.spotify.com/artist/1l2oLiukA9i5jEtIyNWIEP",
-      "image": "https://i.scdn.co/image/ab6761610000e5ebac2f9a19a87d094626992c94"
     },
     {
       "name": "PRIZM",
@@ -20,6 +15,11 @@
       "name": "Unleash The Archers",
       "url": "https://open.spotify.com/artist/6irKXFXk2sPNmHtKqmrfuU",
       "image": "https://i.scdn.co/image/ab6761610000e5eb8138046dbc917588b96bfc72"
+    },
+    {
+      "name": "Carpenter Brut",
+      "url": "https://open.spotify.com/artist/1l2oLiukA9i5jEtIyNWIEP",
+      "image": "https://i.scdn.co/image/ab6761610000e5ebac2f9a19a87d094626992c94"
     },
     {
       "name": "Thrice",
