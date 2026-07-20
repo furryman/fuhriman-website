@@ -1,21 +1,45 @@
 {
-  "fetchedAt": "2026-07-13T09:19:51.273Z",
+  "fetchedAt": "2026-07-20T08:52:15.978Z",
   "games": [
     {
       "appid": 2909400,
       "name": "FINAL FANTASY VII REBIRTH",
-      "playtime_2weeks_min": 1187,
-      "playtime_forever_min": 6960,
+      "playtime_2weeks_min": 527,
+      "playtime_forever_min": 7118,
       "imageUrl": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2909400/header.jpg?t=1775124617",
       "url": "https://store.steampowered.com/app/2909400/"
     },
     {
+      "appid": 1962700,
+      "name": "Subnautica 2",
+      "playtime_2weeks_min": 215,
+      "playtime_forever_min": 649,
+      "imageUrl": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1962700/header.jpg?t=1780372044",
+      "url": "https://store.steampowered.com/app/1962700/"
+    },
+    {
+      "appid": 2001120,
+      "name": "Split Fiction",
+      "playtime_2weeks_min": 182,
+      "playtime_forever_min": 1124,
+      "imageUrl": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2001120/header.jpg?t=1763484567",
+      "url": "https://store.steampowered.com/app/2001120/"
+    },
+    {
       "appid": 3241660,
       "name": "R.E.P.O.",
-      "playtime_2weeks_min": 129,
-      "playtime_forever_min": 13913,
+      "playtime_2weeks_min": 58,
+      "playtime_forever_min": 13971,
       "imageUrl": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3241660/a12c92856b71315da885924ea5e1d5290c8025b8/header_alt_assets_2.jpg?t=1778158882",
       "url": "https://store.steampowered.com/app/3241660/"
+    },
+    {
+      "appid": 1875580,
+      "name": "Mina the Hollower",
+      "playtime_2weeks_min": 43,
+      "playtime_forever_min": 43,
+      "imageUrl": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1875580/368fcff2cd8f5ef01c5a89060a49f9a333076a87/header.jpg?t=1784215061",
+      "url": "https://store.steampowered.com/app/1875580/"
     }
   ]
 }
