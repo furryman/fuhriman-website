@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-07-20T08:52:15.002Z",
+  "fetchedAt": "2026-07-27T09:43:46.597Z",
   "artists": [
     {
       "name": "The Midnight",
@@ -7,14 +7,14 @@
       "image": "https://i.scdn.co/image/ab6761610000e5ebbeb65e1c821ecd888cf5e115"
     },
     {
-      "name": "PRIZM",
-      "url": "https://open.spotify.com/artist/0elWefATNt1GKkpPX2L5bo",
-      "image": "https://i.scdn.co/image/ab6761610000e5eb016e0799a6571c7e265afffa"
-    },
-    {
       "name": "Unleash The Archers",
       "url": "https://open.spotify.com/artist/6irKXFXk2sPNmHtKqmrfuU",
       "image": "https://i.scdn.co/image/ab6761610000e5eb8138046dbc917588b96bfc72"
+    },
+    {
+      "name": "PRIZM",
+      "url": "https://open.spotify.com/artist/0elWefATNt1GKkpPX2L5bo",
+      "image": "https://i.scdn.co/image/ab6761610000e5eb016e0799a6571c7e265afffa"
     },
     {
       "name": "Carpenter Brut",
@@ -22,9 +22,9 @@
       "image": "https://i.scdn.co/image/ab6761610000e5ebac2f9a19a87d094626992c94"
     },
     {
-      "name": "Thrice",
-      "url": "https://open.spotify.com/artist/3NChzMpu9exTlNPiqUQ2DE",
-      "image": "https://i.scdn.co/image/ab6761610000e5eb058f5640966c28abd8df4ba9"
+      "name": "Brutus",
+      "url": "https://open.spotify.com/artist/7m63GptZSke3jGqCxR4rom",
+      "image": "https://i.scdn.co/image/ab6761610000e5eb62e0938cf0822beda02e8477"
     }
   ]
 }
