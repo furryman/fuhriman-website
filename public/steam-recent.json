@@ -1,45 +1,37 @@
 {
-  "fetchedAt": "2026-07-27T09:43:47.666Z",
+  "fetchedAt": "2026-08-03T09:37:22.281Z",
   "games": [
+    {
+      "appid": 2001120,
+      "name": "Split Fiction",
+      "playtime_2weeks_min": 100,
+      "playtime_forever_min": 1224,
+      "imageUrl": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2001120/header.jpg?t=1763484567",
+      "url": "https://store.steampowered.com/app/2001120/"
+    },
+    {
+      "appid": 2211170,
+      "name": "Unrailed 2: Back on Track",
+      "playtime_2weeks_min": 82,
+      "playtime_forever_min": 82,
+      "imageUrl": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2211170/e13148cadb42b138b5edce3e475045d4870ec263/header_alt_assets_6.jpg?t=1785434889",
+      "url": "https://store.steampowered.com/app/2211170/"
+    },
     {
       "appid": 1962700,
       "name": "Subnautica 2",
-      "playtime_2weeks_min": 270,
+      "playtime_2weeks_min": 54,
       "playtime_forever_min": 704,
       "imageUrl": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1962700/header.jpg?t=1780372044",
       "url": "https://store.steampowered.com/app/1962700/"
     },
     {
-      "appid": 2001120,
-      "name": "Split Fiction",
-      "playtime_2weeks_min": 182,
-      "playtime_forever_min": 1124,
-      "imageUrl": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2001120/header.jpg?t=1763484567",
-      "url": "https://store.steampowered.com/app/2001120/"
-    },
-    {
-      "appid": 2909400,
-      "name": "FINAL FANTASY VII REBIRTH",
-      "playtime_2weeks_min": 157,
-      "playtime_forever_min": 7118,
-      "imageUrl": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2909400/header.jpg?t=1775124617",
-      "url": "https://store.steampowered.com/app/2909400/"
-    },
-    {
-      "appid": 3241660,
-      "name": "R.E.P.O.",
-      "playtime_2weeks_min": 58,
-      "playtime_forever_min": 13971,
-      "imageUrl": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3241660/a12c92856b71315da885924ea5e1d5290c8025b8/header_alt_assets_2.jpg?t=1778158882",
-      "url": "https://store.steampowered.com/app/3241660/"
-    },
-    {
-      "appid": 1875580,
-      "name": "Mina the Hollower",
-      "playtime_2weeks_min": 43,
-      "playtime_forever_min": 43,
-      "imageUrl": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1875580/368fcff2cd8f5ef01c5a89060a49f9a333076a87/header.jpg?t=1784215061",
-      "url": "https://store.steampowered.com/app/1875580/"
+      "appid": 1588550,
+      "name": "Cairn",
+      "playtime_2weeks_min": 38,
+      "playtime_forever_min": 396,
+      "imageUrl": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1588550/header.jpg?t=1782391789",
+      "url": "https://store.steampowered.com/app/1588550/"
     }
   ]
 }
