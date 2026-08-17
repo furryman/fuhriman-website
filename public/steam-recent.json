@@ -1,37 +1,29 @@
 {
-  "fetchedAt": "2026-08-10T07:25:22.847Z",
+  "fetchedAt": "2026-08-17T06:47:13.628Z",
   "games": [
     {
-      "appid": 2001120,
-      "name": "Split Fiction",
-      "playtime_2weeks_min": 158,
-      "playtime_forever_min": 1282,
-      "imageUrl": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2001120/header.jpg?t=1763484567",
-      "url": "https://store.steampowered.com/app/2001120/"
+      "appid": 1817230,
+      "name": "Hi-Fi RUSH",
+      "playtime_2weeks_min": 393,
+      "playtime_forever_min": 393,
+      "imageUrl": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1817230/header.jpg?t=1764916407",
+      "url": "https://store.steampowered.com/app/1817230/"
     },
     {
       "appid": 2383200,
       "name": "PATAPON 1+2 REPLAY",
-      "playtime_2weeks_min": 83,
-      "playtime_forever_min": 83,
+      "playtime_2weeks_min": 94,
+      "playtime_forever_min": 94,
       "imageUrl": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2383200/header.jpg?t=1766123897",
       "url": "https://store.steampowered.com/app/2383200/"
     },
     {
-      "appid": 2211170,
-      "name": "Unrailed 2: Back on Track",
-      "playtime_2weeks_min": 82,
-      "playtime_forever_min": 82,
-      "imageUrl": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2211170/e13148cadb42b138b5edce3e475045d4870ec263/header_alt_assets_6.jpg?t=1785434889",
-      "url": "https://store.steampowered.com/app/2211170/"
-    },
-    {
-      "appid": 1588550,
-      "name": "Cairn",
-      "playtime_2weeks_min": 38,
-      "playtime_forever_min": 396,
-      "imageUrl": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1588550/header.jpg?t=1782391789",
-      "url": "https://store.steampowered.com/app/1588550/"
+      "appid": 2001120,
+      "name": "Split Fiction",
+      "playtime_2weeks_min": 58,
+      "playtime_forever_min": 1282,
+      "imageUrl": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2001120/header.jpg?t=1763484567",
+      "url": "https://store.steampowered.com/app/2001120/"
     }
   ]
 }
