@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-08-17T06:47:12.717Z",
+  "fetchedAt": "2026-08-24T06:51:03.342Z",
   "artists": [
     {
       "name": "The Midnight",
@@ -17,14 +17,14 @@
       "image": "https://i.scdn.co/image/ab6761610000e5eb016e0799a6571c7e265afffa"
     },
     {
+      "name": "VÉRITÉ",
+      "url": "https://open.spotify.com/artist/1Fr6agZ6iSM5Ynn2k4C8sc",
+      "image": "https://i.scdn.co/image/ab6761610000e5eb1e9c5c07c1244a637929678c"
+    },
+    {
       "name": "Carpenter Brut",
       "url": "https://open.spotify.com/artist/1l2oLiukA9i5jEtIyNWIEP",
       "image": "https://i.scdn.co/image/ab6761610000e5ebac2f9a19a87d094626992c94"
-    },
-    {
-      "name": "Brutus",
-      "url": "https://open.spotify.com/artist/7m63GptZSke3jGqCxR4rom",
-      "image": "https://i.scdn.co/image/ab6761610000e5eb62e0938cf0822beda02e8477"
     }
   ]
 }

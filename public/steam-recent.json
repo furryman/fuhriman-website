@@ -1,29 +1,29 @@
 {
-  "fetchedAt": "2026-08-17T06:47:13.628Z",
+  "fetchedAt": "2026-08-24T06:51:04.073Z",
   "games": [
     {
       "appid": 1817230,
       "name": "Hi-Fi RUSH",
-      "playtime_2weeks_min": 393,
-      "playtime_forever_min": 393,
+      "playtime_2weeks_min": 467,
+      "playtime_forever_min": 467,
       "imageUrl": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1817230/header.jpg?t=1764916407",
       "url": "https://store.steampowered.com/app/1817230/"
     },
     {
+      "appid": 1478500,
+      "name": "Big Walk",
+      "playtime_2weeks_min": 306,
+      "playtime_forever_min": 306,
+      "imageUrl": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1478500/62eeee1507dbac905e128a62f2ce690550238db0/header.jpg?t=1785911674",
+      "url": "https://store.steampowered.com/app/1478500/"
+    },
+    {
       "appid": 2383200,
       "name": "PATAPON 1+2 REPLAY",
-      "playtime_2weeks_min": 94,
+      "playtime_2weeks_min": 11,
       "playtime_forever_min": 94,
       "imageUrl": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2383200/header.jpg?t=1766123897",
       "url": "https://store.steampowered.com/app/2383200/"
-    },
-    {
-      "appid": 2001120,
-      "name": "Split Fiction",
-      "playtime_2weeks_min": 58,
-      "playtime_forever_min": 1282,
-      "imageUrl": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2001120/header.jpg?t=1763484567",
-      "url": "https://store.steampowered.com/app/2001120/"
     }
   ]
 }
