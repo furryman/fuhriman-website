@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-08-24T06:51:03.342Z",
+  "fetchedAt": "2026-08-31T12:36:46.609Z",
   "artists": [
     {
       "name": "The Midnight",
@@ -12,14 +12,14 @@
       "image": "https://i.scdn.co/image/ab6761610000e5eb8138046dbc917588b96bfc72"
     },
     {
-      "name": "PRIZM",
-      "url": "https://open.spotify.com/artist/0elWefATNt1GKkpPX2L5bo",
-      "image": "https://i.scdn.co/image/ab6761610000e5eb016e0799a6571c7e265afffa"
-    },
-    {
       "name": "VÉRITÉ",
       "url": "https://open.spotify.com/artist/1Fr6agZ6iSM5Ynn2k4C8sc",
       "image": "https://i.scdn.co/image/ab6761610000e5eb1e9c5c07c1244a637929678c"
+    },
+    {
+      "name": "PRIZM",
+      "url": "https://open.spotify.com/artist/0elWefATNt1GKkpPX2L5bo",
+      "image": "https://i.scdn.co/image/ab6761610000e5eb016e0799a6571c7e265afffa"
     },
     {
       "name": "Carpenter Brut",
