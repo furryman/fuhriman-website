@@ -1,6 +1,14 @@
 {
-  "fetchedAt": "2026-09-07T11:30:08.807Z",
+  "fetchedAt": "2026-09-14T11:42:35.378Z",
   "games": [
+    {
+      "appid": 2694490,
+      "name": "Path of Exile 2",
+      "playtime_2weeks_min": 532,
+      "playtime_forever_min": 5768,
+      "imageUrl": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2694490/24eeddcbda17903f03d819588757e40845f8115f/header.jpg?t=1787697213",
+      "url": "https://store.steampowered.com/app/2694490/"
+    },
     {
       "appid": 1478500,
       "name": "Big Walk",
@@ -12,34 +20,18 @@
     {
       "appid": 2001120,
       "name": "Split Fiction",
-      "playtime_2weeks_min": 70,
-      "playtime_forever_min": 1352,
+      "playtime_2weeks_min": 89,
+      "playtime_forever_min": 1442,
       "imageUrl": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2001120/header.jpg?t=1763484567",
       "url": "https://store.steampowered.com/app/2001120/"
     },
     {
-      "appid": 2694490,
-      "name": "Path of Exile 2",
-      "playtime_2weeks_min": 58,
-      "playtime_forever_min": 5293,
-      "imageUrl": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2694490/24eeddcbda17903f03d819588757e40845f8115f/header.jpg?t=1787697213",
-      "url": "https://store.steampowered.com/app/2694490/"
-    },
-    {
-      "appid": 1422450,
-      "name": "Deadlock",
-      "playtime_2weeks_min": 38,
-      "playtime_forever_min": 21982,
-      "imageUrl": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1422450/aa249c5e8cc8f90941bd1dbdc311773cd1afe065/header.jpg?t=1769127177",
-      "url": "https://store.steampowered.com/app/1422450/"
-    },
-    {
-      "appid": 2334730,
-      "name": "Death Must Die",
-      "playtime_2weeks_min": 8,
-      "playtime_forever_min": 7474,
-      "imageUrl": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2334730/70e0e4f26d9d6669fff784089ee35163c8401d0b/header.jpg?t=1744305567",
-      "url": "https://store.steampowered.com/app/2334730/"
+      "appid": 1817230,
+      "name": "Hi-Fi RUSH",
+      "playtime_2weeks_min": 47,
+      "playtime_forever_min": 514,
+      "imageUrl": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1817230/header.jpg?t=1764916407",
+      "url": "https://store.steampowered.com/app/1817230/"
     }
   ]
 }
