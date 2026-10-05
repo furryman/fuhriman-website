@@ -1,11 +1,11 @@
 {
-  "fetchedAt": "2026-09-28T12:49:53.357Z",
+  "fetchedAt": "2026-10-05T13:31:19.102Z",
   "games": [
     {
       "appid": 2694490,
       "name": "Path of Exile 2",
-      "playtime_2weeks_min": 2976,
-      "playtime_forever_min": 8745,
+      "playtime_2weeks_min": 2811,
+      "playtime_forever_min": 10004,
       "imageUrl": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2694490/24eeddcbda17903f03d819588757e40845f8115f/header.jpg?t=1787697213",
       "url": "https://store.steampowered.com/app/2694490/"
     },
