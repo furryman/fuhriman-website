@@ -1,15 +1,15 @@
 {
-  "fetchedAt": "2026-10-12T14:20:41.790Z",
+  "fetchedAt": "2026-10-19T12:02:08.474Z",
   "artists": [
-    {
-      "name": "The Midnight",
-      "url": "https://open.spotify.com/artist/2NFrAuh8RQdQoS7iYFbckw",
-      "image": "https://i.scdn.co/image/ab6761610000e5ebbeb65e1c821ecd888cf5e115"
-    },
     {
       "name": "Unleash The Archers",
       "url": "https://open.spotify.com/artist/6irKXFXk2sPNmHtKqmrfuU",
       "image": "https://i.scdn.co/image/ab6761610000e5eb8138046dbc917588b96bfc72"
+    },
+    {
+      "name": "The Midnight",
+      "url": "https://open.spotify.com/artist/2NFrAuh8RQdQoS7iYFbckw",
+      "image": "https://i.scdn.co/image/ab6761610000e5ebbeb65e1c821ecd888cf5e115"
     },
     {
       "name": "VÉRITÉ",
@@ -17,14 +17,14 @@
       "image": "https://i.scdn.co/image/ab6761610000e5eb1e9c5c07c1244a637929678c"
     },
     {
-      "name": "PRIZM",
-      "url": "https://open.spotify.com/artist/0elWefATNt1GKkpPX2L5bo",
-      "image": "https://i.scdn.co/image/ab6761610000e5eb016e0799a6571c7e265afffa"
-    },
-    {
       "name": "Brutus",
       "url": "https://open.spotify.com/artist/7m63GptZSke3jGqCxR4rom",
       "image": "https://i.scdn.co/image/ab6761610000e5eb62e0938cf0822beda02e8477"
+    },
+    {
+      "name": "PRIZM",
+      "url": "https://open.spotify.com/artist/0elWefATNt1GKkpPX2L5bo",
+      "image": "https://i.scdn.co/image/ab6761610000e5eb016e0799a6571c7e265afffa"
     }
   ]
 }
