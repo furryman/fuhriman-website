@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-19T12:02:08.474Z",
+  "fetchedAt": "2026-10-26T12:12:18.892Z",
   "artists": [
     {
       "name": "Unleash The Archers",
@@ -14,7 +14,7 @@
     {
       "name": "VÉRITÉ",
       "url": "https://open.spotify.com/artist/1Fr6agZ6iSM5Ynn2k4C8sc",
-      "image": "https://i.scdn.co/image/ab6761610000e5eb1e9c5c07c1244a637929678c"
+      "image": "https://i.scdn.co/image/ab6761610000e5ebab4fd4b23be3d9756217d3d4"
     },
     {
       "name": "Brutus",
@@ -24,7 +24,7 @@
     {
       "name": "PRIZM",
       "url": "https://open.spotify.com/artist/0elWefATNt1GKkpPX2L5bo",
-      "image": "https://i.scdn.co/image/ab6761610000e5eb016e0799a6571c7e265afffa"
+      "image": "https://i.scdn.co/image/ab6761610000e5ebec2b2948b4e8374aa001c319"
     }
   ]
 }
