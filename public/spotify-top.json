@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-02T14:41:27.306Z",
+  "fetchedAt": "2026-11-09T15:04:06.589Z",
   "artists": [
     {
       "name": "Unleash The Archers",
@@ -22,9 +22,9 @@
       "image": "https://i.scdn.co/image/ab6761610000e5eb62e0938cf0822beda02e8477"
     },
     {
-      "name": "PRIZM",
-      "url": "https://open.spotify.com/artist/0elWefATNt1GKkpPX2L5bo",
-      "image": "https://i.scdn.co/image/ab6761610000e5ebec2b2948b4e8374aa001c319"
+      "name": "Alice Glass",
+      "url": "https://open.spotify.com/artist/4ukk0IyB7vL97QirpOcNr3",
+      "image": "https://i.scdn.co/image/ab6761610000e5eb70789cb2671e1cba15c906b6"
     }
   ]
 }
